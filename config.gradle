@@ -20,14 +20,16 @@ ext {
             "support-v4"             : "com.android.support:support-v4:${android["androidSupportSdkVersion"]}",
             "cardview-v7"            : "com.android.support:cardview-v7:${android["androidSupportSdkVersion"]}",
             "annotations"            : "com.android.support:support-annotations:${android["androidSupportSdkVersion"]}",
-            "recyclerview-v7"        : "com.android.support:recyclerview-v7:${android["androidSupportSdkVersion"]}",
 
             //test
             "junit"                  : "junit:junit:4.12",
-            "arouter-api"            : 'com.alibaba:arouter-api:1.5.0',//ARouter api
-            "arouter-compiler"       : 'com.alibaba:arouter-compiler:1.2.2',//ARouter
             "constraint-layout"      : 'com.android.support.constraint:constraint-layout:1.1.0',//约束性布局
             "test:runner"            : 'com.android.support.test:runner:1.0.2',//测试依赖，新建项目时会默认添加，一般不建议添加
             "espresso-core"          : 'com.android.support.test.espresso:espresso-core:3.0.2',//测试依赖，新建项目时会默认添加，一般不建议添加
+
+            // 第三方框架
+            "arouter-api"            : 'com.alibaba:arouter-api:1.5.0',//ARouter api
+            "arouter-compiler"       : 'com.alibaba:arouter-compiler:1.2.2',//ARouter
+            "AndroidAutoSize"        : 'me.jessyan:autosize:1.1.2',//AndroidAutoSize
     ]
 }

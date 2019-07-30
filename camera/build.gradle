@@ -20,6 +20,7 @@ android {
 
     defaultConfig {
         if (isRunAlone.toBoolean()) {
+            // 单独调试时添加 applicationId ，集成调试时移除
             applicationId "com.littlecorgi.camera"
         }
         minSdkVersion rootProject.ext.android["minSdkVersion"]
@@ -38,6 +39,16 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            // 单独调试与集成调试时使用不同的 AndroidManifest.xml 文件
+            if (isRunAlone.toBoolean()) {
+                manifest.srcFile 'src/main/manifest/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
+    }
 }
 
 dependencies {

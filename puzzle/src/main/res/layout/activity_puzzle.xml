@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".PuzzleActivity">
 
-
+    <TextView
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:text="1234123"/>
 
 </LinearLayout>

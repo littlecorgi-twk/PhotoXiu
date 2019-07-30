@@ -39,7 +39,6 @@ dependencies {
     testImplementation rootProject.ext.dependencies["junit"]
     implementation rootProject.ext.dependencies["appcompat-v7"]
     implementation rootProject.ext.dependencies["constraint-layout"]
-    implementation rootProject.ext.dependencies["recyclerview-v7"]
 
     implementation rootProject.ext.dependencies["arouter-api"]
     kapt 'com.alibaba:arouter-compiler:1.2.2'
