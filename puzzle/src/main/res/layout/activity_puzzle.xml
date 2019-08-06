@@ -4,11 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".PuzzleActivity">
 
-    <TextView
-        android:layout_width="360dp"
+    <ImageView
+        android:id="@+id/iv_activity_puzzle_show"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="1234123"/>
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/button_activity_puzzle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:text="裁剪" />
 
 </LinearLayout>
