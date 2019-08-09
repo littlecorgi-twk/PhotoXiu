@@ -21,6 +21,7 @@ android {
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -33,6 +34,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:design:28.0.0'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -40,10 +42,12 @@ dependencies {
     implementation rootProject.ext.dependencies["appcompat-v7"]
     implementation rootProject.ext.dependencies["constraint-layout"]
 
-    implementation rootProject.ext.dependencies["arouter-api"]
+    api rootProject.ext.dependencies["arouter-api"]
     kapt 'com.alibaba:arouter-compiler:1.2.2'
     compileOnly rootProject.ext.dependencies["javax.annotation"]
     implementation project(':commonlib')
+    runtimeOnly project(':puzzle')
+    runtimeOnly project(':retouch')
+    runtimeOnly project(':camera')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
-

@@ -1,4 +1,4 @@
-package com.littlecorgi.androidcomponentialprogramming;
+package com.littlecorgi.photoxiu;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.littlecorgi.androidcomponentialprogramming;
+package com.littlecorgi.photoxiu;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

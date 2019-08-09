@@ -1,23 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PuzzleActivity">
+    tools:context=".activity.PuzzleActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_activity_puzzle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_arrow_back_black_24dp" />
 
     <ImageView
-        android:id="@+id/iv_activity_puzzle_show"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:id="@+id/imageView_activity_puzzle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@+id/toolbar_activity_puzzle"
+        android:contentDescription="@string/PuzzledPic"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_activity_puzzle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_activity_puzzle" />
 
-    <Button
-        android:id="@+id/button_activity_puzzle"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_activity_puzzle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:text="裁剪" />
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

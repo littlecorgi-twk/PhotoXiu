@@ -3,7 +3,7 @@
     package="com.littlecorgi.puzzle">
 
     <application android:theme="@style/AppTheme">
-        <activity android:name=".PuzzleActivity" />
+        <activity android:name=".activity.PuzzleActivity" />
     </application>
 
 </manifest>

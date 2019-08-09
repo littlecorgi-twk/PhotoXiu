@@ -1,4 +1,4 @@
-package com.littlecorgi.puzzle
+package com.littlecorgi.puzzle.activity
 
 import android.Manifest
 import android.app.Activity
@@ -15,12 +15,13 @@ import android.support.v4.content.FileProvider
 import android.widget.Button
 import android.widget.ImageView
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.littlecorgi.puzzle.BaseActivity
+import com.littlecorgi.puzzle.R
 import com.yalantis.ucrop.UCrop
 import java.io.File
 
-
-@Route(path = "/puzzle/PuzzleActivity")
-class PuzzleActivity : BaseActivity() {
+@Route(path = "/puzzle/uCropActivity")
+class uCropActivity : BaseActivity() {
 
     //相册请求码
     private val ALBUM_REQUEST_CODE = 1
@@ -38,7 +39,7 @@ class PuzzleActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_puzzle)
+        setContentView(R.layout.activity_u_crop)
 
         //建议在application 的onCreate()的方法中调用
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -62,7 +63,6 @@ class PuzzleActivity : BaseActivity() {
             }
         }
 
-
         mButtonPuzzle = findViewById(R.id.button_activity_puzzle)
         mImageViewShow = findViewById(R.id.iv_activity_puzzle_show)
 
@@ -79,7 +79,7 @@ class PuzzleActivity : BaseActivity() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {//如果在Android7.0以上,使用FileProvider获取Uri
             intent.flags = Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-            val contentUri = FileProvider.getUriForFile(this@PuzzleActivity, "com.littlecorgi.puzzle", tempFile!!)
+            val contentUri = FileProvider.getUriForFile(this, "com.littlecorgi.puzzle", tempFile!!)
             intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri)
         } else { //否则使用Uri.fromFile(file)方法获取Uri
             intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempFile))

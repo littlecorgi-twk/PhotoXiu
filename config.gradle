@@ -8,9 +8,6 @@ ext {
             versionCode             : 1,
             versionName             : "1.0.0",
             androidSupportSdkVersion: "28.0.0-alpha1",
-            retrofitSdkVersion      : "2.6.0",
-            dagger2SdkVersion       : "2.11",
-            rxlifecycleSdkVersion   : "0.6.1",
             espressoSdkVersion      : "3.0.2"
     ]
     dependencies = [
@@ -18,8 +15,10 @@ ext {
             "appcompat-v7"           : "com.android.support:appcompat-v7:${android["androidSupportSdkVersion"]}",
             "design"                 : "com.android.support:design:${android["androidSupportSdkVersion"]}",
             "support-v4"             : "com.android.support:support-v4:${android["androidSupportSdkVersion"]}",
-            "cardview-v7"            : "com.android.support:cardview-v7:${android["androidSupportSdkVersion"]}",
             "annotations"            : "com.android.support:support-annotations:${android["androidSupportSdkVersion"]}",
+            "cardview-v7"            : "com.android.support:cardview-v7:${android["androidSupportSdkVersion"]}",
+            "recyclerview"           : "com.android.support:recyclerview-v7:${android["androidSupportSdkVersion"]}",
+            "palette"                : "com.android.support:palette-v7:${android["androidSupportSdkVersion"]}", // 调色板
 
             //test
             "junit"                  : "junit:junit:4.12",

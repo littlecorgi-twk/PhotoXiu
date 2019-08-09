@@ -10,4 +10,5 @@
     <string name="permission_title_rationale">Permission needed</string>
     <string name="label_ok">OK</string>
     <string name="label_cancel">Cancel</string>
+    <string name="PuzzledPic">修改之后的图片</string>
 </resources>

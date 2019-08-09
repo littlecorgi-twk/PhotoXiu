@@ -46,6 +46,9 @@ dependencies {
     implementation rootProject.ext.dependencies["arouter-api"]
     kapt rootProject.ext.dependencies["arouter-compiler"]
     implementation rootProject.ext.dependencies["annotations"]
+    implementation rootProject.ext.dependencies["recyclerview"]
+    implementation rootProject.ext.dependencies["palette"]
+    implementation rootProject.ext.dependencies["cardview-v7"]
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {
