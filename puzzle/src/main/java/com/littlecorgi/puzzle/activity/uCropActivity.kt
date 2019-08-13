@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -12,6 +13,7 @@ import android.os.StrictMode
 import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.FileProvider
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -40,6 +42,12 @@ class uCropActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_u_crop)
+
+        // 透明状态栏
+        if (Build.VERSION.SDK_INT >= 21) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
+            window.statusBarColor = Color.TRANSPARENT//防止5.x以后半透明影响效果，使用这种透明方式
+        }
 
         //建议在application 的onCreate()的方法中调用
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -130,7 +138,7 @@ class uCropActivity : BaseActivity() {
             ALBUM_REQUEST_CODE -> {
                 if (resultCode == Activity.RESULT_OK) {
                     val uri = data!!.data
-                    cropPhoto(uri)
+                    cropPhoto(uri!!)
                 }
             }
             UCrop.REQUEST_CROP -> {

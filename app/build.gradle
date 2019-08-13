@@ -46,8 +46,8 @@ dependencies {
     kapt 'com.alibaba:arouter-compiler:1.2.2'
     compileOnly rootProject.ext.dependencies["javax.annotation"]
     implementation project(':commonlib')
-    runtimeOnly project(':puzzle')
-    runtimeOnly project(':retouch')
-    runtimeOnly project(':camera')
+    implementation project(':camera')
+    implementation project(':puzzle')
+    implementation project(':retouch')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

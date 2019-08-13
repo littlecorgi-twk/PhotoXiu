@@ -1,5 +1,7 @@
 package com.littlecorgi.photoxiu.adapter
 
+import android.graphics.Color
+import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -17,12 +19,14 @@ class RecyclerAdapter(mItemList: List<RecyclerItemBean>) : RecyclerView.Adapter<
             var mName: TextView? = null
             var mCount: TextView? = null
             var mImage: ImageView? = null
+            var mCardView: CardView? = null
 
             init {
                 mDeception = itemView.findViewById(R.id.tv_description)
                 mName = itemView.findViewById(R.id.tv_user)
                 mCount = itemView.findViewById(R.id.tv_love_count)
                 mImage = itemView.findViewById(R.id.iv_pic)
+                mCardView = itemView.findViewById(R.id.item_card)
             }
         }
     }
@@ -46,8 +50,10 @@ class RecyclerAdapter(mItemList: List<RecyclerItemBean>) : RecyclerView.Adapter<
         viewHolder.mDeception!!.text = item.getDeception()
         if (p1 % 2 == 0) {
             viewHolder.mImage!!.setImageResource(R.drawable.pic1)
+            viewHolder.mCardView!!.setBackgroundColor(Color.argb(30, 240, 229, 222))
         } else {
             viewHolder.mImage!!.setImageResource(R.drawable.pic2)
+            viewHolder.mCardView!!.setBackgroundColor(Color.argb(30, 171, 208, 206))
         }
     }
 

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">commonlib</string>
+    <string name="permission_read_storage_rationale">Storage read permission is needed to pick files.</string>
+    <string name="permission_title_rationale">Permission needed</string>
+    <string name="label_ok">OK</string>
+    <string name="label_cancel">Cancel</string>
 </resources>

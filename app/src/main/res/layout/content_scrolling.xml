@@ -5,6 +5,7 @@
     android:id="@+id/nested_scroll_content_scrolling"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
@@ -16,6 +17,7 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_content_scrolling"
+            android:paddingTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp" />

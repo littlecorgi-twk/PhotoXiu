@@ -1,4 +1,4 @@
-package com.littlecorgi.puzzle
+package com.littlecorgi.commonlib
 
 import android.content.DialogInterface
 import android.os.Bundle

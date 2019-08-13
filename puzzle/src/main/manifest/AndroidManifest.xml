@@ -12,9 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.uCropActivity"></activity>
-        <activity android:name=".BaseActivity" />
-        <activity android:name=".clipimage.ClipImageActivity" />
+        <activity android:name=".activity.uCropActivity" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
@@ -27,6 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.EditActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

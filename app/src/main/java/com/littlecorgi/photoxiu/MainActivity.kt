@@ -1,5 +1,7 @@
 package com.littlecorgi.photoxiu
 
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.design.widget.AppBarLayout
@@ -9,6 +11,7 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.support.v7.widget.Toolbar
 import android.view.View
+import android.view.WindowManager
 import android.widget.ImageView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
@@ -38,9 +41,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // 透明状态栏
+        if (Build.VERSION.SDK_INT >= 21) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
+            window.statusBarColor = Color.TRANSPARENT //防止5.x以后半透明影响效果，使用这种透明方式
+        }
+
+        // 初始化 ARouter
+        // 这两行必须写在init之前，否则这些配置在init过程中将无效
         ARouter.openLog()     // 打印日志
         ARouter.openDebug()   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
-        ARouter.init(application) // 尽可能早，推荐在Application中初始化
+        ARouter.init(application)
 
         toolbar = findViewById(R.id.toolbar)
         viewPager = findViewById(R.id.banner)
@@ -88,7 +99,7 @@ class MainActivity : AppCompatActivity() {
         viewPager!!.adapter = viewpagerAdapter
         viewPager!!.currentItem = 2
 
-        viewPager!!.setOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        viewPager!!.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
 
             var currentPosition: Int = 0
 
@@ -117,19 +128,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initAppBar() {
-        appBar!!.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
-            override fun onOffsetChanged(p0: AppBarLayout?, p1: Int) {
-                var state: Int = 0
-                when {
-                    p1 == 0 -> { // 展开状态
-                        toolbarButtonLayout!!.visibility = View.GONE
-                    }
-                    abs(p1) >= p0!!.totalScrollRange -> { // 收缩状态
-                        toolbarButtonLayout!!.visibility = View.VISIBLE
-                    }
-                    else -> { // 中间状态
-                        toolbarButtonLayout!!.visibility = View.GONE
-                    }
+        appBar!!.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { p0, p1 ->
+            when {
+                p1 == 0 -> { // 展开状态
+                    toolbarButtonLayout!!.visibility = View.GONE
+                }
+                abs(p1) >= p0!!.totalScrollRange -> { // 收缩状态
+                    toolbarButtonLayout!!.visibility = View.VISIBLE
+                }
+                else -> { // 中间状态
+                    toolbarButtonLayout!!.visibility = View.GONE
                 }
             }
         })
