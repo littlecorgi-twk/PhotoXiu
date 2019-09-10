@@ -2,17 +2,17 @@
 
     <!-- Base application theme. -->
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="AppTheme.Base">
+    <style name="puzzle_AppTheme" parent="puzzle_AppTheme.Base">
     </style>
 
     <!--Toolbar主题的设置,Application使用的是这个主题-->
-    <style name="AppTheme.Base" parent="Theme.AppCompat">
+    <style name="puzzle_AppTheme.Base" parent="Theme.AppCompat">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/colorWindowBackground</item>
+        <item name="colorPrimary">@color/puzzle_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/puzzle_colorPrimaryDark</item>
+        <item name="colorAccent">@color/puzzle_colorAccent</item>
+        <item name="android:windowBackground">@color/puzzle_colorWindowBackground</item>
     </style>
 </resources>

@@ -28,8 +28,12 @@ class MainActivity : AppCompatActivity() {
     private var viewPager: ViewPager? = null
     private var appBar: AppBarLayout? = null
     private var toolbarButtonLayout: ConstraintLayout? = null
+    private var cameraButton: ImageView? = null
+    private var cameraToolbarButton: ImageView? = null
     private var puzzleButton: ImageView? = null
     private var puzzleToolbarButton: ImageView? = null
+    private var retouchButton: ImageView? = null
+    private var retouchToolbarButton: ImageView? = null
 
     private var adapter: RecyclerAdapter? = null
     private var viewpagerAdapter: ViewpagerAdapter? = null
@@ -39,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.app_activity_main)
 
         // 透明状态栏
         if (Build.VERSION.SDK_INT >= 21) {
@@ -58,13 +62,17 @@ class MainActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recycler_content_scrolling)
         appBar = findViewById(R.id.app_bar)
         toolbarButtonLayout = findViewById(R.id.toolbar_button_layout)
+        cameraButton = findViewById(R.id.fab1)
+        cameraToolbarButton = findViewById(R.id.fab1_toolbar)
         puzzleButton = findViewById(R.id.fab2)
         puzzleToolbarButton = findViewById(R.id.fab2_toolbar)
+        retouchButton = findViewById(R.id.fab3)
+        retouchToolbarButton = findViewById(R.id.fab3_toolbar)
 
         setSupportActionBar(toolbar)
         toolbar!!.title = ""
 
-        adapter = RecyclerAdapter(initData())
+        adapter = RecyclerAdapter(initData(), this)
         recyclerView!!.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         recyclerView!!.adapter = adapter
 
@@ -144,7 +152,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initButton() {
+        cameraButton!!.setOnClickListener { ARouter.getInstance().build("/camera/CameraActivity").navigation() }
+        cameraToolbarButton!!.setOnClickListener { ARouter.getInstance().build("/camera/CameraActivity").navigation() }
         puzzleButton!!.setOnClickListener { ARouter.getInstance().build("/puzzle/PuzzleActivity").navigation() }
         puzzleToolbarButton!!.setOnClickListener { ARouter.getInstance().build("/puzzle/PuzzleActivity").navigation() }
+        retouchButton!!.setOnClickListener { ARouter.getInstance().build("/retouch/RetouchActivity").navigation() }
+        retouchToolbarButton!!.setOnClickListener { ARouter.getInstance().build("/retouch/RetouchActivity").navigation() }
     }
 }

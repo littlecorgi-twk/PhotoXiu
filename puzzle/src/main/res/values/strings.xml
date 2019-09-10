@@ -1,14 +1,14 @@
 <resources>
-    <string name="app_name">PhotoXiu_puzzle</string>
-    <string name="msg_camera_invalid_permission_denied">无法打开相机，可能是权限被拒绝</string>
-    <string name="msg_camera_invalid_initial_failed">相机初始化失败，无法打开相机</string>
-    <string name="msg_camera_invalid_unknown_error">无法打开相机，未知错误</string>
-    <string name="msg_could_not_save_photo">无法保存图片</string>
-    <string name="msg_clipping_image">正在裁剪图片</string>
-    <string name="label_select_picture">Select Picture</string>
-    <string name="permission_read_storage_rationale">Storage read permission is needed to pick files.</string>
-    <string name="permission_title_rationale">Permission needed</string>
-    <string name="label_ok">OK</string>
-    <string name="label_cancel">Cancel</string>
-    <string name="PuzzledPic">修改之后的图片</string>
+    <string name="puzzle_app_name">PhotoXiu_puzzle</string>
+    <string name="puzzle_msg_camera_invalid_permission_denied">无法打开相机，可能是权限被拒绝</string>
+    <string name="puzzle_msg_camera_invalid_initial_failed">相机初始化失败，无法打开相机</string>
+    <string name="puzzle_msg_camera_invalid_unknown_error">无法打开相机，未知错误</string>
+    <string name="puzzle_msg_could_not_save_photo">无法保存图片</string>
+    <string name="puzzle_msg_clipping_image">正在裁剪图片</string>
+    <string name="puzzle_label_select_picture">Select Picture</string>
+    <string name="puzzle_permission_read_storage_rationale">Storage read permission is needed to pick files.</string>
+    <string name="puzzle_permission_title_rationale">Permission needed</string>
+    <string name="puzzle_label_ok">OK</string>
+    <string name="puzzle_label_cancel">Cancel</string>
+    <string name="puzzle_PuzzledPic">修改之后的图片</string>
 </resources>

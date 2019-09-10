@@ -1,5 +1,6 @@
 package com.littlecorgi.photoxiu.adapter
 
+import android.content.Context
 import android.graphics.Color
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
@@ -8,10 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.littlecorgi.photoxiu.R
 import com.littlecorgi.photoxiu.bean.RecyclerItemBean
 
-class RecyclerAdapter(mItemList: List<RecyclerItemBean>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class RecyclerAdapter(mItemList: List<RecyclerItemBean>, context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -32,9 +34,11 @@ class RecyclerAdapter(mItemList: List<RecyclerItemBean>) : RecyclerView.Adapter<
     }
 
     private var mItemList: List<RecyclerItemBean>? = null
+    private var context: Context? = null
 
     init {
         this.mItemList = mItemList
+        this.context = context
     }
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): RecyclerView.ViewHolder {
@@ -49,11 +53,15 @@ class RecyclerAdapter(mItemList: List<RecyclerItemBean>) : RecyclerView.Adapter<
         viewHolder.mCount!!.text = item.getCount()
         viewHolder.mDeception!!.text = item.getDeception()
         if (p1 % 2 == 0) {
-            viewHolder.mImage!!.setImageResource(R.drawable.pic1)
             viewHolder.mCardView!!.setBackgroundColor(Color.argb(30, 240, 229, 222))
         } else {
-            viewHolder.mImage!!.setImageResource(R.drawable.pic2)
             viewHolder.mCardView!!.setBackgroundColor(Color.argb(30, 171, 208, 206))
+        }
+        val i = (Math.random() * 2).toInt()
+        if (i % 2 == 0) {
+            Glide.with(context!!).load(R.drawable.pic1).fitCenter().into(viewHolder.mImage!!)
+        } else {
+            Glide.with(context!!).load(R.drawable.pic2).fitCenter().into(viewHolder.mImage!!)
         }
     }
 

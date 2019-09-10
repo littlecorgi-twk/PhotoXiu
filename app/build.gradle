@@ -14,6 +14,9 @@ kapt {
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+
+    resourcePrefix "app_"
+
     defaultConfig {
         applicationId "com.littlecorgi.androidcomponentialprogramming"
         minSdkVersion rootProject.ext.android["minSdkVersion"]
@@ -45,9 +48,13 @@ dependencies {
     api rootProject.ext.dependencies["arouter-api"]
     kapt 'com.alibaba:arouter-compiler:1.2.2'
     compileOnly rootProject.ext.dependencies["javax.annotation"]
+    implementation rootProject.ext.dependencies["Glide"]
+    annotationProcessor rootProject.ext.dependencies["Glide-compiler"]
     implementation project(':commonlib')
-    implementation project(':camera')
-    implementation project(':puzzle')
-    implementation project(':retouch')
+    if (!isRunAlone.toBoolean()) {
+        implementation project(':camera')
+        implementation project(':puzzle')
+        implementation project(':retouch')
+    }
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

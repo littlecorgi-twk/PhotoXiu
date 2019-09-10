@@ -2,9 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.littlecorgi.puzzle">
 
-    <application android:theme="@style/AppTheme">
+    <application android:theme="@style/puzzle_AppTheme">
         <activity android:name=".activity.EditActivity" />
-        <activity android:name=".activity.uCropActivity" />
         <activity android:name=".activity.PuzzleActivity" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"

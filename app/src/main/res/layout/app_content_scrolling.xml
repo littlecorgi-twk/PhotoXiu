@@ -5,10 +5,10 @@
     android:id="@+id/nested_scroll_content_scrolling"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/app_colorPrimary"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/app_activity_main">
 
     <LinearLayout
         android:layout_width="match_parent"

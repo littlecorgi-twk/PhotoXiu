@@ -66,7 +66,7 @@
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
                         android:clickable="true"
-                        android:contentDescription="@string/camera"
+                        android:contentDescription="@string/app_camera"
                         android:focusable="true"
                         android:scaleType="centerCrop"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -81,7 +81,7 @@
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
                         android:clickable="true"
-                        android:contentDescription="@string/edit"
+                        android:contentDescription="@string/app_edit"
                         android:focusable="true"
                         android:scaleType="centerCrop"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -96,7 +96,7 @@
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
                         android:clickable="true"
-                        android:contentDescription="@string/retouch"
+                        android:contentDescription="@string/app_retouch"
                         android:focusable="true"
                         android:scaleType="centerCrop"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -125,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:clickable="true"
-                    android:contentDescription="@string/camera"
+                    android:contentDescription="@string/app_camera"
                     android:focusable="true"
                     android:scaleType="centerCrop"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -140,7 +140,7 @@
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:clickable="true"
-                    android:contentDescription="@string/edit"
+                    android:contentDescription="@string/app_edit"
                     android:focusable="true"
                     android:scaleType="centerCrop"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -155,7 +155,7 @@
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:clickable="true"
-                    android:contentDescription="@string/retouch"
+                    android:contentDescription="@string/app_retouch"
                     android:focusable="true"
                     android:scaleType="centerCrop"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -169,6 +169,6 @@
 
     <include
         android:id="@+id/include"
-        layout="@layout/content_scrolling" />
+        layout="@layout/app_content_scrolling" />
 
 </android.support.design.widget.CoordinatorLayout>

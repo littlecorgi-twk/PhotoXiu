@@ -49,6 +49,8 @@ dependencies {
     implementation rootProject.ext.dependencies["recyclerview"]
     implementation rootProject.ext.dependencies["palette"]
     implementation rootProject.ext.dependencies["cardview-v7"]
+    implementation rootProject.ext.dependencies["Glide"]
+    annotationProcessor rootProject.ext.dependencies["Glide-compiler"]
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {

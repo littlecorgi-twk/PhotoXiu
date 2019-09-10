@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
@@ -17,14 +16,15 @@ import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.littlecorgi.puzzle.BaseActivity
 import com.littlecorgi.puzzle.ImageHelper
 import com.littlecorgi.puzzle.adapter.RecyclerAdapter
 import com.littlecorgi.puzzle.bean.RecyclerItem
-import kotlinx.android.synthetic.main.activity_edit.*
+import kotlinx.android.synthetic.main.puzzle_activity_edit.*
 
 
 @Route(path = "/puzzle/EditActivity")
-class EditActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
+class EditActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener {
 
     companion object {
         private const val MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1
@@ -46,7 +46,7 @@ class EditActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.littlecorgi.puzzle.R.layout.activity_edit)
+        setContentView(com.littlecorgi.puzzle.R.layout.puzzle_activity_edit)
 
         val intent = intent
         uri = intent.getParcelableExtra<Uri>("Uri")

@@ -28,7 +28,6 @@ import com.littlecorgi.puzzle.bean.RecyclerItem
 import com.yalantis.ucrop.UCrop
 import java.io.File
 
-
 @Route(path = "/puzzle/PuzzleActivity")
 class PuzzleActivity : BaseActivity() {
 
@@ -44,12 +43,14 @@ class PuzzleActivity : BaseActivity() {
     private lateinit var mRecycler: RecyclerView
 
     private var uri: Uri? = null
+//    // 根据uri得到图片之后，先转为bitmap进行后续操作，并删除原文件
+//    private var bitmap: Bitmap? = null
 
     private var mItemList = ArrayList<RecyclerItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_puzzle)
+        setContentView(R.layout.puzzle_activity_puzzle)
 
         //建议在application 的onCreate()的方法中调用
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -91,7 +92,7 @@ class PuzzleActivity : BaseActivity() {
                 intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
             }
 
-            startActivityForResult(Intent.createChooser(intent, getString(R.string.label_select_picture)), ALBUM_REQUEST_CODE)
+            startActivityForResult(Intent.createChooser(intent, getString(R.string.puzzle_label_select_picture)), ALBUM_REQUEST_CODE)
         }
     }
 
@@ -99,7 +100,6 @@ class PuzzleActivity : BaseActivity() {
      * 裁剪图片
      */
     private fun cropPhoto(uri: Uri) {
-
         val destinationUri = Uri.fromFile(File(cacheDir, "temp" + System.currentTimeMillis() + ".jpeg"))
         val options = UCrop.Options()
         options.setShowCropGrid(false)
@@ -120,7 +120,10 @@ class PuzzleActivity : BaseActivity() {
                 val bundle = data!!.extras
                 uri = bundle!!.getParcelable("uri")
                 mImageView.setImageURI(uri)
-
+//                // uri转为bitmap
+//                bitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
+//                // 删除uri原文件
+//                contentResolver.delete(uri!!, null, null)
             }
             UCrop.REQUEST_CROP -> {
                 if (resultCode == RESULT_OK) {
