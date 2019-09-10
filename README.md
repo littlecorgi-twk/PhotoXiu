@@ -8,6 +8,7 @@
 2. 主页`banner`和下面的`RecyclerView`展示
 3. 主页的按钮点击以及`ARouter`跳转
 4. 图片亮度、色调、饱和度设置
+5. 简单的OpenGL ES 2.0 Demo
 
 # 使用框架
 - UI美化设计：  
@@ -25,9 +26,12 @@
 [permissions-dispatcher/PermissionsDispatcher](https://github.com/permissions-dispatcher/PermissionsDispatcher)
 - 图片加载:
 [bumptech/glide](https://github.com/bumptech/glide)
+- OpenGL ES 2.0
 
 # Change Log
 
+## v0.0.50alpha (2019-09-10 22:16:04)
++ 添加OpenGL ES 2.0，并写了一个冰球1.0版本(只有基本界面，没有颜色)
 + 通过使用`Glide`替换`setImageResource`解决了锤子手机`RecyclerView`滑动卡顿问题
 + 解决图片调色之后会将图片保存在本地的问题(因为`activity`传递图片我是用过`uri`传递的，所以会暂时把中间文件保存在本地)
 + 加入了`app`的`build.gradle`的依赖问题
