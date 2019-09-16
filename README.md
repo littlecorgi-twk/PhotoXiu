@@ -8,32 +8,33 @@
 2. 主页`banner`和下面的`RecyclerView`展示
 3. 主页的按钮点击以及`ARouter`跳转
 4. 图片亮度、色调、饱和度设置
-5. 简单的OpenGL ES 2.0 Demo
+5. 基于ColorMatrix的滤镜
+6. 简单的OpenGL ES 2.0 Demo
 
 ## 使用框架
-- UI美化设计：  
+- UI美化设计:  
 [hwding/android-art](https://github.com/hwding/android-art)  
-- 组件化：  
+- 组件化:  
 [renxuelong/ComponentDemo](https://github.com/renxuelong/ComponentDemo)  
-- ARouter：  
+- ARouter:  
 [alibaba/ARouter](https://github.com/alibaba/ARouter)  
-- 屏幕适配：  
+- 屏幕适配:  
 [JessYanCoding/AndroidAutoSize](https://github.com/JessYanCoding/AndroidAutoSize)  
-- 图片裁剪：
+- 图片裁剪:  
     - [msdx/clip-image](https://github.com/msdx/clip-image)  
     - [Yalantis/uCrop](https://github.com/Yalantis/uCrop)
 - 权限:  
 [permissions-dispatcher/PermissionsDispatcher](https://github.com/permissions-dispatcher/PermissionsDispatcher)
-- 图片加载:
+- 图片加载:  
 [bumptech/glide](https://github.com/bumptech/glide)
 - OpenGL ES 2.0
 
 ## 版本
 
-### v0.06-alpha1 (2019-09-16 17:54:01)
+### v0.0.6-alpha1 (2019-09-16 17:54:01)
 + 修复了滤镜界面直接按下back键导致应用闪退的bug
 
-### v0.06-alpha (2019-09-16 17:43:04)
+### v0.0.6-alpha (2019-09-16 17:43:04)
 + 添加了启动页
 + 添加了基于ColorMatrix的滤镜
 + 对0.05版本中的冰球1.0加入了颜色
