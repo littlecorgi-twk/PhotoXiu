@@ -32,10 +32,13 @@ import java.io.File
 class PuzzleActivity : BaseActivity() {
 
     companion object {
+        private const val TAG = "PuzzleActivity1"
         // 相册请求码
         private const val ALBUM_REQUEST_CODE: Int = 1
         // Edit请求码
-        private const val EDITACTIVITY_REQUEST_CODE: Int = 2
+        private const val EDIT_ACTIVITY_REQUEST_CODE: Int = 2
+        // Filter请求码
+        private const val Filter_ACTIVITY_REQUEST_CODE: Int = 3
     }
 
     private lateinit var mToolbar: Toolbar
@@ -116,15 +119,6 @@ class PuzzleActivity : BaseActivity() {
                     mImageView.setImageURI(uri)
                 }
             }
-            EDITACTIVITY_REQUEST_CODE -> {
-                val bundle = data!!.extras
-                uri = bundle!!.getParcelable("uri")
-                mImageView.setImageURI(uri)
-//                // uri转为bitmap
-//                bitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
-//                // 删除uri原文件
-//                contentResolver.delete(uri!!, null, null)
-            }
             UCrop.REQUEST_CROP -> {
                 if (resultCode == RESULT_OK) {
                     uri = UCrop.getOutput(data!!)
@@ -134,6 +128,22 @@ class PuzzleActivity : BaseActivity() {
             UCrop.RESULT_ERROR -> {
                 val cropError = UCrop.getError(data!!)
                 cropError!!.printStackTrace()
+            }
+            EDIT_ACTIVITY_REQUEST_CODE -> {
+                val tag = data!!.getIntExtra("tag", 1)
+                if (tag == 0) {
+                    val bundle = data.extras
+                    uri = bundle!!.getParcelable("uri")
+                }
+                mImageView.setImageURI(uri)
+            }
+            Filter_ACTIVITY_REQUEST_CODE -> {
+                val tag = data!!.getIntExtra("tag", 1)
+                if (tag == 0) {
+                    val bundle = data.extras
+                    uri = bundle!!.getParcelable("uri")
+                }
+                mImageView.setImageURI(uri)
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
@@ -179,9 +189,15 @@ class PuzzleActivity : BaseActivity() {
                         val intent = Intent()
                         intent.setClass(this@PuzzleActivity, EditActivity::class.java)
                         intent.putExtra("Uri", uri)
-                        startActivityForResult(intent, EDITACTIVITY_REQUEST_CODE)
+                        startActivityForResult(intent, EDIT_ACTIVITY_REQUEST_CODE)
                     }
                     1 -> cropPhoto(uri!!)
+                    2 -> {
+                        val intent = Intent()
+                        intent.setClass(this@PuzzleActivity, FilterActivity::class.java)
+                        intent.putExtra("Uri", uri)
+                        startActivityForResult(intent, Filter_ACTIVITY_REQUEST_CODE)
+                    }
                     else -> Toast.makeText(baseContext, "1234", Toast.LENGTH_SHORT).show()
                 }
             }

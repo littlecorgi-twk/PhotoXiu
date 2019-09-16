@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".activity.FilterActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarActivityFilter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/puzzle_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_arrow_back_black_24dp" />
+
+    <ImageView
+        android:id="@+id/imageViewActivityFilter"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@+id/toolbarActivityFilter"
+        android:contentDescription="@string/puzzle_PuzzledPic"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerActivityFilter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarActivityFilter" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerActivityFilter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/puzzle_white"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

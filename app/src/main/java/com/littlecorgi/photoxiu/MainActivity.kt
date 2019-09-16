@@ -1,5 +1,6 @@
 package com.littlecorgi.photoxiu
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -158,5 +159,12 @@ class MainActivity : AppCompatActivity() {
         puzzleToolbarButton!!.setOnClickListener { ARouter.getInstance().build("/puzzle/PuzzleActivity").navigation() }
         retouchButton!!.setOnClickListener { ARouter.getInstance().build("/retouch/RetouchActivity").navigation() }
         retouchToolbarButton!!.setOnClickListener { ARouter.getInstance().build("/retouch/RetouchActivity").navigation() }
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(Intent.ACTION_MAIN)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        intent.addCategory(Intent.CATEGORY_HOME)
+        startActivity(intent)
     }
 }

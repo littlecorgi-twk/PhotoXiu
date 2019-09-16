@@ -3,18 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.littlecorgi.photoxiu">
 
-    <!--OpenGL ES 2.0 api-->
-    <uses-feature
-        android:glEsVersion="0x00020000"
-        android:required="true" />
-
-    <!--支持的压缩类型-->
-    <supports-gl-texture android:name="GL_OES_compressed_ETC1_RGB8_texture" />
-    <supports-gl-texture android:name="GL_OES_compressed_paletted_texture" />
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,8 +12,8 @@
         android:theme="@style/AppTheme"
         tools:replace="android:theme">
         <activity
-            android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".SplashActivity"
+            android:theme="@style/AppTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -33,6 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".AdsActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="design_width_in_dp"
@@ -41,5 +33,14 @@
             android:name="design_height_in_dp"
             android:value="1920" />
     </application>
+    <supports-gl-texture android:name="GL_OES_compressed_ETC1_RGB8_texture" /> <!-- OpenGL ES 2.0 api -->
+    <supports-gl-texture android:name="GL_OES_compressed_paletted_texture" /> <!-- 支持的压缩类型 -->
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>

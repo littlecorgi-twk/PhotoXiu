@@ -3,6 +3,7 @@
     package="com.littlecorgi.puzzle">
 
     <application android:theme="@style/puzzle_AppTheme">
+        <activity android:name=".activity.FilterActivity"></activity>
         <activity android:name=".activity.EditActivity" />
         <activity android:name=".activity.PuzzleActivity" />
         <activity

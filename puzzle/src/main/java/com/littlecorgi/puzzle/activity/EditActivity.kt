@@ -10,6 +10,7 @@ import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -17,9 +18,10 @@ import android.widget.SeekBar
 import android.widget.Toast
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.littlecorgi.puzzle.BaseActivity
-import com.littlecorgi.puzzle.ImageHelper
+import com.littlecorgi.puzzle.R
 import com.littlecorgi.puzzle.adapter.RecyclerAdapter
 import com.littlecorgi.puzzle.bean.RecyclerItem
+import com.littlecorgi.puzzle.edit.ImageHelper
 import kotlinx.android.synthetic.main.puzzle_activity_edit.*
 
 
@@ -27,8 +29,9 @@ import kotlinx.android.synthetic.main.puzzle_activity_edit.*
 class EditActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener {
 
     companion object {
+        private const val TAG = "EditActivity1"
         private const val MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1
-        private const val EDITACTIVITY_REQUEST_CODE = 2
+        private const val EDIT_ACTIVITY_REQUEST_CODE = 2
     }
 
     private var oldBitmap: Bitmap? = null
@@ -44,20 +47,26 @@ class EditActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener {
 
     private var mItemList = ArrayList<RecyclerItem>()
 
+    private var tag = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.littlecorgi.puzzle.R.layout.puzzle_activity_edit)
+        setContentView(R.layout.puzzle_activity_edit)
 
         val intent = intent
-        uri = intent.getParcelableExtra<Uri>("Uri")
+        uri = intent.getParcelableExtra("Uri")
         oldBitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
         tmpBitmap = oldBitmap
         newBitmap = Bitmap.createBitmap(oldBitmap!!.width, oldBitmap!!.height, Bitmap.Config.ARGB_8888)
 
         midValue = hueSeekBar!!.max * 1.0f / 2
 
-        toolbarActivityEdit.setNavigationOnClickListener { finish() }
         setSupportActionBar(toolbarActivityEdit)
+        toolbarActivityEdit.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+        toolbarActivityEdit.setNavigationOnClickListener {
+            tag = 1
+            finished()
+        }
         lumSeekBar!!.setOnSeekBarChangeListener(this)
         hueSeekBar!!.setOnSeekBarChangeListener(this)
         saturationSeekBar!!.setOnSeekBarChangeListener(this)
@@ -102,23 +111,23 @@ class EditActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener {
     }
 
     private fun initRecyclerItem() {
-        val light = RecyclerItem("亮度", com.littlecorgi.puzzle.R.drawable.ic_light_black_24dp)
+        val light = RecyclerItem("亮度", R.drawable.ic_light_black_24dp)
         mItemList.add(light)
-        val tonality = RecyclerItem("色调", com.littlecorgi.puzzle.R.drawable.ic_tonality_black_24dp)
+        val tonality = RecyclerItem("色调", R.drawable.ic_tonality_black_24dp)
         mItemList.add(tonality)
-        val filter = RecyclerItem("饱和度", com.littlecorgi.puzzle.R.drawable.ic_iso_black_24dp)
+        val filter = RecyclerItem("饱和度", R.drawable.ic_iso_black_24dp)
         mItemList.add(filter)
     }
 
     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
         when (seekBar!!.id) {
-            com.littlecorgi.puzzle.R.id.hueSeekBar -> {
+            R.id.hueSeekBar -> {
                 mHue = (progress - midValue) * 1.0F / midValue * 180
             }
-            com.littlecorgi.puzzle.R.id.saturationSeekBar -> {
+            R.id.saturationSeekBar -> {
                 mSaturation = progress * 1.0F / midValue
             }
-            com.littlecorgi.puzzle.R.id.lumSeekBar -> {
+            R.id.lumSeekBar -> {
                 mLum = progress * 1.0F / midValue
             }
         }
@@ -153,13 +162,14 @@ class EditActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
-        inflater.inflate(com.littlecorgi.puzzle.R.menu.menu_toolbart_activity_puzzle, menu)
+        inflater.inflate(R.menu.menu_toolbart_activity_puzzle, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
-            com.littlecorgi.puzzle.R.id.finish -> {
+            R.id.finish -> {
+                tag = 0
                 requestWrite()
             }
         }
@@ -167,10 +177,14 @@ class EditActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener {
     }
 
     private fun finished() {
+        Log.d(TAG, "finished: tag=$tag")
         val intent = Intent()
-        val uri = Uri.parse(MediaStore.Images.Media.insertImage(contentResolver, tmpBitmap, null, null))
-        intent.putExtra("uri", uri)
-        setResult(EDITACTIVITY_REQUEST_CODE, intent)
+        if (tag == 0) {
+            val uri = Uri.parse(MediaStore.Images.Media.insertImage(contentResolver, tmpBitmap, null, null))
+            intent.putExtra("uri", uri)
+        }
+        intent.putExtra("tag", tag)
+        setResult(EDIT_ACTIVITY_REQUEST_CODE, intent)
         finish()
     }
 
@@ -197,5 +211,10 @@ class EditActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener {
             return
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+    override fun onBackPressed() {
+        tag = 1
+        finished()
     }
 }
