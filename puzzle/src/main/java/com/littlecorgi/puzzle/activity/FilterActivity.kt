@@ -177,4 +177,9 @@ class FilterActivity : BaseActivity() {
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
+
+    override fun onBackPressed() {
+        tag = 1
+        finished()
+    }
 }
