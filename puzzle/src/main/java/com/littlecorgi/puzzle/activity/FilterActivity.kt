@@ -35,7 +35,7 @@ class FilterActivity : BaseActivity() {
     private var tmpBitmap: Bitmap? = null
 
     companion object {
-        private const val TAG = "FilterActivity1"
+        private const val TAG = "FilterActivity"
         private const val MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1
         private const val Filter_ACTIVITY_REQUEST_CODE = 3
     }

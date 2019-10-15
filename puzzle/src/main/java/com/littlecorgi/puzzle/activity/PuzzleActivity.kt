@@ -32,7 +32,7 @@ import java.io.File
 class PuzzleActivity : BaseActivity() {
 
     companion object {
-        private const val TAG = "PuzzleActivity1"
+        private const val TAG = "PuzzleActivity"
         // 相册请求码
         private const val ALBUM_REQUEST_CODE: Int = 1
         // Edit请求码

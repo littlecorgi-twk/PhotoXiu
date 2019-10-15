@@ -29,7 +29,7 @@ import kotlinx.android.synthetic.main.puzzle_activity_edit.*
 class EditActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener {
 
     companion object {
-        private const val TAG = "EditActivity1"
+        private const val TAG = "EditActivity"
         private const val MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1
         private const val EDIT_ACTIVITY_REQUEST_CODE = 2
     }

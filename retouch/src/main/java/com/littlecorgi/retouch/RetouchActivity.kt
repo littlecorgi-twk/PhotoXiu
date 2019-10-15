@@ -1,5 +1,6 @@
 package com.littlecorgi.retouch
 
+import android.annotation.SuppressLint
 import android.app.ActivityManager
 import android.content.Context
 import android.opengl.GLSurfaceView
@@ -15,6 +16,7 @@ class RetouchActivity : AppCompatActivity() {
     private var glSurfaceView: GLSurfaceView? = null
     private var rendererSet: Boolean = false
 
+    @SuppressLint("ObsoleteSdkInt")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.retouch_activity_retouch)
