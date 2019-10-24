@@ -10,6 +10,7 @@
 4. 图片亮度、色调、饱和度设置
 5. 基于ColorMatrix的滤镜
 6. 简单的OpenGL ES 2.0 Demo
+7. 通过CameraAPI实现简答的相机功能
 
 ## 使用框架
 - UI美化设计:  
@@ -28,8 +29,12 @@
 - 图片加载:  
 [bumptech/glide](https://github.com/bumptech/glide)
 - OpenGL ES 2.0
+- Camera API
 
 ## 版本
+
+### v0.0.7-alpha (2019-10-24 19:59:13)
++ 添加了CameraAPI实现的简单的相机功能，但是在三星S8+ 9.0上不能使用，在坚果Pro2s上能使用
 
 ### v0.0.6-alpha1 (2019-09-16 17:54:01)
 + 修复了滤镜界面直接按下back键导致应用闪退的bug

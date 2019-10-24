@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initData(): List<RecyclerItemBean> {
         val list: ArrayList<RecyclerItemBean> = ArrayList()
-        for (i in 0..50) {
+        for (i in 0..20) {
             list.add(RecyclerItemBean("小柯基 $i", "河山大好 $i", i.toString()))
         }
         return list

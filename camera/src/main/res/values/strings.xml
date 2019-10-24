@@ -1,3 +1,4 @@
 <resources>
     <string name="camera_app_name">camera</string>
+    <string name="camera_capture">拍照</string>
 </resources>
