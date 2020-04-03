@@ -20,8 +20,10 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.littlecorgi.puzzle.BaseActivity
 import com.littlecorgi.puzzle.R
 import com.littlecorgi.puzzle.adapter.RecyclerAdapter
+import com.littlecorgi.puzzle.bean.Procedure
 import com.littlecorgi.puzzle.bean.RecyclerItem
-import com.littlecorgi.puzzle.edit.ImageHelper
+import com.littlecorgi.puzzle.util.ImageHelper
+import com.littlecorgi.puzzle.util.ProcedureUtil
 import kotlinx.android.synthetic.main.puzzle_activity_edit.*
 
 
@@ -162,15 +164,25 @@ class EditActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
-        inflater.inflate(R.menu.menu_toolbart_activity_puzzle, menu)
+        inflater.inflate(R.menu.puzzle_menu_not_upload, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
-            R.id.finish -> {
+            R.id.puzzle_menu_not_upload_finish -> {
                 tag = 0
+                if (mHue != 0.0F)
+                    ProcedureUtil.getInstance().add(Procedure("hue", mHue))
+                if (mSaturation != 1F)
+                    ProcedureUtil.getInstance().add(Procedure("saturation", mSaturation))
+                if (mLum != 1F)
+                    ProcedureUtil.getInstance().add(Procedure("lum", mLum))
                 requestWrite()
+                return true
+            }
+            R.id.puzzle_menu_not_upload_history -> {
+                return true
             }
         }
         return super.onOptionsItemSelected(item)

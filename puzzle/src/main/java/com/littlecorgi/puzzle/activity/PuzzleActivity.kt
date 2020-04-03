@@ -5,28 +5,38 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.StrictMode
+import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import android.view.WindowManager
-import android.widget.ImageView
-import android.widget.Toast
+import android.util.Log
+import android.view.*
+import android.widget.*
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.littlecorgi.puzzle.BaseActivity
 import com.littlecorgi.puzzle.R
 import com.littlecorgi.puzzle.adapter.RecyclerAdapter
 import com.littlecorgi.puzzle.bean.RecyclerItem
+import com.littlecorgi.puzzle.util.ProcedureUtil
+import com.qiniu.android.common.FixedZone
+import com.qiniu.android.storage.Configuration
+import com.qiniu.android.storage.UpProgressHandler
+import com.qiniu.android.storage.UploadManager
+import com.qiniu.android.storage.UploadOptions
 import com.yalantis.ucrop.UCrop
+import java.io.ByteArrayOutputStream
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 @Route(path = "/puzzle/PuzzleActivity")
 class PuzzleActivity : BaseActivity() {
@@ -39,17 +49,25 @@ class PuzzleActivity : BaseActivity() {
         private const val EDIT_ACTIVITY_REQUEST_CODE: Int = 2
         // Filter请求码
         private const val Filter_ACTIVITY_REQUEST_CODE: Int = 3
+        private const val ACCESS_KEY = "o9oOUcAzuwZwrwBqWIVlNmI6ayD9H9x-jtHuz5HY"
+        private const val SECRET_KEY = "hnEeEunY8sl9K1k74ZBsAMEIF3O-HJa9r6-am8NU"
+        private const val BUCKET = "blog-markdown"
+        private const val TOKEN = "o9oOUcAzuwZwrwBqWIVlNmI6ayD9H9x-jtHuz5HY:xaMz7K1gx9P_1jVNOoA32-Hzu38=:eyJzY29wZSI6ImJsb2ctbWFya2Rvd24iLCJkZWFkbGluZSI6MTU3MjMzODUwNH0="
     }
 
     private lateinit var mToolbar: Toolbar
     private lateinit var mImageView: ImageView
     private lateinit var mRecycler: RecyclerView
+    private lateinit var mPopupWindow: PopupWindow
+    private lateinit var mProcedureListView: ListView
+    private val procedureList: ArrayList<String> = ArrayList()
 
     private var uri: Uri? = null
 //    // 根据uri得到图片之后，先转为bitmap进行后续操作，并删除原文件
 //    private var bitmap: Bitmap? = null
 
     private var mItemList = ArrayList<RecyclerItem>()
+    private lateinit var uploadManager: UploadManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +90,8 @@ class PuzzleActivity : BaseActivity() {
         initView()
         initToolbar()
         initRecyclerView()
+        initQiniu()
+        initPopup()
     }
 
     /**
@@ -162,13 +182,21 @@ class PuzzleActivity : BaseActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
-        inflater.inflate(R.menu.menu_toolbart_activity_puzzle, menu)
+        inflater.inflate(R.menu.puzzle_menu_upload, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
-            R.id.finish -> {
+            R.id.puzzle_menu_upload_save -> {
+                return true
+            }
+            R.id.puzzle_menu_upload_upload -> {
+                uploadPic()
+                return true
+            }
+            R.id.puzzle_menu_upload_history -> {
+                showPopupWindow()
                 return true
             }
         }
@@ -214,5 +242,59 @@ class PuzzleActivity : BaseActivity() {
         mItemList.add(filter)
         val frames = RecyclerItem("相框", R.drawable.ic_filter_frames_black_24dp)
         mItemList.add(frames)
+    }
+
+    private fun initQiniu() {
+        val config = Configuration.Builder()
+                .zone(FixedZone.zone2)        // 设置区域，指定不同区域的上传域名、备用域名、备用IP。
+                .build()
+        uploadManager = UploadManager(config)
+    }
+
+    private fun uploadPic() {
+        val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val date = Date()
+        val dateFormat = SimpleDateFormat("yyyyMMdd_hhmmss")
+        uploadManager.put(baos.toByteArray(), "PhotoXiu/${dateFormat.format(date)}.jpeg", TOKEN,
+                { key, info, response ->
+                    if (info!!.isOK) {
+                        Toast.makeText(this, "Upload Success", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Upload Fail", Toast.LENGTH_SHORT).show()
+                    }
+                    Log.d("qiniu", "$key,\r\n $info,\r\n $response")
+                },
+                UploadOptions(null, null, false,
+                        UpProgressHandler { key, percent ->
+                            Log.i("qiniu", "$key: $percent")
+                        }, null)
+        )
+    }
+
+    private fun initPopup() {
+        val view: View = LayoutInflater.from(this).inflate(R.layout.puzzle_popup_window, null)
+        mPopupWindow = PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, 600, false)
+
+        mPopupWindow.isOutsideTouchable = true
+        // 设置PopupWindow是否能响应外部点击事件
+        mPopupWindow.isTouchable = true
+        // 设置PopupWindow是否能响应点击事件
+        mPopupWindow.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+        // 设置PopupWindow背景
+
+        mProcedureListView = view.findViewById(R.id.puzzle_popup_procedure_list)
+    }
+
+    private fun showPopupWindow() {
+        procedureList.clear()
+        for (procedure in ProcedureUtil.getInstance()) {
+            procedureList.add(procedure.toString())
+        }
+        if (procedureList.size != 0) {
+            mProcedureListView.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, procedureList)
+            mPopupWindow.showAtLocation(window.decorView, Gravity.BOTTOM, 0, 0)
+        }
     }
 }

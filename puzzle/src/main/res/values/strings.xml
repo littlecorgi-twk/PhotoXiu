@@ -11,4 +11,8 @@
     <string name="puzzle_label_ok">OK</string>
     <string name="puzzle_label_cancel">Cancel</string>
     <string name="puzzle_PuzzledPic">修改之后的图片</string>
+    <string name="puzzle_upload">上传</string>
+    <string name="puzzle_finish">完成</string>
+    <string name="puzzle_history">历史</string>
+    <string name="puzzle_import">导出</string>
 </resources>

@@ -465,13 +465,13 @@ class CameraFragment : Fragment(), View.OnClickListener,
             }
         }
 
-        if (bigEnough.size > 0) {
-            return Collections.min(bigEnough, CompareSizeByArea())
-        } else if (notBigEnough.size > 0) {
-            return Collections.max(notBigEnough, CompareSizeByArea())
-        } else {
-            Log.e(TAG, "Couldn't find any suitable preview size")
-            return choices[0]
+        return when {
+            bigEnough.size > 0 -> Collections.min(bigEnough, CompareSizeByArea())
+            notBigEnough.size > 0 -> Collections.max(notBigEnough, CompareSizeByArea())
+            else -> {
+                Log.e(TAG, "Couldn't find any suitable preview size")
+                choices[0]
+            }
         }
     }
 

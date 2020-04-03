@@ -66,6 +66,8 @@ dependencies {
     kapt 'com.alibaba:arouter-compiler:1.2.2'
     implementation 'com.githang:clipimageview:0.1'
     implementation 'com.github.yalantis:ucrop:2.2.3'
+    implementation rootProject.ext.dependencies["Qiniu"]
+    implementation rootProject.ext.dependencies["QMUI"]
 
     implementation project(':commonlib')
 }

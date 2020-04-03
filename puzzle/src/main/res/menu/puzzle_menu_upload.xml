@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/puzzle_menu_upload_history"
+        android:icon="@drawable/puzzle_ic_history_black_24dp"
+        android:title="@string/puzzle_history"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/puzzle_menu_upload_upload"
+        android:icon="@drawable/puzzle_ic_file_upload_black_24dp"
+        android:title="@string/puzzle_upload"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/puzzle_menu_upload_save"
+        android:icon="@drawable/puzzle_ic_save_black_24dp"
+        android:title="@string/puzzle_import"
+        app:showAsAction="always" />
+
+</menu>

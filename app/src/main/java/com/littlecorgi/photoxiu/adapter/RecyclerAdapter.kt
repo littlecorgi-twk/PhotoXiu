@@ -15,21 +15,19 @@ import com.littlecorgi.photoxiu.bean.RecyclerItemBean
 
 class RecyclerAdapter(mItemList: List<RecyclerItemBean>, context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    companion object {
-        class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            var mDeception: TextView? = null
-            var mName: TextView? = null
-            var mCount: TextView? = null
-            var mImage: ImageView? = null
-            var mCardView: CardView? = null
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var mDeception: TextView? = null
+        var mName: TextView? = null
+        var mCount: TextView? = null
+        var mImage: ImageView? = null
+        var mCardView: CardView? = null
 
-            init {
-                mDeception = itemView.findViewById(R.id.tv_description)
-                mName = itemView.findViewById(R.id.tv_user)
-                mCount = itemView.findViewById(R.id.tv_love_count)
-                mImage = itemView.findViewById(R.id.iv_pic)
-                mCardView = itemView.findViewById(R.id.item_card)
-            }
+        init {
+            mDeception = itemView.findViewById(R.id.tv_description)
+            mName = itemView.findViewById(R.id.tv_user)
+            mCount = itemView.findViewById(R.id.tv_love_count)
+            mImage = itemView.findViewById(R.id.iv_pic)
+            mCardView = itemView.findViewById(R.id.item_card)
         }
     }
 
@@ -59,7 +57,9 @@ class RecyclerAdapter(mItemList: List<RecyclerItemBean>, context: Context) : Rec
         }
         val i = (Math.random() * 2).toInt()
         if (i % 2 == 0) {
-            Glide.with(context!!).load(R.drawable.pic1).fitCenter().into(viewHolder.mImage!!)
+            Glide.with(context!!).load("https://img-bbs.csdn.net/upload/201404/30/1398845303_229280.png")
+                    .fitCenter()
+                    .into(viewHolder.mImage!!)
         } else {
             Glide.with(context!!).load(R.drawable.pic2).fitCenter().into(viewHolder.mImage!!)
         }

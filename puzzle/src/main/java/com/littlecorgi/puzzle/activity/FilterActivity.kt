@@ -21,8 +21,10 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.littlecorgi.puzzle.BaseActivity
 import com.littlecorgi.puzzle.R
 import com.littlecorgi.puzzle.adapter.RecyclerAdapter
+import com.littlecorgi.puzzle.bean.Procedure
 import com.littlecorgi.puzzle.bean.RecyclerItem
-import com.littlecorgi.puzzle.filter.FilterHelper
+import com.littlecorgi.puzzle.util.FilterHelper
+import com.littlecorgi.puzzle.util.ProcedureUtil
 import kotlinx.android.synthetic.main.puzzle_activity_filter.*
 
 @Route(path = "/puzzle/FilterActivity")
@@ -63,15 +65,18 @@ class FilterActivity : BaseActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
-        inflater.inflate(R.menu.menu_toolbart_activity_puzzle, menu)
+        inflater.inflate(R.menu.puzzle_menu_not_upload, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
-            R.id.finish -> {
+            R.id.puzzle_menu_not_upload_finish -> {
                 tag = 0
                 requestWrite()
+                return true
+            }
+            R.id.puzzle_menu_not_upload_history -> {
                 return true
             }
         }
@@ -99,26 +104,32 @@ class FilterActivity : BaseActivity() {
                     0 -> {
                         tmpBitmap = FilterHelper.grayScale(oldBitmap!!)
                         imageViewActivityFilter.setImageBitmap(tmpBitmap)
+                        ProcedureUtil.getInstance().add(Procedure("grayScale", 0.0F))
                     }
                     1 -> {
                         tmpBitmap = FilterHelper.negativeScale(oldBitmap!!)
                         imageViewActivityFilter.setImageBitmap(tmpBitmap)
+                        ProcedureUtil.getInstance().add(Procedure("negativeScale", 0.0F))
                     }
                     2 -> {
                         tmpBitmap = FilterHelper.nostalgic(oldBitmap!!)
                         imageViewActivityFilter.setImageBitmap(tmpBitmap)
+                        ProcedureUtil.getInstance().add(Procedure("nostalgic", 0.0F))
                     }
                     3 -> {
                         tmpBitmap = FilterHelper.removeColor(oldBitmap!!)
                         imageViewActivityFilter.setImageBitmap(tmpBitmap)
+                        ProcedureUtil.getInstance().add(Procedure("removeColor", 0.0F))
                     }
                     4 -> {
                         tmpBitmap = FilterHelper.highSaturation(oldBitmap!!)
                         imageViewActivityFilter.setImageBitmap(tmpBitmap)
+                        ProcedureUtil.getInstance().add(Procedure("highSaturation", 0.0F))
                     }
                     5 -> {
                         tmpBitmap = FilterHelper.redGreenInverted(oldBitmap!!)
                         imageViewActivityFilter.setImageBitmap(tmpBitmap)
+                        ProcedureUtil.getInstance().add(Procedure("redGreenInverted", 0.0F))
                     }
                     else -> Toast.makeText(baseContext, "1234", Toast.LENGTH_SHORT).show()
                 }

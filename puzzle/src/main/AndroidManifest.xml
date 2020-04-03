@@ -2,8 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.littlecorgi.puzzle">
 
-    <application android:theme="@style/puzzle_AppTheme">
-        <activity android:name=".activity.FilterActivity"></activity>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:theme="@style/puzzle_AppTheme"
+        android:networkSecurityConfig="@xml/puzzle_network_security_config">
+        <activity android:name=".activity.FilterActivity" />
         <activity android:name=".activity.EditActivity" />
         <activity android:name=".activity.PuzzleActivity" />
         <activity

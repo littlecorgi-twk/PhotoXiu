@@ -2,11 +2,10 @@
 
     <!-- Base application theme. -->
     <!-- Base application theme. -->
-    <style name="puzzle_AppTheme" parent="puzzle_AppTheme.Base">
-    </style>
+    <style name="puzzle_AppTheme" parent="puzzle_AppTheme.Base" />
 
     <!--Toolbar主题的设置,Application使用的是这个主题-->
-    <style name="puzzle_AppTheme.Base" parent="Theme.AppCompat">
+    <style name="puzzle_AppTheme.Base" parent="QMUI.Compat.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 

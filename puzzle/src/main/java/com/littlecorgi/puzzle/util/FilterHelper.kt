@@ -1,4 +1,4 @@
-package com.littlecorgi.puzzle.filter
+package com.littlecorgi.puzzle.util
 
 import android.graphics.*
 
