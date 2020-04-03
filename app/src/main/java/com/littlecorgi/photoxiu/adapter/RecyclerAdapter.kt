@@ -61,7 +61,7 @@ class RecyclerAdapter(mItemList: List<RecyclerItemBean>, context: Context) : Rec
                     .fitCenter()
                     .into(viewHolder.mImage!!)
         } else {
-            Glide.with(context!!).load(R.drawable.pic2).fitCenter().into(viewHolder.mImage!!)
+            Glide.with(context!!).load(R.drawable.app_pic2).fitCenter().into(viewHolder.mImage!!)
         }
     }
 

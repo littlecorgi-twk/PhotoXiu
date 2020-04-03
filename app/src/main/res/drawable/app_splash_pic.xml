@@ -6,7 +6,7 @@
     <item android:bottom="20dp"
         android:height="24dp"
         android:width="24dp">
-        <bitmap android:src="@drawable/camera1" />
+        <bitmap android:src="@drawable/app_camera1" />
     </item>
 
 </layer-list>

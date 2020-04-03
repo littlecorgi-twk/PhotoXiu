@@ -29,7 +29,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/pic1" />
+            app:srcCompat="@drawable/app_pic1" />
 
         <TextView
             android:id="@+id/tv_description"
@@ -52,10 +52,10 @@
             android:layout_height="20dp"
             android:layout_marginStart="8dp"
             android:adjustViewBounds="true"
-            android:background="@drawable/ic_launcher_background"
+            android:background="@drawable/app_ic_launcher_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/profile_picture" />
+            app:srcCompat="@drawable/app_profile_picture" />
 
         <TextView
             android:id="@+id/tv_user"
@@ -86,7 +86,7 @@
             android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tv_love_count"
-            app:srcCompat="@drawable/ic_favorite_border_black_24dp" />
+            app:srcCompat="@drawable/app_ic_favorite_border_black_24dp" />
 
 
     </android.support.constraint.ConstraintLayout>
