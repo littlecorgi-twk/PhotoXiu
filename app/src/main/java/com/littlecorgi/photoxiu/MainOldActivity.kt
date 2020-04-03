@@ -105,10 +105,10 @@ class MainOldActivity : AppCompatActivity() {
     }
 
     private fun initViewpager() {
-        drawableList.add(R.drawable.pic2)
-        drawableList.add(R.drawable.pic1)
-        drawableList.add(R.drawable.pic2)
-        drawableList.add(R.drawable.pic1)
+        drawableList.add(R.drawable.app_pic2)
+        drawableList.add(R.drawable.app_pic1)
+        drawableList.add(R.drawable.app_pic2)
+        drawableList.add(R.drawable.app_pic1)
 
         for (item in 0 until drawableList.size) {
             val iv = ImageView(this)

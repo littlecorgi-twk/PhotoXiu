@@ -65,7 +65,7 @@
                         app:layout_constraintEnd_toStartOf="@+id/fab2"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/camera1" />
+                        app:srcCompat="@drawable/app_camera1" />
 
                     <ImageView
                         android:id="@+id/fab2"
@@ -80,7 +80,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/puzzle" />
+                        app:srcCompat="@drawable/app_puzzle" />
 
                     <ImageView
                         android:id="@+id/fab3"
@@ -95,7 +95,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/fab2"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/retouch" />
+                        app:srcCompat="@drawable/app_retouch" />
                 </android.support.constraint.ConstraintLayout>
             </LinearLayout>
 
@@ -133,7 +133,7 @@
                         app:layout_constraintEnd_toStartOf="@+id/fab2_toolbar"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/camera1" />
+                        app:srcCompat="@drawable/app_camera1" />
 
                     <ImageView
                         android:id="@+id/fab2_toolbar"
@@ -148,7 +148,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/puzzle" />
+                        app:srcCompat="@drawable/app_puzzle" />
 
                     <ImageView
                         android:id="@+id/fab3_toolbar"
@@ -163,7 +163,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/fab2_toolbar"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/retouch" />
+                        app:srcCompat="@drawable/app_retouch" />
                 </android.support.constraint.ConstraintLayout>
 
             </android.support.v7.widget.Toolbar>
