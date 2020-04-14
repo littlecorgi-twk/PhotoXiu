@@ -35,6 +35,7 @@
 
 ### v0.0.8-alpha2 (2020-04-14 17:52:58)
 + 项目重构成AndroidX
++ 改正uCrop在Android Q下无法使用的bug： [Yalantis/uCrop: EACCES (Permission denied) #603](https://github.com/Yalantis/uCrop/issues/603)
 
 ### v0.0.8-alpha1 (2020-04-03 16:59:49)
 + 重新初始化，关闭原有的APP入口，新的APP入口待完善

@@ -29,7 +29,7 @@ class AdsActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                val intent = Intent(this@AdsActivity, MainOldActivity::class.java)
+                val intent = Intent(this@AdsActivity, MainActivity::class.java)
                 startActivity(intent)
                 finish()
             }

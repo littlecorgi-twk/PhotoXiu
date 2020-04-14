@@ -6,7 +6,7 @@ ext {
             minSdkVersion           : 21,
             targetSdkVersion        : 29,
             versionCode             : 1,
-            versionName             : "1.0.0",
+            versionName             : "v0.0.8-alpha2",
             androidSupportSdkVersion: "29.0.2",
             espressoSdkVersion      : "3.0.2",
             glideVersion            : "4.11.0",
