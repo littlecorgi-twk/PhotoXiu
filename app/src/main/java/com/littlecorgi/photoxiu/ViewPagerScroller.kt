@@ -1,9 +1,9 @@
 package com.littlecorgi.photoxiu
 
 import android.content.Context
-import android.support.v4.view.ViewPager
 import android.view.animation.Interpolator
 import android.widget.Scroller
+import androidx.viewpager.widget.ViewPager
 
 
 class ViewPagerScroller(context: Context, interpolator: Interpolator?, flywheel: Boolean) : Scroller(context, interpolator, flywheel) {

@@ -4,20 +4,20 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.support.constraint.ConstraintLayout
-import android.support.design.widget.AppBarLayout
-import android.support.design.widget.FloatingActionButton
-import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
-import android.support.v7.widget.Toolbar
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.viewpager.widget.ViewPager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.littlecorgi.photoxiu.adapter.RecyclerAdapter
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.littlecorgi.photoxiu.adapter.OldRecyclerAdapter
 import com.littlecorgi.photoxiu.adapter.ViewpagerAdapter
 import com.littlecorgi.photoxiu.bean.RecyclerItemBean
 import kotlin.math.abs
@@ -62,7 +62,7 @@ class MainOldActivity : AppCompatActivity() {
         findViewById<FloatingActionButton>(R.id.fab)
     }
 
-    private var adapter: RecyclerAdapter? = null
+    private var adapter: OldRecyclerAdapter? = null
     private var viewpagerAdapter: ViewpagerAdapter? = null
 
     private val viewList = ArrayList<ImageView>()
@@ -86,7 +86,7 @@ class MainOldActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
-        adapter = RecyclerAdapter(initData(), this)
+        adapter = OldRecyclerAdapter(initData(), this)
         recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.adapter = adapter
 

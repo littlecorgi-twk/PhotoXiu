@@ -10,15 +10,15 @@ import android.media.ImageReader
 import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.util.Size
 import android.util.SparseIntArray
 import android.view.*
 import android.widget.Button
 import android.widget.ImageButton
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import java.io.File
 import java.util.*
 import java.util.concurrent.Semaphore
@@ -331,7 +331,7 @@ class CameraFragment : Fragment(), View.OnClickListener,
 
                 val displayRotation = activity!!.windowManager.defaultDisplay.rotation
 
-                sensorOrientation = characteristics.get(CameraCharacteristics.SENSOR_ORIENTATION)
+                sensorOrientation = characteristics.get(CameraCharacteristics.SENSOR_ORIENTATION)!!
                 val swappedDimensions = areDimensionsSwapped(displayRotation)
                 val displaySize = Point()
                 activity!!.windowManager.defaultDisplay.getSize(displaySize)
@@ -544,7 +544,7 @@ class CameraFragment : Fragment(), View.OnClickListener,
             // This is the CaptureRequest.Builder that we use to take a picture.
             val captureBuilder = cameraDevice?.createCaptureRequest(
                     CameraDevice.TEMPLATE_STILL_CAPTURE)?.apply {
-                addTarget(imageReader?.surface)
+                imageReader?.surface?.let { addTarget(it) }
 
                 // Sensor orientation is 90 for most devices, or 270 for some devices (eg. Nexus 5X)
                 // We have to take that into account and rotate JPEG properly.
@@ -572,7 +572,7 @@ class CameraFragment : Fragment(), View.OnClickListener,
             captureSession?.apply {
                 stopRepeating()
                 abortCaptures()
-                capture(captureBuilder?.build(), captureCallback, null)
+                captureBuilder?.build()?.let { capture(it, captureCallback, null) }
             }
         } catch (e: CameraAccessException) {
             Log.e(TAG, e.toString())

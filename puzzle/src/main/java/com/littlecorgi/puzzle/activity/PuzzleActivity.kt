@@ -13,13 +13,12 @@ import android.os.Build
 import android.os.Bundle
 import android.os.StrictMode
 import android.provider.MediaStore
-import android.support.v4.app.ActivityCompat
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.*
 import android.widget.*
+import androidx.core.app.ActivityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.littlecorgi.puzzle.BaseActivity
 import com.littlecorgi.puzzle.R
@@ -37,16 +36,20 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import androidx.appcompat.widget.Toolbar
 
 @Route(path = "/puzzle/PuzzleActivity")
 class PuzzleActivity : BaseActivity() {
 
     companion object {
         private const val TAG = "PuzzleActivity"
+
         // 相册请求码
         private const val ALBUM_REQUEST_CODE: Int = 1
+
         // Edit请求码
         private const val EDIT_ACTIVITY_REQUEST_CODE: Int = 2
+
         // Filter请求码
         private const val Filter_ACTIVITY_REQUEST_CODE: Int = 3
         private const val ACCESS_KEY = "o9oOUcAzuwZwrwBqWIVlNmI6ayD9H9x-jtHuz5HY"
