@@ -4,5 +4,6 @@
     <color name="app_colorPrimaryDark">#512DA8</color>
     <color name="app_colorAccent">#7C4DFF</color>
     <color name="app_colorAccent1">#75F0E5DE</color>
+    <color name="app_colorBackground">#161823</color>
     <color name="app_white">#FFF</color>
 </resources>

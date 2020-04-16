@@ -57,16 +57,20 @@ dependencies {
     api rootProject.ext.dependencies["arouter-api"]
     kapt 'com.alibaba:arouter-compiler:1.2.2'
     compileOnly rootProject.ext.dependencies["javax.annotation"]
+    implementation rootProject.ext.dependencies["recyclerview"]
+    implementation rootProject.ext.dependencies["kotlinStdlib"]
+    implementation rootProject.ext.dependencies["kotlinX"]
+    implementation rootProject.ext.dependencies["Retrofit"]
+    implementation rootProject.ext.dependencies["Retrofit-converter-gson"]
     implementation rootProject.ext.dependencies["Glide"]
     annotationProcessor rootProject.ext.dependencies["Glide-compiler"]
     implementation rootProject.ext.dependencies["Qiniu"]
 
-    implementation rootProject.ext.dependencies["recyclerview"]
-    implementation rootProject.ext.dependencies["Retrofit"]
-    implementation rootProject.ext.dependencies["Retrofit-converter-gson"]
     // 用于实现RecyclerView的一次滑动一个item
     implementation 'com.yc:PagerLib:1.0.1'
     implementation 'cn.jzvd:jiaozivideoplayer:7.2.0'
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
 
     implementation project(':commonlib')
     if (!isRunAlone.toBoolean()) {
@@ -75,4 +79,5 @@ dependencies {
         implementation project(':retouch')
     }
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 }
