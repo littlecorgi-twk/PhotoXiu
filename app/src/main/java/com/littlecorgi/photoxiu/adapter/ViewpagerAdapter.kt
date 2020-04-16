@@ -1,8 +1,8 @@
 package com.littlecorgi.photoxiu.adapter
 
-import android.support.v4.view.PagerAdapter
 import android.view.View
 import android.view.ViewGroup
+import androidx.viewpager.widget.PagerAdapter
 
 class ViewpagerAdapter(private val mViewList: List<View>) : PagerAdapter() {
 

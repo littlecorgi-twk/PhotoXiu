@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ShootButton">
+        <attr name="centerMode">
+            <enum name="circle" value="0" />
+            <enum name="roundRect" value="1" />
+        </attr>
+        <attr name="circleWidth" format="dimension" />
+        <attr name="circleColor" format="color" />
+        <attr name="progressBgColor" format="color" />
+        <attr name="progressColor" format="color" />
+        <attr name="centerColor" format="color" />
+        <attr name="centerCirclePadding" format="dimension" />
+        <attr name="centerRectPadding" format="dimension" />
+        <attr name="centerRectRadius" format="dimension" />
+        <attr name="maxProgress" format="integer" />
+        <attr name="progress" format="integer" />
+    </declare-styleable>
+</resources>
