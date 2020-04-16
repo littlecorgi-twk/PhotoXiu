@@ -6,4 +6,9 @@
     <string name="app_retouch">retouch</string>
     <string name="app_camera">camera</string>
     <string name="app_label_select_picture">Select Picture</string>
+    <string name="app_feedImage">FeedImage</string>
+    <string name="app_select_an_image">SelectAnImage</string>
+    <string name="app_select_a_video">SelectAVideo</string>
+    <string name="app_post_it">PostIt</string>
+    <string name="app_success_try_refresh">SuccessTryRefresh</string>
 </resources>
