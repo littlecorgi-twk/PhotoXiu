@@ -33,6 +33,10 @@
 
 ## 版本
 
+### v0.0.9-alpha1 (2020-04-16 18:16:34)
++ 将mini抖音整合进来
++ 设置debug和release的编译签一致
+
 ### v0.0.8-alpha2 (2020-04-14 17:52:58)
 + 项目重构成AndroidX
 + 改正uCrop在Android Q下无法使用的bug： [Yalantis/uCrop: EACCES (Permission denied) #603](https://github.com/Yalantis/uCrop/issues/603)
