@@ -65,32 +65,32 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation rootProject.ext.dependencies["design"]
+    implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.2.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testImplementation rootProject.ext.dependencies["junit"]
-    implementation rootProject.ext.dependencies["appcompat-v7"]
+    testImplementation 'junit:junit:4.13'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation rootProject.ext.dependencies["constraint-layout"]
     implementation rootProject.ext.dependencies["palette"]
 
     api rootProject.ext.dependencies["arouter-api"]
     kapt 'com.alibaba:arouter-compiler:1.2.2'
     compileOnly rootProject.ext.dependencies["javax.annotation"]
-    implementation rootProject.ext.dependencies["recyclerview"]
-    implementation rootProject.ext.dependencies["kotlinStdlib"]
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72'
     implementation rootProject.ext.dependencies["kotlinX"]
     implementation rootProject.ext.dependencies["Retrofit"]
     implementation rootProject.ext.dependencies["Retrofit-converter-gson"]
     implementation rootProject.ext.dependencies["Glide"]
     annotationProcessor rootProject.ext.dependencies["Glide-compiler"]
-    implementation rootProject.ext.dependencies["Qiniu"]
+    implementation 'com.qiniu:qiniu-android-sdk:7.5.2'
 
     // 用于实现RecyclerView的一次滑动一个item
     implementation 'com.yc:PagerLib:1.0.1'
-    implementation 'cn.jzvd:jiaozivideoplayer:7.2.0'
+    implementation 'cn.jzvd:jiaozivideoplayer:7.3.0'
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
 

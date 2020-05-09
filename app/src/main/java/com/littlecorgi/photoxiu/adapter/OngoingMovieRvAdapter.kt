@@ -47,7 +47,7 @@ class OngoingMovieRvAdapter(private val context: Context, var items: ArrayList<O
         )
         jzDataSource.looping = true
         holder.ijkplayer.setUp(jzDataSource, Jzvd.SCREEN_NORMAL)
-        Glide.with(context).load(items[position].img).centerCrop().into(holder.ijkplayer.thumbImageView)   //推荐使用Glide
+        Glide.with(context).load(items[position].img).centerCrop().into(holder.ijkplayer.posterImageView)   //推荐使用Glide
         holder.imageView.visibility = View.GONE
     }
 }

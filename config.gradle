@@ -10,7 +10,7 @@ ext {
             androidSupportSdkVersion: "29.0.2",
             espressoSdkVersion      : "3.0.2",
             glideVersion            : "4.11.0",
-            retrofitVersion         : "2.7.1"
+            retrofitVersion         : '2.8.1'
     ]
     dependencies = [
             "javax.annotation" : 'javax.annotation:jsr250-api:1.0',
