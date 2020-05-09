@@ -46,11 +46,13 @@ class CaptureVideoActivity : AppCompatActivity() {
         private const val DEGREE_360 = 360
         private const val MSG_OPEN_AUTO_FOCUS = 101
         private const val MSG_RECORD_PROGRESS = 102
+
         // 当录制时间达到15s时
         private const val MSG_FINISH_RECORD = 103
 
         // 计时器的最大值，也就是视频的最大录制时间，当到此事件时会自动停止录制
         private const val TIMER_MAX: Long = 15 * 1000
+
         // 计时器的时间间隔
         private const val TIMER_INTERVAL: Long = 10
     }
@@ -82,16 +84,19 @@ class CaptureVideoActivity : AppCompatActivity() {
 
     private var mCamera: Camera? = null
     private var mFile: File? = null
+
     // 默认打开的相机朝向
     private var cameraFacingType = CameraInfo.CAMERA_FACING_FRONT
     private lateinit var mTimer: DouyinTimer
     private var isRecording = false
+
     // 判断是不是第一次开始录制，主要是用于判断录制按钮，
     // 如果是第一次录制则为true，如果不是则为false，此时点击录制按钮只是暂停而不是终止录制
     private var isRecordStart = true
     private var isFacing = false
     private var rotationDegree = 0
     private var mCameraId = 0
+
     // 代表已经录制了的时间
     private var hasCapturedTime: Long = 0
     private lateinit var surfaceHolder: SurfaceHolder
@@ -454,7 +459,7 @@ class CaptureVideoActivity : AppCompatActivity() {
 
     private fun stopCapture() {
         //停止录制，并释放MediaRecorder资源
-        mMediaRecorder!!.stop()
+        mMediaRecorder?.stop()
         releaseMediaRecorder()
     }
 
