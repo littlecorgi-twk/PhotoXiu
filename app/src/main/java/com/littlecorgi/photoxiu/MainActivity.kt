@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.RecyclerView
 import cn.jzvd.Jzvd
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.app_activity_main)
-        mViewModel = ViewModelProviders.of(this, ViewModelFactory()).get(MainViewModel::class.java)
+        mViewModel = ViewModelProvider(this, ViewModelFactory()).get(MainViewModel::class.java)
 
         findViewById<View>(R.id.btn_capture_video).setOnClickListener {
             if (Build.VERSION.SDK_INT > 22) {

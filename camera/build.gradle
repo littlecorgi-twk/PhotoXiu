@@ -61,8 +61,5 @@ dependencies {
     androidTestImplementation rootProject.ext.dependencies["test:runner"]
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    implementation rootProject.ext.dependencies["arouter-api"]
-    kapt 'com.alibaba:arouter-compiler:1.2.2'
-
     implementation project(':commonlib')
 }

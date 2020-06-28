@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="retouch_AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="retouch_AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/retouch_colorPrimary</item>
         <item name="colorPrimaryDark">@color/retouch_colorPrimaryDark</item>

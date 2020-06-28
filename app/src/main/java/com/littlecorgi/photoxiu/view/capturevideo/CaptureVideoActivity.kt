@@ -18,14 +18,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
+import com.littlecorgi.photoxiu.R
 import com.littlecorgi.photoxiu.ViewModelFactory
+import com.littlecorgi.photoxiu.databinding.AppActivityCaptureVideoBinding
 import com.littlecorgi.photoxiu.utils.Utils
 import com.littlecorgi.photoxiu.view.publishvideo.PublishVideoActivity
 import com.littlecorgi.photoxiu.view.view.ShootButton
 import com.littlecorgi.photoxiu.viewModel.CaptureVideoViewModel
-import com.littlecorgi.photoxiu.R
-import com.littlecorgi.photoxiu.databinding.AppActivityCaptureVideoBinding
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -137,7 +137,7 @@ class CaptureVideoActivity : AppCompatActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN)
         mBinding = DataBindingUtil.setContentView(this, R.layout.app_activity_capture_video)
-        mCaptureVideoViewModel = ViewModelProviders.of(this, ViewModelFactory()).get(CaptureVideoViewModel::class.java)
+        mCaptureVideoViewModel = ViewModelProvider(this, ViewModelFactory()).get(CaptureVideoViewModel::class.java)
 
         if (checkCameraHardware(this)) {
             val cameraNums = Camera.getNumberOfCameras()

@@ -28,9 +28,7 @@ android {
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -62,12 +60,7 @@ dependencies {
     androidTestImplementation rootProject.ext.dependencies["test:runner"]
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    api rootProject.ext.dependencies["arouter-api"]
-    kapt 'com.alibaba:arouter-compiler:1.2.2'
-    implementation 'com.githang:clipimageview:0.1'
-    implementation 'com.github.yalantis:ucrop:2.2.4'
-    implementation 'com.qiniu:qiniu-android-sdk:7.5.2'
-    implementation rootProject.ext.dependencies["QMUI"]
+//    implementation 'com.githang:clipimageview:0.1'
 
     implementation project(':commonlib')
 }
