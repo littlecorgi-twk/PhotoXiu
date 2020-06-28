@@ -25,6 +25,7 @@
                 android:id="@+id/surface"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
+
         </LinearLayout>
 
         <ProgressBar
@@ -76,6 +77,15 @@
             app:layout_constraintStart_toEndOf="@+id/btn_record"
             app:layout_constraintTop_toTopOf="@+id/btn_record"
             app:srcCompat="@drawable/app_ic_check_circle_red_30dp" />
+
+        <ImageView
+            android:id="@+id/iv_photo_album"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/iv_finish"
+            app:layout_constraintEnd_toEndOf="@+id/iv_finish"
+            app:srcCompat="@drawable/app_ic_baseline_photo_30" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

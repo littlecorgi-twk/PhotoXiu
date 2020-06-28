@@ -15,9 +15,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import com.littlecorgi.photoxiu.ViewModelFactory
+import androidx.lifecycle.ViewModelProvider
 import com.littlecorgi.photoxiu.R
+import com.littlecorgi.photoxiu.ViewModelFactory
 import com.littlecorgi.photoxiu.databinding.AppActivityPublishVideoBinding
 import com.littlecorgi.photoxiu.view.chooseframe.ChooseFrameActivity
 import com.littlecorgi.photoxiu.viewModel.PublishVideoViewModel
@@ -40,7 +40,7 @@ class PublishVideoActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.app_activity_publish_video)
-        viewModel = ViewModelProviders.of(this, ViewModelFactory()).get(PublishVideoViewModel::class.java)
+        viewModel = ViewModelProvider(this, ViewModelFactory()).get(PublishVideoViewModel::class.java)
 
         mFilePathString = intent.getStringExtra("VideoFile")!!
         mBinding.ijkPlayerPreview.setUp(mFilePathString, "")

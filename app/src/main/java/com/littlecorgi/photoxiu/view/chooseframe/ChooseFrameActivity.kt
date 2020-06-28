@@ -5,12 +5,12 @@ import android.media.MediaMetadataRetriever
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
-import com.littlecorgi.photoxiu.ViewModelFactory
-import com.littlecorgi.photoxiu.viewModel.ChooseFrameViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.littlecorgi.photoxiu.MainActivity
 import com.littlecorgi.photoxiu.R
+import com.littlecorgi.photoxiu.ViewModelFactory
 import com.littlecorgi.photoxiu.databinding.AppActivityChooseFrameBinding
+import com.littlecorgi.photoxiu.viewModel.ChooseFrameViewModel
 import java.util.concurrent.Executors
 
 class ChooseFrameActivity : AppCompatActivity() {
@@ -24,7 +24,7 @@ class ChooseFrameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.app_activity_choose_frame)
-        mViewModel = ViewModelProviders.of(this, ViewModelFactory()).get(ChooseFrameViewModel::class.java)
+        mViewModel = ViewModelProvider(this, ViewModelFactory()).get(ChooseFrameViewModel::class.java)
 
 
 

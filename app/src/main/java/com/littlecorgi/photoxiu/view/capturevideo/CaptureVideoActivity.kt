@@ -18,14 +18,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
+import com.alibaba.android.arouter.launcher.ARouter
+import com.littlecorgi.photoxiu.R
 import com.littlecorgi.photoxiu.ViewModelFactory
+import com.littlecorgi.photoxiu.databinding.AppActivityCaptureVideoBinding
 import com.littlecorgi.photoxiu.utils.Utils
 import com.littlecorgi.photoxiu.view.publishvideo.PublishVideoActivity
 import com.littlecorgi.photoxiu.view.view.ShootButton
 import com.littlecorgi.photoxiu.viewModel.CaptureVideoViewModel
-import com.littlecorgi.photoxiu.R
-import com.littlecorgi.photoxiu.databinding.AppActivityCaptureVideoBinding
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -137,7 +138,7 @@ class CaptureVideoActivity : AppCompatActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN)
         mBinding = DataBindingUtil.setContentView(this, R.layout.app_activity_capture_video)
-        mCaptureVideoViewModel = ViewModelProviders.of(this, ViewModelFactory()).get(CaptureVideoViewModel::class.java)
+        mCaptureVideoViewModel = ViewModelProvider(this, ViewModelFactory()).get(CaptureVideoViewModel::class.java)
 
         if (checkCameraHardware(this)) {
             val cameraNums = Camera.getNumberOfCameras()
@@ -182,6 +183,7 @@ class CaptureVideoActivity : AppCompatActivity() {
                 mTimer.cancel()
             } else {
                 if (isRecordStart) {
+                    // 开始录制视频
                     if (prepareVideoRecorder()) {
                         mMediaRecorder!!.start()
                         isRecordStart = false
@@ -193,6 +195,9 @@ class CaptureVideoActivity : AppCompatActivity() {
                         isRecording = true
                         mTimer = DouyinTimer(TIMER_MAX - hasCapturedTime, TIMER_INTERVAL)
                         mTimer.start()
+
+                        // 隐藏相册图标
+                        mBinding.ivPhotoAlbum.visibility = View.GONE
                     } else {
                         releaseMediaRecorder()
                         Log.d(TAG, "onCreate: 录制失败：VideoRecorder未就绪")
@@ -269,6 +274,11 @@ class CaptureVideoActivity : AppCompatActivity() {
         }
         mBinding.progressBarRecorde.max = TIMER_MAX.toInt()
         subscribeUi()
+
+        // 相册按钮
+        mBinding.ivPhotoAlbum.setOnClickListener {
+            ARouter.getInstance().build("/puzzle/PuzzleActivity").navigation()
+        }
     }
 
     private fun createSurfaceView() {
