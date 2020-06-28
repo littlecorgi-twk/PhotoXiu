@@ -82,6 +82,9 @@ dependencies {
     implementation 'com.yc:PagerLib:1.0.1'
     implementation 'cn.jzvd:jiaozivideoplayer:7.4.1'
 
+    // https://github.com/alibaba/ARouter/issues/277#issuecomment-384214181
+    kapt rootProject.ext.dependencies["arouter-compiler"]
+
     implementation project(':commonlib')
     if (!isRunAlone.toBoolean()) {
         implementation project(':camera')

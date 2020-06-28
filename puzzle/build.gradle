@@ -62,5 +62,8 @@ dependencies {
 
 //    implementation 'com.githang:clipimageview:0.1'
 
+    // https://github.com/alibaba/ARouter/issues/277#issuecomment-384214181
+    kapt rootProject.ext.dependencies["arouter-compiler"]
+
     implementation project(':commonlib')
 }

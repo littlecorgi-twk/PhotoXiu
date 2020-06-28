@@ -18,10 +18,11 @@ import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.RecyclerView
 import cn.jzvd.Jzvd
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.littlecorgi.photoxiu.adapter.OngoingMovieRvAdapter
+import com.littlecorgi.photoxiu.databinding.AppActivityMainBinding
 import com.littlecorgi.photoxiu.view.capturevideo.CaptureVideoActivity
 import com.littlecorgi.photoxiu.viewModel.MainViewModel
-import com.littlecorgi.photoxiu.databinding.AppActivityMainBinding
 import com.yc.pagerlib.recycler.PagerLayoutManager
 
 @Route(path = "/app/MainActivity")
@@ -43,6 +44,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.app_activity_main)
         mViewModel = ViewModelProvider(this, ViewModelFactory()).get(MainViewModel::class.java)
+
+        // 初始化 ARouter
+        // 这两行必须写在init之前，否则这些配置在init过程中将无效
+        ARouter.openLog()     // 打印日志
+        ARouter.openDebug()   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+        ARouter.init(application)
 
         findViewById<View>(R.id.btn_capture_video).setOnClickListener {
             if (Build.VERSION.SDK_INT > 22) {
@@ -134,35 +141,35 @@ class MainActivity : AppCompatActivity() {
                                             permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
             PERMISSION_CAMERA_OK -> {
-                if (grantResults.size > 0
+                if (grantResults.isNotEmpty()
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 } else {
                     Toast.makeText(this@MainActivity, "请手动打开相机权限", Toast.LENGTH_SHORT).show()
                 }
             }
             PERMISSION_AUDIO_OK -> {
-                if (grantResults.size > 0
+                if (grantResults.isNotEmpty()
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 } else {
                     Toast.makeText(this@MainActivity, "请手动打开麦克风权限", Toast.LENGTH_SHORT).show()
                 }
             }
             PERMISSION_WRITE_OK -> {
-                if (grantResults.size > 0
+                if (grantResults.isNotEmpty()
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 } else {
                     Toast.makeText(this@MainActivity, "请手动打开存储权限", Toast.LENGTH_SHORT).show()
                 }
             }
             PERMISSION_READ_OK -> {
-                if (grantResults.size > 0
+                if (grantResults.isNotEmpty()
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 } else {
                     Toast.makeText(this@MainActivity, "请手动打开读取文件权限", Toast.LENGTH_SHORT).show()
                 }
             }
             ALL_PERMISSION_OK -> {
-                if (grantResults.size > 0
+                if (grantResults.isNotEmpty()
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     startActivity(Intent(this@MainActivity, CaptureVideoActivity::class.java))
                 } else {

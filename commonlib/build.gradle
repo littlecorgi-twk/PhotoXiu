@@ -63,9 +63,9 @@ dependencies {
 
     // ARouter
     api rootProject.ext.dependencies["arouter-api"]
-    api rootProject.ext.dependencies["arouter-compiler"]
+    kapt rootProject.ext.dependencies["arouter-compiler"]
 
-    // QINIU
+    // QiNiu
     api rootProject.ext.dependencies["Qiniu"]
 
     // UCrop
