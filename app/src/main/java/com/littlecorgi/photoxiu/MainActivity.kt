@@ -13,19 +13,29 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.RecyclerView
 import cn.jzvd.Jzvd
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.littlecorgi.photoxiu.adapter.OngoingMovieRvAdapter
+import com.littlecorgi.photoxiu.databinding.AppActivityMainBinding
 import com.littlecorgi.photoxiu.view.capturevideo.CaptureVideoActivity
 import com.littlecorgi.photoxiu.viewModel.MainViewModel
-import com.littlecorgi.photoxiu.databinding.AppActivityMainBinding
 import com.yc.pagerlib.recycler.PagerLayoutManager
 
 @Route(path = "/app/MainActivity")
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        private val TAG = MainActivity::class.java.simpleName
+        private const val PERMISSION_CAMERA_OK = 100
+        private const val PERMISSION_AUDIO_OK = 101
+        private const val PERMISSION_WRITE_OK = 102
+        private const val PERMISSION_READ_OK = 103
+        private const val ALL_PERMISSION_OK = 104
+    }
 
     private lateinit var mViewModel: MainViewModel
     private lateinit var binding: AppActivityMainBinding
@@ -33,34 +43,42 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.app_activity_main)
-        mViewModel = ViewModelProviders.of(this, ViewModelFactory()).get(MainViewModel::class.java)
+        mViewModel = ViewModelProvider(this, ViewModelFactory()).get(MainViewModel::class.java)
+
+        // 初始化 ARouter
+        // 这两行必须写在init之前，否则这些配置在init过程中将无效
+        ARouter.openLog()     // 打印日志
+        ARouter.openDebug()   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+        ARouter.init(application)
 
         findViewById<View>(R.id.btn_capture_video).setOnClickListener {
             if (Build.VERSION.SDK_INT > 22) {
-                when {
-                    ContextCompat.checkSelfPermission(this@MainActivity,
-                            Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED -> { //先判断有没有权限 ，没有就在这里进行权限的申请
-                        Log.d(TAG, "onCreate: 相机权限")
-                        ActivityCompat.requestPermissions(this@MainActivity, arrayOf(Manifest.permission.CAMERA), PERMISSION_CAMERA_OK)
-                    }
-                    ContextCompat.checkSelfPermission(this@MainActivity,
-                            Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED -> { //先判断有没有权限 ，没有就在这里进行权限的申请
-                        Log.d(TAG, "onCreate: 麦克风权限")
-                        ActivityCompat.requestPermissions(this@MainActivity, arrayOf(Manifest.permission.RECORD_AUDIO), PERMISSION_AUDIO_OK)
-                    }
-                    ContextCompat.checkSelfPermission(this@MainActivity,
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED -> { //先判断有没有权限 ，没有就在这里进行权限的申请
-                        Log.d(TAG, "onCreate: 存储权限")
-                        ActivityCompat.requestPermissions(this@MainActivity, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), PERMISSION_WRITE_OK)
-                    }
-                    ContextCompat.checkSelfPermission(this@MainActivity,
-                            Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED -> { //先判断有没有权限 ，没有就在这里进行权限的申请
-                        Log.d(TAG, "onCreate: 读取文件权限")
-                        ActivityCompat.requestPermissions(this@MainActivity, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), PERMISSION_READ_OK)
-                    }
-                    else -> { //说明已经获取到摄像头权限了 想干嘛干嘛
-                        startActivity(Intent(this@MainActivity, CaptureVideoActivity::class.java))
-                    }
+                val permissionsList = mutableListOf<String>()
+                if (ContextCompat.checkSelfPermission(this@MainActivity,
+                                Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) { //先判断有没有权限 ，没有就在这里进行权限的申请
+                    Log.d(TAG, "onCreate: 相机权限")
+                    permissionsList.add(Manifest.permission.CAMERA)
+                }
+                if (ContextCompat.checkSelfPermission(this@MainActivity,
+                                Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) { //先判断有没有权限 ，没有就在这里进行权限的申请
+                    Log.d(TAG, "onCreate: 麦克风权限")
+                    permissionsList.add(Manifest.permission.RECORD_AUDIO)
+                }
+                if (ContextCompat.checkSelfPermission(this@MainActivity,
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) { //先判断有没有权限 ，没有就在这里进行权限的申请
+                    Log.d(TAG, "onCreate: 存储权限")
+                    permissionsList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                }
+                if (ContextCompat.checkSelfPermission(this@MainActivity,
+                                Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) { //先判断有没有权限 ，没有就在这里进行权限的申请
+                    Log.d(TAG, "onCreate: 读取文件权限")
+                    permissionsList.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+                }
+                if (permissionsList.isNotEmpty()) {
+                    ActivityCompat.requestPermissions(this, permissionsList.toTypedArray(), 104)
+                } else {
+                    Toast.makeText(this, "权限获取成功", Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this@MainActivity, CaptureVideoActivity::class.java))
                 }
             } else { //这个说明系统版本在6.0之下，不需要动态获取权限。
             }
@@ -123,29 +141,37 @@ class MainActivity : AppCompatActivity() {
                                             permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
             PERMISSION_CAMERA_OK -> {
-                if (grantResults.size > 0
+                if (grantResults.isNotEmpty()
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 } else {
                     Toast.makeText(this@MainActivity, "请手动打开相机权限", Toast.LENGTH_SHORT).show()
                 }
             }
             PERMISSION_AUDIO_OK -> {
-                if (grantResults.size > 0
+                if (grantResults.isNotEmpty()
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 } else {
                     Toast.makeText(this@MainActivity, "请手动打开麦克风权限", Toast.LENGTH_SHORT).show()
                 }
             }
             PERMISSION_WRITE_OK -> {
-                if (grantResults.size > 0
+                if (grantResults.isNotEmpty()
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 } else {
                     Toast.makeText(this@MainActivity, "请手动打开存储权限", Toast.LENGTH_SHORT).show()
                 }
             }
             PERMISSION_READ_OK -> {
-                if (grantResults.size > 0
+                if (grantResults.isNotEmpty()
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                } else {
+                    Toast.makeText(this@MainActivity, "请手动打开读取文件权限", Toast.LENGTH_SHORT).show()
+                }
+            }
+            ALL_PERMISSION_OK -> {
+                if (grantResults.isNotEmpty()
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    startActivity(Intent(this@MainActivity, CaptureVideoActivity::class.java))
                 } else {
                     Toast.makeText(this@MainActivity, "请手动打开读取文件权限", Toast.LENGTH_SHORT).show()
                 }
@@ -153,14 +179,6 @@ class MainActivity : AppCompatActivity() {
             else -> {
             }
         }
-    }
-
-    companion object {
-        private val TAG = MainActivity::class.java.simpleName
-        private const val PERMISSION_CAMERA_OK = 100
-        private const val PERMISSION_AUDIO_OK = 101
-        private const val PERMISSION_WRITE_OK = 102
-        private const val PERMISSION_READ_OK = 103
     }
 
     override fun onResume() {

@@ -5,7 +5,7 @@ import android.net.Uri
 import com.littlecorgi.photoxiu.Result
 import com.littlecorgi.photoxiu.network.IPostVideoInterface
 import com.littlecorgi.photoxiu.utils.ResourceUtils
-import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Retrofit
@@ -45,7 +45,7 @@ class DefaultPublishVideoRepository : PublishVideoRepository {
 
     private fun getMultipartFromUri(name: String, uri: Uri?, context: Context): MultipartBody.Part { // if NullPointerException thrown, try to allow storage permission in system settings
         val f = File(ResourceUtils.getRealPath(context, uri!!))
-        val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), f)
+        val requestFile = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), f)
         return MultipartBody.Part.createFormData(name, f.name, requestFile)
     }
 }

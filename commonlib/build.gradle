@@ -13,8 +13,6 @@ kapt {
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
-
-
     defaultConfig {
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
@@ -23,35 +21,55 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.2.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testImplementation rootProject.ext.dependencies["junit"]
-
-    implementation rootProject.ext.dependencies["appcompat-v7"]
-
-    implementation rootProject.ext.dependencies["arouter-api"]
-    kapt rootProject.ext.dependencies["arouter-compiler"]
-    implementation rootProject.ext.dependencies["annotations"]
-    implementation rootProject.ext.dependencies["recyclerview"]
-    implementation rootProject.ext.dependencies["palette"]
-    implementation rootProject.ext.dependencies["cardview-v7"]
-    implementation rootProject.ext.dependencies["Glide"]
-    annotationProcessor rootProject.ext.dependencies["Glide-compiler"]
+    testImplementation 'junit:junit:4.13'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // viewModel liveData
+    api rootProject.ext.dependencies["viewModel"]
+    api rootProject.ext.dependencies["liveData"]
+    api rootProject.ext.dependencies["viewModelKtx"]
+
+    // palette - 调色板
+    api rootProject.ext.dependencies["palette"]
+
+    // recyclerView
+    api rootProject.ext.dependencies["recyclerview"]
+
+    // material
+    api rootProject.ext.dependencies["material"]
+
+    // Retrofit
+    api rootProject.ext.dependencies["Retrofit"]
+    api rootProject.ext.dependencies["Retrofit-converter-gson"]
+
+    // Glide
+    api rootProject.ext.dependencies["Glide"]
+    api rootProject.ext.dependencies["Glide-compiler"]
+
+    // ARouter
+    api rootProject.ext.dependencies["arouter-api"]
+    kapt rootProject.ext.dependencies["arouter-compiler"]
+
+    // QiNiu
+    api rootProject.ext.dependencies["Qiniu"]
+
+    // UCrop
+    api rootProject.ext.dependencies["UCrop"]
 }
 repositories {
     mavenCentral()
