@@ -33,6 +33,13 @@
 
 ## 版本
 
+### v0.0.9 (2020-06-28 17:13:46)
++ 将puzzle module以相册的形式添加到CaptureVideoActivity
++ 集成Flutter项目(是空项目，待完善，预计会集成[CoolWeather_Flutter](https://github.com/a1203991686/CoolWeather_Flutter))
++ 重构组件化dependency部分
++ 解决拍摄页返回crash
++ 更新dependency版本
+
 ### v0.0.9-alpha1 (2020-04-16 18:16:34)
 + 将mini抖音整合进来
 + 设置debug和release的编译签一致
