@@ -33,6 +33,10 @@
 
 ## 版本
 
+### v0.0.9-alpha1 (2020-06-29 17:01:54)
++ 添加APP图标
++ 接入穿山甲SDK，并添加开屏广告
+
 ### v0.0.9 (2020-06-28 17:13:46)
 + 将puzzle module以相册的形式添加到CaptureVideoActivity
 + 集成Flutter项目(是空项目，待完善，预计会集成[CoolWeather_Flutter](https://github.com/a1203991686/CoolWeather_Flutter))
