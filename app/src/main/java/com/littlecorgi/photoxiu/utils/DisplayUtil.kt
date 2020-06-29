@@ -1,4 +1,4 @@
-package com.littlecorgi.photoxiu.util
+package com.littlecorgi.photoxiu.utils
 
 import android.content.Context
 import android.content.res.Resources

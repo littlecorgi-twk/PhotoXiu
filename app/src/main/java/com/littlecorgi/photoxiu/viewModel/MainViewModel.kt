@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.littlecorgi.photoxiu.Event
 import com.littlecorgi.photoxiu.Result
 import com.littlecorgi.photoxiu.bean.ongoingmovies.OngoingMovieRepository
 import com.littlecorgi.photoxiu.bean.ongoingmovies.OngoingMovies
@@ -23,9 +22,6 @@ class MainViewModel(
 
     private val _movies = MutableLiveData<OngoingMovies>()
     val movies: LiveData<OngoingMovies> = _movies
-
-    private val _recyclerEvent = MutableLiveData<Event<Unit>>()
-    val recyclerEvent: LiveData<Event<Unit>> = _recyclerEvent
 
     private val _errorToastText = MutableLiveData<String>()
     val errorToastText: LiveData<String> = _errorToastText
