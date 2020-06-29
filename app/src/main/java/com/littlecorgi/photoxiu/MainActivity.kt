@@ -81,15 +81,10 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this@MainActivity, CaptureVideoActivity::class.java))
                 }
             } else { //这个说明系统版本在6.0之下，不需要动态获取权限。
+                Toast.makeText(this, "权限获取成功,版本低于Android6.0", Toast.LENGTH_LONG).show()
+                startActivity(Intent(this@MainActivity, CaptureVideoActivity::class.java))
             }
         }
-        //加载native库
-//        try {
-//            IjkMediaPlayer.loadLibrariesOnce(null)
-//            IjkMediaPlayer.native_profileBegin("libijkplayer.so")
-//        } catch (e: Exception) {
-//            finish()
-//        }
         requestOngoingMovies()
         initRecycler()
     }
@@ -105,8 +100,7 @@ class MainActivity : AppCompatActivity() {
             override fun onChildViewDetachedFromWindow(view: View) {
                 val jzvd: Jzvd = view.findViewById(R.id.ijkPlayer)
                 // 当当前的item被滑出时释放资源
-                if (jzvd != null && Jzvd.CURRENT_JZVD != null &&
-                        jzvd.jzDataSource.containsTheUrl(Jzvd.CURRENT_JZVD.jzDataSource.currentUrl)) {
+                if (Jzvd.CURRENT_JZVD != null && jzvd.jzDataSource.containsTheUrl(Jzvd.CURRENT_JZVD.jzDataSource.currentUrl)) {
                     if (Jzvd.CURRENT_JZVD != null && Jzvd.CURRENT_JZVD.screen != Jzvd.SCREEN_FULLSCREEN) {
                         Jzvd.releaseAllVideos()
                     }
@@ -143,6 +137,7 @@ class MainActivity : AppCompatActivity() {
             PERMISSION_CAMERA_OK -> {
                 if (grantResults.isNotEmpty()
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "相机权限获取成功", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this@MainActivity, "请手动打开相机权限", Toast.LENGTH_SHORT).show()
                 }
@@ -150,6 +145,7 @@ class MainActivity : AppCompatActivity() {
             PERMISSION_AUDIO_OK -> {
                 if (grantResults.isNotEmpty()
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "麦克风权限获取成功", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this@MainActivity, "请手动打开麦克风权限", Toast.LENGTH_SHORT).show()
                 }
@@ -157,6 +153,7 @@ class MainActivity : AppCompatActivity() {
             PERMISSION_WRITE_OK -> {
                 if (grantResults.isNotEmpty()
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "存储权限获取成功", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this@MainActivity, "请手动打开存储权限", Toast.LENGTH_SHORT).show()
                 }
@@ -164,6 +161,7 @@ class MainActivity : AppCompatActivity() {
             PERMISSION_READ_OK -> {
                 if (grantResults.isNotEmpty()
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "文件权限获取成功", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this@MainActivity, "请手动打开读取文件权限", Toast.LENGTH_SHORT).show()
                 }
@@ -173,17 +171,12 @@ class MainActivity : AppCompatActivity() {
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     startActivity(Intent(this@MainActivity, CaptureVideoActivity::class.java))
                 } else {
-                    Toast.makeText(this@MainActivity, "请手动打开读取文件权限", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, "请手动打开相机、麦克风、存储、文件读取权限", Toast.LENGTH_SHORT).show()
                 }
             }
             else -> {
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-
     }
 
     override fun onPause() {

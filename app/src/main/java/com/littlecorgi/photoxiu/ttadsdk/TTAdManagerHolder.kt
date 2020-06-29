@@ -22,12 +22,12 @@ object TTAdManagerHolder {
 
     private fun doInit(context: Context) {
         if (!sInit) {
-            TTAdSdk.init(context, buildConfig(context))
+            TTAdSdk.init(context, buildConfig())
             sInit = true
         }
     }
 
-    private fun buildConfig(context: Context): TTAdConfig {
+    private fun buildConfig(): TTAdConfig {
         return TTAdConfig.Builder()
                 .appId("5082618")
                 //使用TextureView控件播放视频,默认为SurfaceView,当有SurfaceView冲突的场景，可以使用TextureView

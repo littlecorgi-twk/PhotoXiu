@@ -2,16 +2,14 @@ package com.littlecorgi.photoxiu
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bytedance.sdk.openadsdk.*
 import com.littlecorgi.camera.showToast
 import com.littlecorgi.photoxiu.ttadsdk.TTAdManagerHolder
-import com.littlecorgi.photoxiu.util.DisplayUtil
+import com.littlecorgi.photoxiu.utils.DisplayUtil
 
 
 class AdsActivity : AppCompatActivity() {
@@ -21,9 +19,6 @@ class AdsActivity : AppCompatActivity() {
         const val AD_TIME_OUT = 3000
         const val mCodeId = "887340166"
     }
-
-    private var tvTime: TextView? = null
-    private var countDownTimer: CountDownTimer? = null
 
     // 构建TTAdManager对象
     // TTAdManager对象为整个SDK的入口接口，可用于广告获取、权限请求、版本号获取
@@ -48,35 +43,6 @@ class AdsActivity : AppCompatActivity() {
         // TTAdManagerHolder.getInstance(this).requestPermissionIfNecessary(this);
         // 加载开屏广告
         loadSplashAd()
-
-        // tvTime = findViewById(R.id.app_tv_time)
-        //
-        // /**
-        //  * 倒计时
-        //  * 第一个是计时的总时长，第二个是间隔
-        //  */
-        // countDownTimer = object : CountDownTimer(4000, 1000) {
-        //     @SuppressLint("SetTextI18n")
-        //     override fun onTick(millisUntilFinished: Long) {
-        //         tvTime!!.text = "跳过广告" + millisUntilFinished / 1000 + "秒"
-        //     }
-        //
-        //     override fun onFinish() {
-        //         val intent = Intent(this@AdsActivity, MainActivity::class.java)
-        //         startActivity(intent)
-        //         finish()
-        //     }
-        // }.start()
-        //
-        // /**
-        //  * 点击跳过
-        //  */
-        // tvTime!!.setOnClickListener {
-        //     countDownTimer!!.cancel()
-        //     val intent = Intent(this@AdsActivity, MainActivity::class.java)
-        //     startActivity(intent)
-        //     finish()
-        // }
     }
 
     override fun onResume() {
@@ -94,7 +60,7 @@ class AdsActivity : AppCompatActivity() {
     /**
      * 加载开屏广告
      */
-    fun loadSplashAd() {
+    private fun loadSplashAd() {
         //step3:创建开屏广告请求参数AdSlot,具体参数含义参考文档
         val adSlot = if (mIsExpress) {
             //个性化模板广告需要传入期望广告view的宽、高，单位dp，请传入实际需要的大小，

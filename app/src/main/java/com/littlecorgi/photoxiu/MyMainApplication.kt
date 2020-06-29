@@ -2,7 +2,7 @@ package com.littlecorgi.photoxiu
 
 import android.app.Application
 import com.littlecorgi.photoxiu.ttadsdk.TTAdManagerHolder
-import com.littlecorgi.photoxiu.util.DisplayUtil
+import com.littlecorgi.photoxiu.utils.DisplayUtil
 
 
 class MyMainApplication : Application() {
