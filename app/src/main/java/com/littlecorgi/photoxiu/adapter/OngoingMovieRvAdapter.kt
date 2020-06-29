@@ -11,8 +11,8 @@ import cn.jzvd.JZDataSource
 import cn.jzvd.Jzvd
 import cn.jzvd.JzvdStd
 import com.bumptech.glide.Glide
-import com.littlecorgi.photoxiu.bean.ongoingmovies.OngoingMovies
 import com.littlecorgi.photoxiu.R
+import com.littlecorgi.photoxiu.bean.ongoingmovies.OngoingMovies
 
 
 /**
@@ -21,11 +21,11 @@ import com.littlecorgi.photoxiu.R
  */
 class OngoingMovieRvAdapter(private val context: Context, var items: ArrayList<OngoingMovies.MsBean>) : RecyclerView.Adapter<OngoingMovieRvAdapter.ViewHolder>() {
 
-    public class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        public var imageView: ImageView = itemView.findViewById(R.id.iv_feed)
-        public var tvAuthor: TextView = itemView.findViewById(R.id.tv_author)
-        public var tvContent: TextView = itemView.findViewById(R.id.tv_context)
-        public var ijkplayer: JzvdStd = itemView.findViewById(R.id.ijkPlayer)
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var imageView: ImageView = itemView.findViewById(R.id.iv_feed)
+        var tvAuthor: TextView = itemView.findViewById(R.id.tv_author)
+        var tvContent: TextView = itemView.findViewById(R.id.tv_context)
+        var ijkPlayer: JzvdStd = itemView.findViewById(R.id.ijkPlayer)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,20 +34,20 @@ class OngoingMovieRvAdapter(private val context: Context, var items: ArrayList<O
     }
 
     override fun getItemCount(): Int {
-        return if (items == null) 0 else items.size
+        return items.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tvAuthor.text = items[position].aN1
-        holder.tvContent.text = items[position].commonSpecial
-//        Glide.with(context).load(items[position].img).into(holder.imageView)
+        holder.tvAuthor.text = items[position].actors
+        val content = "#${items[position].tCn}"
+        holder.tvContent.text = content
 
         val jzDataSource = JZDataSource(
                 "http://lf1-hscdn-tos.pstatp.com/obj/developer-baas/baas/tt7217xbo2wz3cem41/a8efa55c5c22de69_1560563154288.mp4"
         )
         jzDataSource.looping = true
-        holder.ijkplayer.setUp(jzDataSource, Jzvd.SCREEN_NORMAL)
-        Glide.with(context).load(items[position].img).centerCrop().into(holder.ijkplayer.posterImageView)   //推荐使用Glide
+        holder.ijkPlayer.setUp(jzDataSource, Jzvd.SCREEN_NORMAL)
+        Glide.with(context).load(items[position].img).centerCrop().into(holder.ijkPlayer.posterImageView)   //推荐使用Glide
         holder.imageView.visibility = View.GONE
     }
 }
