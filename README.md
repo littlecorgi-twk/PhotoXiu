@@ -38,6 +38,7 @@
 ### v0.0.9-alpha1 (2020-06-29 17:01:54)
 + 添加APP图标
 + 接入穿山甲SDK，并添加开屏广告
++ 修复SplashActivity会显示图片的bug
 
 ### v0.0.9 (2020-06-28 17:13:46)
 + 将puzzle module以相册的形式添加到CaptureVideoActivity
