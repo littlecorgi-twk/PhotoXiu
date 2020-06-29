@@ -39,6 +39,7 @@
 + 添加APP图标
 + 接入穿山甲SDK，并添加开屏广告
 + 修复SplashActivity会显示图片的bug
++ 修复首页不显示演员和电影名的bug
 
 ### v0.0.9 (2020-06-28 17:13:46)
 + 将puzzle module以相册的形式添加到CaptureVideoActivity
