@@ -28,6 +28,8 @@
 [permissions-dispatcher/PermissionsDispatcher](https://github.com/permissions-dispatcher/PermissionsDispatcher)
 - 图片加载:  
 [bumptech/glide](https://github.com/bumptech/glide)
+- 内存泄漏检测：
+[square/leakcanary](https://square.github.io/leakcanary/)
 - OpenGL ES 2.0
 - Camera API
 

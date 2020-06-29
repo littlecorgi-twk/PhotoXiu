@@ -43,6 +43,7 @@ ext {
             "Glide-compiler"         : "com.github.bumptech.glide:compiler:${android["glideVersion"]}",// Glide-Compiler
             "Retrofit"               : "com.squareup.retrofit2:retrofit:${android["retrofitVersion"]}",//Retrofit
             "Retrofit-converter-gson": "com.squareup.retrofit2:converter-gson:${android["retrofitVersion"]}",//Retrofit
+            "leakcanary"             : 'com.squareup.leakcanary:leakcanary-android:2.4',//LeakCanary
             "Qiniu"                  : 'com.qiniu:qiniu-android-sdk:7.6.4',//七牛云
             "UCrop"                  : 'com.github.yalantis:ucrop:2.2.5',//Ucrop
     ]
