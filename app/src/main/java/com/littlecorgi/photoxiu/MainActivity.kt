@@ -1,7 +1,6 @@
 package com.littlecorgi.photoxiu
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -20,6 +19,7 @@ import cn.jzvd.Jzvd
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.littlecorgi.photoxiu.adapter.OngoingMovieRvAdapter
 import com.littlecorgi.photoxiu.databinding.AppActivityMainBinding
+import com.littlecorgi.photoxiu.utils.startActivity
 import com.littlecorgi.photoxiu.view.capturevideo.CaptureVideoActivity
 import com.littlecorgi.photoxiu.viewModel.MainViewModel
 import com.yc.pagerlib.recycler.PagerLayoutManager
@@ -71,11 +71,15 @@ class MainActivity : AppCompatActivity() {
                     ActivityCompat.requestPermissions(this, permissionsList.toTypedArray(), 104)
                 } else {
                     Toast.makeText(this, "权限获取成功", Toast.LENGTH_LONG).show()
-                    startActivity(Intent(this@MainActivity, CaptureVideoActivity::class.java))
+                    startActivity<CaptureVideoActivity> {
+                        null
+                    }
                 }
             } else { //这个说明系统版本在6.0之下，不需要动态获取权限。
                 Toast.makeText(this, "权限获取成功,版本低于Android6.0", Toast.LENGTH_LONG).show()
-                startActivity(Intent(this@MainActivity, CaptureVideoActivity::class.java))
+                startActivity<CaptureVideoActivity> {
+                    null
+                }
             }
         }
         requestOngoingMovies()
@@ -162,7 +166,9 @@ class MainActivity : AppCompatActivity() {
             ALL_PERMISSION_OK -> {
                 if (grantResults.isNotEmpty()
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    startActivity(Intent(this@MainActivity, CaptureVideoActivity::class.java))
+                    startActivity<CaptureVideoActivity> {
+                        null
+                    }
                 } else {
                     Toast.makeText(this@MainActivity, "请手动打开相机、麦克风、存储、文件读取权限", Toast.LENGTH_SHORT).show()
                 }
