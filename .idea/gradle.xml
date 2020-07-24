@@ -15,8 +15,6 @@
             <option value="$PROJECT_DIR$/commonlib" />
             <option value="$PROJECT_DIR$/puzzle" />
             <option value="$PROJECT_DIR$/retouch" />
-            <option value="$PROJECT_DIR$/../../Flutter/flutter_app_module/flutter_module_app" />
-            <option value="$PROJECT_DIR$/../../Flutter/flutter_app_module/flutter_module_app/.android/Flutter" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
