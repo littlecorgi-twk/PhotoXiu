@@ -17,9 +17,9 @@ import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.RecyclerView
 import cn.jzvd.Jzvd
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.littlecorgi.commonlib.utils.startActivity
 import com.littlecorgi.photoxiu.adapter.OngoingMovieRvAdapter
 import com.littlecorgi.photoxiu.databinding.AppActivityMainBinding
-import com.littlecorgi.photoxiu.utils.startActivity
 import com.littlecorgi.photoxiu.view.capturevideo.CaptureVideoActivity
 import com.littlecorgi.photoxiu.viewModel.MainViewModel
 import com.yc.pagerlib.recycler.PagerLayoutManager
@@ -87,6 +87,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initRecycler() {
+        Log.d(TAG, "initRecycler: ${Thread.currentThread().name}")
         binding.rvFeed.layoutManager = PagerLayoutManager(
                 this, OrientationHelper.VERTICAL
         )

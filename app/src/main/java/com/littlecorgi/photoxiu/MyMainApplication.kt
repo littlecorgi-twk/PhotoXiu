@@ -2,8 +2,8 @@ package com.littlecorgi.photoxiu
 
 import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
+import com.littlecorgi.commonlib.utils.DisplayUtil
 import com.littlecorgi.photoxiu.ttadsdk.TTAdManagerHolder
-import com.littlecorgi.photoxiu.utils.DisplayUtil
 
 
 class MyMainApplication : Application() {

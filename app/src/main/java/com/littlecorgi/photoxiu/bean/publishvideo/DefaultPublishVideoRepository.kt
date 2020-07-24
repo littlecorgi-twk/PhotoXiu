@@ -4,7 +4,7 @@ import android.content.Context
 import android.net.Uri
 import com.littlecorgi.photoxiu.Result
 import com.littlecorgi.photoxiu.network.IPostVideoInterface
-import com.littlecorgi.photoxiu.utils.ResourceUtils
+import com.littlecorgi.commonlib.utils.ResourceUtils
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody

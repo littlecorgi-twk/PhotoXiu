@@ -23,7 +23,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.littlecorgi.photoxiu.R
 import com.littlecorgi.photoxiu.ViewModelFactory
 import com.littlecorgi.photoxiu.databinding.AppActivityCaptureVideoBinding
-import com.littlecorgi.photoxiu.utils.Utils
+import com.littlecorgi.commonlib.utils.Utils
 import com.littlecorgi.photoxiu.view.publishvideo.PublishVideoActivity
 import com.littlecorgi.photoxiu.view.view.ShootButton
 import com.littlecorgi.photoxiu.viewModel.CaptureVideoViewModel
