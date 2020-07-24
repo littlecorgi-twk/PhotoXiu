@@ -61,8 +61,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding true
     }
 }
 
@@ -97,5 +97,5 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // 穿山甲SDK
-    compile(name: 'open_ad_sdk', ext: 'aar')
+    implementation(name: 'open_ad_sdk', ext: 'aar')
 }
