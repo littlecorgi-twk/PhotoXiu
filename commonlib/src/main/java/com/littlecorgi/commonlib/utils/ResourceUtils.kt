@@ -1,4 +1,4 @@
-package com.littlecorgi.photoxiu.utils
+package com.littlecorgi.commonlib.utils
 
 import android.annotation.SuppressLint
 import android.content.ContentUris

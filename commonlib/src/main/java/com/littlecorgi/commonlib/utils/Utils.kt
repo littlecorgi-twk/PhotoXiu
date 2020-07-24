@@ -1,4 +1,4 @@
-package com.littlecorgi.photoxiu.utils
+package com.littlecorgi.commonlib.utils
 
 import android.content.ContentResolver
 import android.content.Context
@@ -11,7 +11,7 @@ import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
 import android.text.TextUtils
-import com.littlecorgi.photoxiu.utils.UriUtils.formatUri
+import com.littlecorgi.commonlib.utils.UriUtils.formatUri
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
