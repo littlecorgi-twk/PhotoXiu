@@ -40,10 +40,13 @@ android {
     }
     signingConfigs {
         config {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
             storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
+            storePassword keystoreProperties.containsKey("KEYSTORE_PASS") ? keystoreProperties['KEYSTORE_PASS'] : System.getenv("KEYSTORE_PASS")
+            keyAlias      keystoreProperties.containsKey("ALIAS_NAME")    ? keystoreProperties['ALIAS_NAME']    : System.getenv("ALIAS_NAME")
+            keyPassword   keystoreProperties.containsKey("ALIAS_PASS")    ? keystoreProperties['ALIAS_PASS']    : System.getenv("ALIAS_PASS")
+//            keyAlias keystoreProperties['keyAlias']
+//            keyPassword keystoreProperties['keyPassword']
+//            storePassword keystoreProperties['storePassword']
         }
     }
     buildTypes {
