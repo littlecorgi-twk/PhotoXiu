@@ -153,7 +153,8 @@ class PuzzleActivity : BaseActivity() {
                 Log.d(TAG, "onActivityResult: 从相册中返回")
                 if (resultCode == Activity.RESULT_OK) {
                     Log.d(TAG, "onActivityResult: resultCode == Activity.RESULT_OK")
-                    mImageView.setImageURI(data?.data)
+                    uri = data?.data
+                    mImageView.setImageURI(uri)
                 } else {
                     Log.d(TAG, "onActivityResult: resultCode != Activity.RESULT_OK")
                     makeShortToast("返回有问题，获取不到图片")
