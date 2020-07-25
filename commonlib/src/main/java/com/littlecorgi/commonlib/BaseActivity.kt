@@ -4,17 +4,11 @@ import android.content.DialogInterface
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 
 open class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-    }
-
-    companion object {
-        public final val REQUEST_STORAGE_READ_ACCESS_PERMISSION: Int = 101
-        public final val REQUEST_STORAGE_WRITE_ACCESS_PERMISSION: Int = 102
     }
 
     private var mAlertDialog: AlertDialog? = null
@@ -23,23 +17,6 @@ open class BaseActivity : AppCompatActivity() {
         super.onStop()
         if (mAlertDialog != null && mAlertDialog!!.isShowing) {
             mAlertDialog!!.dismiss()
-        }
-    }
-
-    /**
-     * Requests given permission.
-     * If the permission has been denied previously, a Dialog will prompt the user to grant the
-     * permission, otherwise it is requested directly.
-     */
-    protected fun requestPermission(permission: String, rationale: String, requestCode: Int) {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
-            showAlertDialog(getString(R.string.permission_title_rationale), rationale,
-                    DialogInterface.OnClickListener { _, _ ->
-                        ActivityCompat.requestPermissions(this@BaseActivity,
-                                arrayOf(permission), requestCode)
-                    }, getString(R.string.label_ok), null, getString(R.string.label_cancel))
-        } else {
-            ActivityCompat.requestPermissions(this, arrayOf(permission), requestCode)
         }
     }
 
