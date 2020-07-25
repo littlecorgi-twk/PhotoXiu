@@ -46,5 +46,6 @@ ext {
             "leakcanary"             : 'com.squareup.leakcanary:leakcanary-android:2.4',//LeakCanary
             "Qiniu"                  : 'com.qiniu:qiniu-android-sdk:7.6.4',//七牛云
             "UCrop"                  : 'com.github.yalantis:ucrop:2.2.5',//Ucrop
+            "EventBus"               : 'org.greenrobot:eventbus:3.2.0',//EventBus
     ]
 }

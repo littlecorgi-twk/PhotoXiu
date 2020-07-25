@@ -8,8 +8,8 @@ import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.bytedance.sdk.openadsdk.*
 import com.littlecorgi.camera.showToast
+import com.littlecorgi.commonlib.utils.DisplayUtil
 import com.littlecorgi.photoxiu.ttadsdk.TTAdManagerHolder
-import com.littlecorgi.photoxiu.utils.DisplayUtil
 
 
 class AdsActivity : AppCompatActivity() {
@@ -101,27 +101,22 @@ class AdsActivity : AppCompatActivity() {
                     goToMainActivity()
                 }
                 //设置SplashView的交互监听器
-                //设置SplashView的交互监听器
                 ad.setSplashInteractionListener(object : TTSplashAd.AdInteractionListener {
                     override fun onAdClicked(view: View, type: Int) {
                         Log.d(TAG, "onAdClicked")
-                        showToast("开屏广告点击")
                     }
 
                     override fun onAdShow(view: View, type: Int) {
                         Log.d(TAG, "onAdShow")
-                        showToast("开屏广告展示")
                     }
 
                     override fun onAdSkip() {
                         Log.d(TAG, "onAdSkip")
-                        showToast("开屏广告跳过")
                         goToMainActivity()
                     }
 
                     override fun onAdTimeOver() {
                         Log.d(TAG, "onAdTimeOver")
-                        showToast("开屏广告倒计时结束")
                         goToMainActivity()
                     }
                 })
@@ -132,26 +127,26 @@ class AdsActivity : AppCompatActivity() {
                         }
 
                         override fun onDownloadPaused(p0: Long, p1: Long, p2: String?, p3: String?) {
-                            showToast("下载暂停...")
+                            Log.d(TAG, "onDownloadPaused: 下载暂停...")
                         }
 
                         override fun onDownloadFailed(p0: Long, p1: Long, p2: String?, p3: String?) {
-                            showToast("下载失败...")
+                            Log.d(TAG, "onDownloadFailed: 下载失败...")
                         }
 
                         override fun onDownloadActive(p0: Long, p1: Long, p2: String?, p3: String?) {
                             if (!hasShow) {
-                                showToast("下载中...")
+                                Log.d(TAG, "onDownloadActive: 下载中...")
                                 hasShow = true
                             }
                         }
 
                         override fun onDownloadFinished(p0: Long, p1: String?, p2: String?) {
-                            showToast("下载完成...")
+                            Log.d(TAG, "onDownloadFinished: 下载完成...")
                         }
 
                         override fun onInstalled(p0: String?, p1: String?) {
-                            showToast("安装完成...")
+                            Log.d(TAG, "onInstalled: 安装完成...")
                         }
                     })
                 }

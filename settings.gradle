@@ -1,8 +1,1 @@
 include ':app', ':commonlib', ':camera', ':retouch', ':puzzle'
-setBinding(new Binding([gradle: this]))                                // new
-evaluate(new File(                                                     // new
-        settingsDir.parentFile.parentFile,                                              // new
-        '/Flutter/flutter_app_module/flutter_module_app/.android/include_flutter.groovy'                         // new
-))                                                                     // new
-include ':flutter_module_app'
-project(':flutter_module_app').projectDir = new File('../../Flutter/flutter_app_module/flutter_module_app')

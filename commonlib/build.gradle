@@ -57,12 +57,15 @@ dependencies {
     api rootProject.ext.dependencies["Retrofit"]
     api rootProject.ext.dependencies["Retrofit-converter-gson"]
 
-    // LeakCanary
-    debugApi rootProject.ext.dependencies["leakcanary"]
-
     // Glide
     api rootProject.ext.dependencies["Glide"]
     api rootProject.ext.dependencies["Glide-compiler"]
+
+    // LeakCanary
+    debugApi rootProject.ext.dependencies["leakcanary"]
+
+    // EventBus
+    api rootProject.ext.dependencies["EventBus"]
 
     // ARouter
     api rootProject.ext.dependencies["arouter-api"]

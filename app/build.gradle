@@ -29,7 +29,7 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     defaultConfig {
-        applicationId "com.littlecorgi.androidcomponentialprogramming"
+        applicationId "com.littlecorgi.photoxiu"
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
@@ -40,10 +40,13 @@ android {
     }
     signingConfigs {
         config {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
             storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
+            storePassword keystoreProperties.containsKey("KEYSTORE_PASS") ? keystoreProperties['KEYSTORE_PASS'] : System.getenv("KEYSTORE_PASS")
+            keyAlias      keystoreProperties.containsKey("ALIAS_NAME")    ? keystoreProperties['ALIAS_NAME']    : System.getenv("ALIAS_NAME")
+            keyPassword   keystoreProperties.containsKey("ALIAS_PASS")    ? keystoreProperties['ALIAS_PASS']    : System.getenv("ALIAS_PASS")
+//            keyAlias keystoreProperties['keyAlias']
+//            keyPassword keystoreProperties['keyPassword']
+//            storePassword keystoreProperties['storePassword']
         }
     }
     buildTypes {
@@ -61,8 +64,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding true
     }
 }
 
@@ -97,5 +100,5 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // 穿山甲SDK
-    compile(name: 'open_ad_sdk', ext: 'aar')
+    implementation(name: 'open_ad_sdk', ext: 'aar')
 }
