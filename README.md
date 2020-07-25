@@ -1,4 +1,5 @@
 # PhotoXiu
+[![Build Status](https://travis-ci.org/a1203991686/PhotoXiu.svg?branch=master)](https://travis-ci.org/a1203991686/PhotoXiu)
 
 ## 简介
 个人项目。
@@ -34,6 +35,13 @@
 - Camera API
 
 ## 版本
+
+### v0.1.0 (2020-07-25 09:24:46)
++ feat: 添加Travis CI自动集成工具
++ fix: 删除Flutter module
++ optimization: 将Maven仓库从阿里云镜像替换为原生仓库
++ optimization: 优化ARouter初始化方式(Application初始化)
++ optimization: 将Util工具类移入CommonLib，并添加ActivityUtil
 
 ### v0.0.9-alpha2 (2020-06-29 21:48:12)
 + 修复release包必crash的bug
