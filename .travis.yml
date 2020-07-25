@@ -31,7 +31,7 @@ deploy: # 部署
   provider: releases # 部署到 GitHub Release
   api_key: # 填写 GitHub 的 token
     secure: SCt+p90wK7z0InEja8JoF24Uc+9MpVFqb+b6sE5gqOynDR0SDRHvmSAfdQ0r65We/UFI4GULHhSf1dg7laNG8OIs0d4LphE5yTbbBCRhEj9rWbpGuBeKXMQL5YVdC9wTu3zVTKmiscrFmTg0gtOG64wNH5VU8nZW0kPHC8+v7fglsmZMfFgA5ep8+XHBlCfWXmVcte49dnySm55Bznf7H9uoD0Db1ho7HHiQRno+uCbcmrZQ+m/x4mZF7vWrs2IlNs3ACIO3seBTL1Cg/GBdgynvQi9NldORQ1fkwI34i4QN3ZkUI30LXcxMs4LL7gIQVT3K3GKdoXREBSqGM7z/ZJYLQlHzm6bhOxE3ZKgjVfBpGggu/kBjg8h8wfnq/SYYUwai8943uy5dxjUTunW5j/c8uyTF1DPt7AxgM2Yy0Urr9ykHPOfNYjC+4F9W7h12S5/+otvRfVdtkmhy2oG+3BGFrw7+IefqLq5y2fB3jLRT31HNh+lX967mkAlHnI7noeuHftKUZ3p82GP0M1m2dVpEniWLNH26oSuNfh5mviI3+I+2Vzpt3O5o6bQPZQbw2Sn3+LmdWM8hq0SR+WhfnmjwXBbwEW32yVQJF6Z6T1LSwlS4RyVJdStqX0Isml3fVXu46taU9bCnFb6xr6Pm/Gg+oQYw0hIrePBIAShXZQM=
-  file: app/build/outputs/apk/app-release.apk # 部署文件路径
+  file: app/build/outputs/apk/release/app-release.apk # 部署文件路径
   on:
     repo: a1203991686/PhotoXiu
     tags: true #手动添加tag时才会自动配置
