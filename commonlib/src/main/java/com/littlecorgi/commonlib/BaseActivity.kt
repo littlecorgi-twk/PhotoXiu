@@ -2,6 +2,7 @@ package com.littlecorgi.commonlib
 
 import android.content.DialogInterface
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
@@ -18,6 +19,14 @@ open class BaseActivity : AppCompatActivity() {
         if (mAlertDialog != null && mAlertDialog!!.isShowing) {
             mAlertDialog!!.dismiss()
         }
+    }
+
+    fun makeShortToast(text: String) {
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+    }
+
+    fun makeLongToast(text: String) {
+        Toast.makeText(this, text, Toast.LENGTH_LONG).show()
     }
 
     /**

@@ -14,7 +14,6 @@ import android.os.*
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -301,7 +300,7 @@ class CaptureVideoActivity : BaseActivity() {
 
     private fun subscribeUi() {
         mCaptureVideoViewModel.toastContent.observe(this, Observer { toastContext ->
-            Toast.makeText(this, toastContext, Toast.LENGTH_SHORT).show()
+            makeShortToast(toastContext)
         })
     }
 

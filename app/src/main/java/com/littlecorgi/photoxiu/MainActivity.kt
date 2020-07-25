@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.OrientationHelper
@@ -51,16 +50,14 @@ class MainActivity : BaseActivity() {
                             Permission.READ_EXTERNAL_STORAGE
                     )
                     .onGranted {
-                        Toast.makeText(this, "权限全部获取成功", Toast.LENGTH_SHORT).show()
+                        makeShortToast("权限全部获取成功")
                         startActivity<CaptureVideoActivity> {
                             null
                         }
                     }
                     .onDenied {
-                        Toast.makeText(this,
-                                "请手动开启这些权限，否则应用无法正常使用：" +
-                                        "${Permission.transformText(this, deniedPermissions)}",
-                                Toast.LENGTH_LONG).show()
+                        makeLongToast("请手动开启这些权限，否则应用无法正常使用：" +
+                                "${Permission.transformText(this, deniedPermissions)}")
                     }
                     .start()
         }
@@ -103,7 +100,7 @@ class MainActivity : BaseActivity() {
             adapter.notifyDataSetChanged()
         })
         mViewModel.errorToastText.observe(this, androidx.lifecycle.Observer { errorText ->
-            Toast.makeText(this, errorText, Toast.LENGTH_SHORT).show()
+            makeShortToast(errorText)
         })
     }
 

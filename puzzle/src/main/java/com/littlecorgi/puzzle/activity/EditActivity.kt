@@ -12,7 +12,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.SeekBar
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -105,7 +104,8 @@ class EditActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener {
                         hueSeekBar.visibility = View.GONE
                         saturationSeekBar.visibility = View.VISIBLE
                     }
-                    else -> Toast.makeText(baseContext, "1234", Toast.LENGTH_SHORT).show()
+                    else ->
+                        makeShortToast("1234")
                 }
             }
         })
@@ -218,7 +218,7 @@ class EditActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 finished()
             } else {
-                Toast.makeText(this@EditActivity, "Permission Denied", Toast.LENGTH_SHORT).show()
+                makeShortToast("Permission Denied")
             }
             return
         }

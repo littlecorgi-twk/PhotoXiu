@@ -13,7 +13,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -131,7 +130,8 @@ class FilterActivity : BaseActivity() {
                         imageViewActivityFilter.setImageBitmap(tmpBitmap)
                         ProcedureUtil.getInstance().add(Procedure("redGreenInverted", 0.0F))
                     }
-                    else -> Toast.makeText(baseContext, "1234", Toast.LENGTH_SHORT).show()
+                    else ->
+                        makeShortToast("1234")
                 }
             }
         })
@@ -182,7 +182,7 @@ class FilterActivity : BaseActivity() {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 finished()
             } else {
-                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
+                makeShortToast("Permission Denied")
             }
             return
         }

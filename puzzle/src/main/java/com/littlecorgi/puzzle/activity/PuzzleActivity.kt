@@ -13,7 +13,10 @@ import android.os.StrictMode
 import android.provider.MediaStore
 import android.util.Log
 import android.view.*
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.ImageView
+import android.widget.ListView
+import android.widget.PopupWindow
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -112,10 +115,10 @@ class PuzzleActivity : BaseActivity() {
                 }
                 .onDenied {
                     canReadTag = false
-                    Toast.makeText(this,
+                    makeLongToast(
                             "请手动开启这些权限，否则应用无法正常使用：" +
-                                    "${Permission.transformText(this, Permission.READ_EXTERNAL_STORAGE)}",
-                            Toast.LENGTH_LONG).show()
+                                    "${Permission.transformText(this, Permission.READ_EXTERNAL_STORAGE)}"
+                    )
                     finish()
                 }
                 .start()
@@ -153,7 +156,7 @@ class PuzzleActivity : BaseActivity() {
                     mImageView.setImageURI(data?.data)
                 } else {
                     Log.d(TAG, "onActivityResult: resultCode != Activity.RESULT_OK")
-                    Toast.makeText(this, "返回有问题，获取不到图片", Toast.LENGTH_SHORT).show()
+                    makeShortToast("返回有问题，获取不到图片")
                     finish()
                 }
             }
@@ -244,7 +247,8 @@ class PuzzleActivity : BaseActivity() {
                         intent.putExtra("Uri", uri)
                         startActivityForResult(intent, Filter_ACTIVITY_REQUEST_CODE)
                     }
-                    else -> Toast.makeText(baseContext, "1234", Toast.LENGTH_SHORT).show()
+                    else ->
+                        makeShortToast("1234")
                 }
             }
         })
@@ -278,9 +282,9 @@ class PuzzleActivity : BaseActivity() {
         uploadManager.put(baos.toByteArray(), "PhotoXiu/${dateFormat.format(date)}.jpeg", TOKEN,
                 { key, info, response ->
                     if (info!!.isOK) {
-                        Toast.makeText(this, "Upload Success", Toast.LENGTH_SHORT).show()
+                        makeShortToast("Upload Success")
                     } else {
-                        Toast.makeText(this, "Upload Fail", Toast.LENGTH_SHORT).show()
+                        makeShortToast("Upload Fail")
                     }
                     Log.d("qiniu", "$key,\r\n $info,\r\n $response")
                 },
