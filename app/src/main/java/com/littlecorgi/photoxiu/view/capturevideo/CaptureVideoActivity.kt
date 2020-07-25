@@ -15,15 +15,15 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.launcher.ARouter
+import com.littlecorgi.commonlib.BaseActivity
+import com.littlecorgi.commonlib.utils.Utils
 import com.littlecorgi.photoxiu.R
 import com.littlecorgi.photoxiu.ViewModelFactory
 import com.littlecorgi.photoxiu.databinding.AppActivityCaptureVideoBinding
-import com.littlecorgi.commonlib.utils.Utils
 import com.littlecorgi.photoxiu.view.publishvideo.PublishVideoActivity
 import com.littlecorgi.photoxiu.view.view.ShootButton
 import com.littlecorgi.photoxiu.viewModel.CaptureVideoViewModel
@@ -37,7 +37,7 @@ import kotlin.math.min
  * @author Tian Weikang tianweikang.corgi@bytedance.com
  * @date 2020-02-06 15:21
  */
-class CaptureVideoActivity : AppCompatActivity() {
+class CaptureVideoActivity : BaseActivity() {
 
     companion object {
         private val TAG = CaptureVideoActivity::class.java.simpleName

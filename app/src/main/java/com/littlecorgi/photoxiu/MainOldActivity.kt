@@ -17,13 +17,14 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.littlecorgi.commonlib.BaseActivity
 import com.littlecorgi.photoxiu.adapter.OldRecyclerAdapter
 import com.littlecorgi.photoxiu.adapter.ViewpagerAdapter
 import com.littlecorgi.photoxiu.bean.RecyclerItemBean
 import kotlin.math.abs
 
 @Route(path = "/app/MainOldActivity")
-class MainOldActivity : AppCompatActivity() {
+class MainOldActivity : BaseActivity() {
 
     private val toolbar: Toolbar by lazy {
         findViewById<Toolbar>(R.id.toolbar)
