@@ -147,9 +147,14 @@ class PuzzleActivity : BaseActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
             ALBUM_REQUEST_CODE -> {
+                Log.d(TAG, "onActivityResult: 从相册中返回")
                 if (resultCode == Activity.RESULT_OK) {
-                    uri = data!!.data
-                    mImageView.setImageURI(uri)
+                    Log.d(TAG, "onActivityResult: resultCode == Activity.RESULT_OK")
+                    mImageView.setImageURI(data?.data)
+                } else {
+                    Log.d(TAG, "onActivityResult: resultCode != Activity.RESULT_OK")
+                    Toast.makeText(this, "返回有问题，获取不到图片", Toast.LENGTH_SHORT).show()
+                    finish()
                 }
             }
             UCrop.REQUEST_CROP -> {
