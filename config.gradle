@@ -47,5 +47,6 @@ ext {
             "Qiniu"                  : 'com.qiniu:qiniu-android-sdk:7.6.4',//七牛云
             "UCrop"                  : 'com.github.yalantis:ucrop:2.2.5',//Ucrop
             "EventBus"               : 'org.greenrobot:eventbus:3.2.0',//EventBus
+            "AndPermission"          : 'com.yanzhenjie:permission:2.0.3',//AndPermission
     ]
 }
