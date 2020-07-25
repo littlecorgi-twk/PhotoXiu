@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -17,6 +16,7 @@ import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.RecyclerView
 import cn.jzvd.Jzvd
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.littlecorgi.commonlib.BaseActivity
 import com.littlecorgi.commonlib.utils.startActivity
 import com.littlecorgi.photoxiu.adapter.OngoingMovieRvAdapter
 import com.littlecorgi.photoxiu.databinding.AppActivityMainBinding
@@ -25,7 +25,7 @@ import com.littlecorgi.photoxiu.viewModel.MainViewModel
 import com.yc.pagerlib.recycler.PagerLayoutManager
 
 @Route(path = "/app/MainActivity")
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     companion object {
         private val TAG = MainActivity::class.java.simpleName

@@ -18,7 +18,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.littlecorgi.puzzle.BaseActivity
+import com.littlecorgi.commonlib.BaseActivity
 import com.littlecorgi.puzzle.R
 import com.littlecorgi.puzzle.adapter.RecyclerAdapter
 import com.littlecorgi.puzzle.bean.Procedure

@@ -20,7 +20,6 @@ import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.littlecorgi.puzzle.BaseActivity
 import com.littlecorgi.puzzle.R
 import com.littlecorgi.puzzle.adapter.RecyclerAdapter
 import com.littlecorgi.puzzle.bean.RecyclerItem
@@ -37,6 +36,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 import androidx.appcompat.widget.Toolbar
+import com.littlecorgi.commonlib.BaseActivity
 
 @Route(path = "/puzzle/PuzzleActivity")
 class PuzzleActivity : BaseActivity() {

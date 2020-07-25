@@ -11,11 +11,11 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.littlecorgi.commonlib.BaseActivity
 import com.littlecorgi.photoxiu.R
 import com.littlecorgi.photoxiu.ViewModelFactory
 import com.littlecorgi.photoxiu.databinding.AppActivityPublishVideoBinding
@@ -26,7 +26,7 @@ import java.io.File
 /**
  * @author tianweikang
  */
-class PublishVideoActivity : AppCompatActivity(), View.OnClickListener {
+class PublishVideoActivity : BaseActivity(), View.OnClickListener {
 
     private lateinit var viewModel: PublishVideoViewModel
     private lateinit var mBinding: AppActivityPublishVideoBinding
