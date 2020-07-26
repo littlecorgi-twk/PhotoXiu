@@ -1,4 +1,4 @@
-package com.littlecorgi.puzzle.activity
+package com.littlecorgi.puzzle.edit
 
 import android.content.Intent
 import android.graphics.Bitmap
