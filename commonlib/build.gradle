@@ -76,6 +76,9 @@ dependencies {
 
     // UCrop
     api rootProject.ext.dependencies["UCrop"]
+
+    //AndPermission
+    api rootProject.ext.dependencies["AndPermission"]
 }
 repositories {
     mavenCentral()

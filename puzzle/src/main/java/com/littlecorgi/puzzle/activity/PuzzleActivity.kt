@@ -1,10 +1,8 @@
 package com.littlecorgi.puzzle.activity
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -15,11 +13,15 @@ import android.os.StrictMode
 import android.provider.MediaStore
 import android.util.Log
 import android.view.*
-import android.widget.*
-import androidx.core.app.ActivityCompat
+import android.widget.ArrayAdapter
+import android.widget.ImageView
+import android.widget.ListView
+import android.widget.PopupWindow
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.littlecorgi.commonlib.BaseActivity
 import com.littlecorgi.puzzle.R
 import com.littlecorgi.puzzle.adapter.RecyclerAdapter
 import com.littlecorgi.puzzle.bean.RecyclerItem
@@ -30,13 +32,13 @@ import com.qiniu.android.storage.UpProgressHandler
 import com.qiniu.android.storage.UploadManager
 import com.qiniu.android.storage.UploadOptions
 import com.yalantis.ucrop.UCrop
+import com.yanzhenjie.permission.AndPermission
+import com.yanzhenjie.permission.runtime.Permission
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import androidx.appcompat.widget.Toolbar
-import com.littlecorgi.commonlib.BaseActivity
 
 @Route(path = "/puzzle/PuzzleActivity")
 class PuzzleActivity : BaseActivity() {
@@ -102,22 +104,33 @@ class PuzzleActivity : BaseActivity() {
      */
     @SuppressLint("ObsoleteSdkInt")
     private fun getPicFromAlbum() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE,
-                    getString(R.string.permission_read_storage_rationale),
-                    REQUEST_STORAGE_READ_ACCESS_PERMISSION)
-        } else {
+        var canReadTag = true
+
+        // 一般不会执行到此处，因为在进入相机页时已经获取到读取外部存储器权限了
+        AndPermission.with(this)
+                .runtime()
+                .permission(Permission.READ_EXTERNAL_STORAGE)
+                .onGranted {
+                    canReadTag = true
+                }
+                .onDenied {
+                    canReadTag = false
+                    makeLongToast(
+                            "请手动开启这些权限，否则应用无法正常使用：" +
+                                    "${Permission.transformText(this, Permission.READ_EXTERNAL_STORAGE)}"
+                    )
+                    finish()
+                }
+                .start()
+
+        if (canReadTag) {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
                     .setType("image/*")
                     .addCategory(Intent.CATEGORY_OPENABLE)
-
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 val mimeTypes = arrayOf("image/jpeg", "image/png")
                 intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
             }
-
             startActivityForResult(Intent.createChooser(intent, getString(R.string.puzzle_label_select_picture)), ALBUM_REQUEST_CODE)
         }
     }
@@ -137,9 +150,15 @@ class PuzzleActivity : BaseActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
             ALBUM_REQUEST_CODE -> {
+                Log.d(TAG, "onActivityResult: 从相册中返回")
                 if (resultCode == Activity.RESULT_OK) {
-                    uri = data!!.data
+                    Log.d(TAG, "onActivityResult: resultCode == Activity.RESULT_OK")
+                    uri = data?.data
                     mImageView.setImageURI(uri)
+                } else {
+                    Log.d(TAG, "onActivityResult: resultCode != Activity.RESULT_OK")
+                    makeShortToast("返回有问题，获取不到图片")
+                    finish()
                 }
             }
             UCrop.REQUEST_CROP -> {
@@ -229,7 +248,8 @@ class PuzzleActivity : BaseActivity() {
                         intent.putExtra("Uri", uri)
                         startActivityForResult(intent, Filter_ACTIVITY_REQUEST_CODE)
                     }
-                    else -> Toast.makeText(baseContext, "1234", Toast.LENGTH_SHORT).show()
+                    else ->
+                        makeShortToast("1234")
                 }
             }
         })
@@ -263,9 +283,9 @@ class PuzzleActivity : BaseActivity() {
         uploadManager.put(baos.toByteArray(), "PhotoXiu/${dateFormat.format(date)}.jpeg", TOKEN,
                 { key, info, response ->
                     if (info!!.isOK) {
-                        Toast.makeText(this, "Upload Success", Toast.LENGTH_SHORT).show()
+                        makeShortToast("Upload Success")
                     } else {
-                        Toast.makeText(this, "Upload Fail", Toast.LENGTH_SHORT).show()
+                        makeShortToast("Upload Fail")
                     }
                     Log.d("qiniu", "$key,\r\n $info,\r\n $response")
                 },
