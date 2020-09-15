@@ -1,10 +1,11 @@
 package com.littlecorgi.photoxiu
 
 import android.app.Application
+import android.os.Build
+import android.os.StrictMode
 import com.alibaba.android.arouter.launcher.ARouter
 import com.littlecorgi.commonlib.utils.DisplayUtil
 import com.littlecorgi.photoxiu.ttadsdk.TTAdManagerHolder
-
 
 class MyMainApplication : Application() {
 
@@ -24,5 +25,11 @@ class MyMainApplication : Application() {
         DisplayUtil.sContext = this
         DisplayUtil.sScreenWidth = DisplayUtil.getScreenWidth()
         DisplayUtil.sScreenHeight = DisplayUtil.getScreenHeight()
+
+        // 建议在application 的onCreate()的方法中调用
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            val builder = StrictMode.VmPolicy.Builder()
+            StrictMode.setVmPolicy(builder.build())
+        }
     }
 }

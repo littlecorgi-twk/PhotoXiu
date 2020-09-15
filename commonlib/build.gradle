@@ -82,6 +82,9 @@ dependencies {
 
     //AndPermission
     api rootProject.ext.dependencies["AndPermission"]
+
+    // StatusBarCompat
+    api rootProject.ext.dependencies["StatusBarCompat"]
 }
 repositories {
     mavenCentral()

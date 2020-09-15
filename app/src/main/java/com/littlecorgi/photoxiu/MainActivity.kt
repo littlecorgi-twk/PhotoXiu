@@ -1,5 +1,6 @@
 package com.littlecorgi.photoxiu
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.RecyclerView
 import cn.jzvd.Jzvd
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.githang.statusbar.StatusBarCompat
 import com.littlecorgi.commonlib.BaseActivity
 import com.littlecorgi.commonlib.utils.startActivity
 import com.littlecorgi.photoxiu.adapter.OngoingMovieRvAdapter
@@ -24,7 +26,7 @@ import com.yc.pagerlib.recycler.PagerLayoutManager
 class MainActivity : BaseActivity() {
 
     companion object {
-        private val TAG = MainActivity::class.java.simpleName
+        private const val TAG = "MainActivity"
     }
 
     private lateinit var mViewModel: MainViewModel
@@ -34,6 +36,9 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.app_activity_main)
         mViewModel = ViewModelProvider(this, ViewModelFactory()).get(MainViewModel::class.java)
+
+        // 设置状态栏为黑色
+        StatusBarCompat.setStatusBarColor(this, Color.BLACK)
 
         findViewById<View>(R.id.btn_capture_video).setOnClickListener {
             val deniedPermissions = ArrayList<String>()
@@ -114,7 +119,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        if (event.getKeyCode() === KeyEvent.KEYCODE_BACK) {
+        if (event.keyCode == KeyEvent.KEYCODE_BACK) {
             return if (isTaskRoot) {
                 moveTaskToBack(false)
                 true

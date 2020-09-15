@@ -48,5 +48,6 @@ ext {
             "UCrop"                  : 'com.github.yalantis:ucrop:2.2.5',//Ucrop
             "EventBus"               : 'org.greenrobot:eventbus:3.2.0',//EventBus
             "AndPermission"          : 'com.yanzhenjie:permission:2.0.3',//AndPermission
+            "StatusBarCompat"        : 'com.githang:status-bar-compat:0.7',//StatusBarCompat
     ]
 }

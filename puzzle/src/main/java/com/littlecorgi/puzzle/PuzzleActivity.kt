@@ -9,7 +9,6 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.StrictMode
 import android.provider.MediaStore
 import android.util.Log
 import android.view.*
@@ -76,19 +75,7 @@ class PuzzleActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.puzzle_activity_puzzle)
 
-        //建议在application 的onCreate()的方法中调用
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            val builder = StrictMode.VmPolicy.Builder()
-            StrictMode.setVmPolicy(builder.build())
-        }
-
         getPicFromAlbum()
-
-        // 透明状态栏
-        if (Build.VERSION.SDK_INT >= 21) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
-            window.statusBarColor = Color.TRANSPARENT //防止5.x以后半透明影响效果，使用这种透明方式
-        }
 
         initToolbar()
         initRecyclerView()
