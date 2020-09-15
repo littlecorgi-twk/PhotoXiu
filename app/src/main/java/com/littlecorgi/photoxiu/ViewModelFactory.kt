@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.littlecorgi.photoxiu.bean.ongoingmovies.DefaultOngoingMovieRepository
 import com.littlecorgi.photoxiu.bean.publishvideo.DefaultPublishVideoRepository
+import com.littlecorgi.photoxiu.feed.FeedViewModel
 import com.littlecorgi.photoxiu.viewModel.CaptureVideoViewModel
 import com.littlecorgi.photoxiu.viewModel.ChooseFrameViewModel
 import com.littlecorgi.photoxiu.viewModel.MainViewModel
@@ -34,6 +35,11 @@ class ViewModelFactory : ViewModelProvider.Factory {
             }
             modelClass.isAssignableFrom(ChooseFrameViewModel::class.java) -> {
                 return ChooseFrameViewModel(
+                ) as T
+            }
+            modelClass.isAssignableFrom(FeedViewModel::class.java) -> {
+                return FeedViewModel(
+                        ongoingMovieRepository = DefaultOngoingMovieRepository()
                 ) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class")
