@@ -36,6 +36,11 @@
 
 ## 版本
 
+### v0.1.0-alpha1 (2020-09-15 20:35:43)
++ feat: 将MainActivity中feeds部分移动到FeedFragment
++ feat: 添加AndPermission整合权限获取
++ optimization: 优化PuzzleActivity结构
+
 ### v0.1.0 (2020-07-25 09:24:46)
 + feat: 添加Travis CI自动集成工具
 + fix: 删除Flutter module
