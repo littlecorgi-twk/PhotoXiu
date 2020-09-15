@@ -3,7 +3,7 @@
     package="com.littlecorgi.commonlib">
 
     <application>
-        <activity android:name=".BaseActivity"></activity>
+        <activity android:name=".BaseActivity" />
     </application>
 
 </manifest>

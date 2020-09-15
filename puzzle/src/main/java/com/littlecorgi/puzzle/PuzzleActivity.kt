@@ -1,4 +1,4 @@
-package com.littlecorgi.puzzle.activity
+package com.littlecorgi.puzzle
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -9,22 +9,21 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.StrictMode
 import android.provider.MediaStore
 import android.util.Log
 import android.view.*
 import android.widget.ArrayAdapter
-import android.widget.ImageView
 import android.widget.ListView
 import android.widget.PopupWindow
-import androidx.appcompat.widget.Toolbar
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.littlecorgi.commonlib.BaseActivity
-import com.littlecorgi.puzzle.R
 import com.littlecorgi.puzzle.adapter.RecyclerAdapter
 import com.littlecorgi.puzzle.bean.RecyclerItem
+import com.littlecorgi.puzzle.databinding.PuzzleActivityPuzzleBinding
+import com.littlecorgi.puzzle.edit.EditActivity
+import com.littlecorgi.puzzle.filter.FilterActivity
 import com.littlecorgi.puzzle.util.ProcedureUtil
 import com.qiniu.android.common.FixedZone
 import com.qiniu.android.storage.Configuration
@@ -60,9 +59,7 @@ class PuzzleActivity : BaseActivity() {
         private const val TOKEN = "o9oOUcAzuwZwrwBqWIVlNmI6ayD9H9x-jtHuz5HY:xaMz7K1gx9P_1jVNOoA32-Hzu38=:eyJzY29wZSI6ImJsb2ctbWFya2Rvd24iLCJkZWFkbGluZSI6MTU3MjMzODUwNH0="
     }
 
-    private lateinit var mToolbar: Toolbar
-    private lateinit var mImageView: ImageView
-    private lateinit var mRecycler: RecyclerView
+    private lateinit var mBinding: PuzzleActivityPuzzleBinding
     private lateinit var mPopupWindow: PopupWindow
     private lateinit var mProcedureListView: ListView
     private val procedureList: ArrayList<String> = ArrayList()
@@ -76,23 +73,10 @@ class PuzzleActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.puzzle_activity_puzzle)
-
-        //建议在application 的onCreate()的方法中调用
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            val builder = StrictMode.VmPolicy.Builder()
-            StrictMode.setVmPolicy(builder.build())
-        }
+        mBinding = DataBindingUtil.setContentView(this, R.layout.puzzle_activity_puzzle)
 
         getPicFromAlbum()
 
-        // 透明状态栏
-        if (Build.VERSION.SDK_INT >= 21) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
-            window.statusBarColor = Color.TRANSPARENT //防止5.x以后半透明影响效果，使用这种透明方式
-        }
-
-        initView()
         initToolbar()
         initRecyclerView()
         initQiniu()
@@ -154,7 +138,7 @@ class PuzzleActivity : BaseActivity() {
                 if (resultCode == Activity.RESULT_OK) {
                     Log.d(TAG, "onActivityResult: resultCode == Activity.RESULT_OK")
                     uri = data?.data
-                    mImageView.setImageURI(uri)
+                    mBinding.imageViewActivityPuzzle.setImageURI(uri)
                 } else {
                     Log.d(TAG, "onActivityResult: resultCode != Activity.RESULT_OK")
                     makeShortToast("返回有问题，获取不到图片")
@@ -164,7 +148,7 @@ class PuzzleActivity : BaseActivity() {
             UCrop.REQUEST_CROP -> {
                 if (resultCode == RESULT_OK) {
                     uri = UCrop.getOutput(data!!)
-                    mImageView.setImageURI(uri)
+                    mBinding.imageViewActivityPuzzle.setImageURI(uri)
                 }
             }
             UCrop.RESULT_ERROR -> {
@@ -177,7 +161,7 @@ class PuzzleActivity : BaseActivity() {
                     val bundle = data.extras
                     uri = bundle!!.getParcelable("uri")
                 }
-                mImageView.setImageURI(uri)
+                mBinding.imageViewActivityPuzzle.setImageURI(uri)
             }
             Filter_ACTIVITY_REQUEST_CODE -> {
                 val tag = data!!.getIntExtra("tag", 1)
@@ -185,21 +169,15 @@ class PuzzleActivity : BaseActivity() {
                     val bundle = data.extras
                     uri = bundle!!.getParcelable("uri")
                 }
-                mImageView.setImageURI(uri)
+                mBinding.imageViewActivityPuzzle.setImageURI(uri)
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-    private fun initView() {
-        mToolbar = findViewById(R.id.toolbar_activity_puzzle)
-        mImageView = findViewById(R.id.imageView_activity_puzzle)
-        mRecycler = findViewById(R.id.recycler_activity_puzzle)
-    }
-
     private fun initToolbar() {
-        setSupportActionBar(mToolbar)
-        mToolbar.setNavigationOnClickListener { finish() }
+        setSupportActionBar(mBinding.toolbarActivityPuzzle)
+        mBinding.toolbarActivityPuzzle.setNavigationOnClickListener { finish() }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -227,10 +205,9 @@ class PuzzleActivity : BaseActivity() {
 
     private fun initRecyclerView() {
         initRecyclerItem()
-
         val linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        mRecycler.layoutManager = linearLayoutManager
+        mBinding.recyclerActivityPuzzle.layoutManager = linearLayoutManager
         val adapter = RecyclerAdapter(mItemList)
         adapter.setOnItemClickListener(object : RecyclerAdapter.Companion.OnItemClickListener {
             override fun onItemClick(view: View, position: Int) {
@@ -253,7 +230,7 @@ class PuzzleActivity : BaseActivity() {
                 }
             }
         })
-        mRecycler.adapter = adapter
+        mBinding.recyclerActivityPuzzle.adapter = adapter
     }
 
     private fun initRecyclerItem() {

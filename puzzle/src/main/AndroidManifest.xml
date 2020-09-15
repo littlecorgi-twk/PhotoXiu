@@ -10,9 +10,9 @@
         android:theme="@style/puzzle_AppTheme"
         android:networkSecurityConfig="@xml/puzzle_network_security_config"
         android:requestLegacyExternalStorage="true">
-        <activity android:name=".activity.FilterActivity" />
-        <activity android:name=".activity.EditActivity" />
-        <activity android:name=".activity.PuzzleActivity" />
+        <activity android:name=".filter.FilterActivity" />
+        <activity android:name=".edit.EditActivity" />
+        <activity android:name=".PuzzleActivity" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
