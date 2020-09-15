@@ -1,16 +1,13 @@
 package com.littlecorgi.commonlib
 
+import android.content.Context
 import android.content.DialogInterface
-import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.yanzhenjie.permission.AndPermission
 
 open class BaseActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     private var mAlertDialog: AlertDialog? = null
 
@@ -51,5 +48,31 @@ open class BaseActivity : AppCompatActivity() {
         builder.setPositiveButton(positiveText, onPositiveButtonClickListener)
         builder.setNegativeButton(negativeText, onNegativeButtonClickListener)
         mAlertDialog = builder.show()
+    }
+
+    /**
+     * 通过AndPermission去获取权限
+     *
+     * @param context 传入的context
+     * @param deniedPermissions 需要请求的权限
+     * @param denied 请求失败的执行方法，如果不传入，则通过Toast显示权限获取失败
+     * @param granted 请求成功的执行方法
+     */
+    @JvmOverloads
+    protected fun requestCapturePermission(context: Context, deniedPermissions: Array<String>, denied: ((data: List<String>) -> Unit)? = null, granted: (data: List<String>) -> Unit) {
+        val deniedTemp = denied?.let {
+            denied
+        } ?: {
+            makeShortToast("$it 权限获取失败，请检查")
+        }
+
+        AndPermission.with(this)
+                .runtime()
+                .permission(
+                        deniedPermissions
+                )
+                .onGranted(granted)
+                .onDenied(deniedTemp)
+                .start()
     }
 }
