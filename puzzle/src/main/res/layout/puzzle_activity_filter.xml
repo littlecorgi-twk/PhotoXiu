@@ -7,7 +7,7 @@
     android:clipToPadding="true"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context=".activity.FilterActivity">
+    tools:context=".filter.FilterActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarActivityFilter"

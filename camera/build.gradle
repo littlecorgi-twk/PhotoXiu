@@ -40,6 +40,10 @@ android {
         }
     }
 
+    buildFeatures {
+        dataBinding true
+    }
+
     sourceSets {
         main {
             // 单独调试与集成调试时使用不同的 AndroidManifest.xml 文件

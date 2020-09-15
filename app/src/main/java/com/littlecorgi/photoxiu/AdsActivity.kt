@@ -5,14 +5,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
-import androidx.appcompat.app.AppCompatActivity
 import com.bytedance.sdk.openadsdk.*
 import com.littlecorgi.camera.showToast
+import com.littlecorgi.commonlib.BaseActivity
 import com.littlecorgi.commonlib.utils.DisplayUtil
 import com.littlecorgi.photoxiu.ttadsdk.TTAdManagerHolder
 
 
-class AdsActivity : AppCompatActivity() {
+class AdsActivity : BaseActivity() {
 
     companion object {
         const val TAG = "AdsActivity"

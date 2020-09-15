@@ -1,21 +1,13 @@
 package com.littlecorgi.commonlib
 
+import android.content.Context
 import android.content.DialogInterface
-import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
+import com.yanzhenjie.permission.AndPermission
 
 open class BaseActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    companion object {
-        public final val REQUEST_STORAGE_READ_ACCESS_PERMISSION: Int = 101
-        public final val REQUEST_STORAGE_WRITE_ACCESS_PERMISSION: Int = 102
-    }
 
     private var mAlertDialog: AlertDialog? = null
 
@@ -26,21 +18,12 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * Requests given permission.
-     * If the permission has been denied previously, a Dialog will prompt the user to grant the
-     * permission, otherwise it is requested directly.
-     */
-    protected fun requestPermission(permission: String, rationale: String, requestCode: Int) {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
-            showAlertDialog(getString(R.string.permission_title_rationale), rationale,
-                    DialogInterface.OnClickListener { _, _ ->
-                        ActivityCompat.requestPermissions(this@BaseActivity,
-                                arrayOf(permission), requestCode)
-                    }, getString(R.string.label_ok), null, getString(R.string.label_cancel))
-        } else {
-            ActivityCompat.requestPermissions(this, arrayOf(permission), requestCode)
-        }
+    fun makeShortToast(text: String) {
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+    }
+
+    fun makeLongToast(text: String) {
+        Toast.makeText(this, text, Toast.LENGTH_LONG).show()
     }
 
     /**
@@ -65,5 +48,31 @@ open class BaseActivity : AppCompatActivity() {
         builder.setPositiveButton(positiveText, onPositiveButtonClickListener)
         builder.setNegativeButton(negativeText, onNegativeButtonClickListener)
         mAlertDialog = builder.show()
+    }
+
+    /**
+     * 通过AndPermission去获取权限
+     *
+     * @param context 传入的context
+     * @param deniedPermissions 需要请求的权限
+     * @param denied 请求失败的执行方法，如果不传入，则通过Toast显示权限获取失败
+     * @param granted 请求成功的执行方法
+     */
+    @JvmOverloads
+    protected fun requestCapturePermission(context: Context, deniedPermissions: Array<String>, denied: ((data: List<String>) -> Unit)? = null, granted: (data: List<String>) -> Unit) {
+        val deniedTemp = denied?.let {
+            denied
+        } ?: {
+            makeShortToast("$it 权限获取失败，请检查")
+        }
+
+        AndPermission.with(this)
+                .runtime()
+                .permission(
+                        deniedPermissions
+                )
+                .onGranted(granted)
+                .onDenied(deniedTemp)
+                .start()
     }
 }

@@ -1,8 +1,6 @@
-package com.littlecorgi.puzzle.activity
+package com.littlecorgi.puzzle.edit
 
-import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
@@ -12,18 +10,17 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.SeekBar
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.littlecorgi.puzzle.BaseActivity
+import com.littlecorgi.commonlib.BaseActivity
 import com.littlecorgi.puzzle.R
 import com.littlecorgi.puzzle.adapter.RecyclerAdapter
 import com.littlecorgi.puzzle.bean.Procedure
 import com.littlecorgi.puzzle.bean.RecyclerItem
 import com.littlecorgi.puzzle.util.ImageHelper
 import com.littlecorgi.puzzle.util.ProcedureUtil
+import com.yanzhenjie.permission.AndPermission
+import com.yanzhenjie.permission.runtime.Permission
 import kotlinx.android.synthetic.main.puzzle_activity_edit.*
 
 
@@ -105,7 +102,8 @@ class EditActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener {
                         hueSeekBar.visibility = View.GONE
                         saturationSeekBar.visibility = View.VISIBLE
                     }
-                    else -> Toast.makeText(baseContext, "1234", Toast.LENGTH_SHORT).show()
+                    else ->
+                        makeShortToast("1234")
                 }
             }
         })
@@ -204,25 +202,17 @@ class EditActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener {
      * 请求写权限
      */
     private fun requestWrite() {
-        if (ContextCompat.checkSelfPermission(this, WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    arrayOf(WRITE_EXTERNAL_STORAGE),
-                    MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE)
-        } else {
-            finished()
-        }
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        if (requestCode == MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                finished()
-            } else {
-                Toast.makeText(this@EditActivity, "Permission Denied", Toast.LENGTH_SHORT).show()
-            }
-            return
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        AndPermission.with(this)
+                .runtime()
+                .permission(Permission.WRITE_EXTERNAL_STORAGE)
+                .onGranted {
+                    finished()
+                    makeShortToast("请求权限成功")
+                }
+                .onDenied {
+                    makeShortToast("Permission Denied")
+                }
+                .start()
     }
 
     override fun onBackPressed() {
