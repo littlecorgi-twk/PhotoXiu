@@ -34,27 +34,28 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.2.0', {
+    androidTestApi(rootProject.ext.dependencies["espressoCore"], {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testImplementation 'junit:junit:4.13'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.annotation:annotation:1.1.0'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api rootProject.ext.dependencies["appcompat"]
+
+    // kotlin
+    api rootProject.ext.dependencies["kotlinStdlib"]
+    api rootProject.ext.dependencies["kotlinX"]
+
+    // view
+    api rootProject.ext.dependencies["material"]
+    api rootProject.ext.dependencies["constraintLayout"]
+    api rootProject.ext.dependencies["recyclerview"]
 
     // viewModel liveData
+    api rootProject.ext.dependencies["lifecycle"]
     api rootProject.ext.dependencies["viewModel"]
     api rootProject.ext.dependencies["liveData"]
     api rootProject.ext.dependencies["viewModelKtx"]
 
     // palette - 调色板
     api rootProject.ext.dependencies["palette"]
-
-    // recyclerView
-    api rootProject.ext.dependencies["recyclerview"]
-
-    // material
-    api rootProject.ext.dependencies["material"]
 
     // Retrofit
     api rootProject.ext.dependencies["Retrofit"]

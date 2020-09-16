@@ -10,30 +10,30 @@ ext {
             androidSupportSdkVersion: "29.0.2",
             lifecycleVersion        : "2.2.0",
             espressoSdkVersion      : "3.0.2",
+            kotlinVersion           : "1.4.10",
             glideVersion            : "4.11.0",
             retrofitVersion         : '2.9.0',
     ]
     dependencies = [
-            "javax.annotation"       : 'javax.annotation:jsr250-api:1.0',
-            "appcompat-v7"           : 'androidx.appcompat:appcompat:1.0.0',
-            "design"                 : 'com.google.android.material:material:1.0.0',
+            "appcompat"              : 'androidx.appcompat:appcompat:1.2.0',
+            "material"               : 'com.google.android.material:material:1.2.1',
             "support-v4"             : "com.android.support:support-v4:${android["androidSupportSdkVersion"]}",
             "annotations"            : 'androidx.annotation:annotation:1.0.0',
-            "material"               : 'com.google.android.material:material:1.1.0-alpha10',
+            "javaxAnnotation"        : 'javax.annotation:jsr250-api:1.0',
+            "constraintLayout"       : 'androidx.constraintlayout:constraintlayout:2.0.1',//约束性布局
             "recyclerview"           : 'androidx.recyclerview:recyclerview:1.1.0',
             "palette"                : 'androidx.palette:palette:1.0.0', // 调色板
-            "kotlinStdlib"           : 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.71',
-            "kotlinX"                : 'androidx.core:core-ktx:1.2.0',
+            "kotlinStdlib"           : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${android["kotlinVersion"]}",
+            "kotlinX"                : 'androidx.core:core-ktx:1.3.1',
+            "lifecycle"              : "androidx.lifecycle:lifecycle-extensions:${android["lifecycleVersion"]}",
             "viewModel"              : "androidx.lifecycle:lifecycle-viewmodel:${android["lifecycleVersion"]}",
             "liveData"               : "androidx.lifecycle:lifecycle-livedata:${android["lifecycleVersion"]}",
             "viewModelKtx"           : "androidx.lifecycle:lifecycle-viewmodel-ktx:${android["lifecycleVersion"]}",
 
-            //test
-            "junit"                  : "junit:junit:4.12",
-            "constraint-layout"      : 'androidx.constraintlayout:constraintlayout:1.1.3',//约束性布局
-            "test:runner"            : 'androidx.test.ext:junit:1.1.1',//测试依赖，新建项目时会默认添加，一般不建议添加
-            "espresso-core"          : 'androidx.test.espresso:espresso-core:3.1.0',//测试依赖，新建项目时会默认添加，一般不建议添加
-            "kotlin-stdlib-jre7"     : 'org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version',
+            // test
+            "junit"                  : "junit:junit:4.13",
+            "test:runner"            : 'androidx.test.ext:junit:1.1.2',//测试依赖，新建项目时会默认添加，一般不建议添加
+            "espressoCore"           : 'androidx.test.espresso:espresso-core:3.3.0',//测试依赖，新建项目时会默认添加，一般不建议添加
 
             // 第三方框架
             "arouter-api"            : 'com.alibaba:arouter-api:1.5.0',//ARouter api
@@ -44,7 +44,7 @@ ext {
             "Retrofit"               : "com.squareup.retrofit2:retrofit:${android["retrofitVersion"]}",//Retrofit
             "Retrofit-converter-gson": "com.squareup.retrofit2:converter-gson:${android["retrofitVersion"]}",//Retrofit
             "leakcanary"             : 'com.squareup.leakcanary:leakcanary-android:2.4',//LeakCanary
-            "Qiniu"                  : 'com.qiniu:qiniu-android-sdk:7.6.4',//七牛云
+            "Qiniu"                  : 'com.qiniu:qiniu-android-sdk:8.0.+',//七牛云
             "UCrop"                  : 'com.github.yalantis:ucrop:2.2.5',//Ucrop
             "EventBus"               : 'org.greenrobot:eventbus:3.2.0',//EventBus
             "AndPermission"          : 'com.yanzhenjie:permission:2.0.3',//AndPermission
