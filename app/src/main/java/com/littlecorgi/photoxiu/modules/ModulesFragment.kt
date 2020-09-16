@@ -31,14 +31,12 @@ class ModulesFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         mActivity = activity!!
         mViewModel = ViewModelProvider(mActivity).get(ModulesViewModel::class.java)
+        initClick()
     }
 
-    fun navigationToModule(view: View) {
-        when (view.id) {
-            mBinding.btnToWanAndroid.id -> {
-                // startActivity(Intent(this, ))
-            }
+    private fun initClick() {
+        mBinding.btnToWanAndroid.setOnClickListener {
+            // ARouter.getInstance().build("/camera/CameraActivity").navigation()
         }
     }
-
 }
