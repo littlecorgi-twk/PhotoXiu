@@ -5,14 +5,14 @@ import android.os.Bundle
 import android.view.KeyEvent
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import cn.jzvd.Jzvd
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.githang.statusbar.StatusBarCompat
 import com.littlecorgi.commonlib.BaseActivity
 import com.littlecorgi.commonlib.utils.startActivity
+import com.littlecorgi.photoxiu.capturevideo.CaptureVideoActivity
 import com.littlecorgi.photoxiu.databinding.AppActivityMainBinding
 import com.littlecorgi.photoxiu.feed.FeedFragment
-import com.littlecorgi.photoxiu.view.capturevideo.CaptureVideoActivity
+import com.littlecorgi.photoxiu.modules.ModulesFragment
 import com.littlecorgi.photoxiu.viewModel.MainViewModel
 import com.yanzhenjie.permission.runtime.Permission
 
@@ -25,6 +25,8 @@ class MainActivity : BaseActivity() {
 
     private lateinit var mViewModel: MainViewModel
     private lateinit var mBinding: AppActivityMainBinding
+    private val feedFragment = FeedFragment.newInstance()
+    private val modulesFragment = ModulesFragment.newInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,9 +40,10 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initFragment() {
-        val feedFragment = FeedFragment.newInstance()
         supportFragmentManager.beginTransaction()
-                .add(mBinding.fragment.id, feedFragment, "Feeds")
+                .add(mBinding.fragment.id, feedFragment, "feeds")
+                .add(mBinding.fragment.id, modulesFragment, "modules")
+                .hide(modulesFragment)
                 .commit()
     }
 
@@ -57,11 +60,12 @@ class MainActivity : BaseActivity() {
                 }
             }
         }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Jzvd.releaseAllVideos()
+        mBinding.feed.setOnClickListener {
+            supportFragmentManager.beginTransaction().show(feedFragment).hide(modulesFragment).commit()
+        }
+        mBinding.modules.setOnClickListener {
+            supportFragmentManager.beginTransaction().show(modulesFragment).hide(feedFragment).commit()
+        }
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {

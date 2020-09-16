@@ -86,4 +86,32 @@ class FeedFragment : Fragment() {
         })
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // 当View被销毁时释放所有的播放资源
+        Jzvd.releaseAllVideos()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Fragment重现时开始播放
+        Jzvd.goOnPlayOnResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        // Fragment被隐藏时暂停播放
+        Jzvd.goOnPlayOnPause()
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        if (hidden) {
+            // Fragment被隐藏时暂停播放
+            Jzvd.goOnPlayOnPause()
+        } else {
+            // Fragment重现时开始播放
+            Jzvd.goOnPlayOnResume()
+        }
+        super.onHiddenChanged(hidden)
+    }
 }

@@ -1,4 +1,4 @@
-package com.littlecorgi.photoxiu.view.capturevideo
+package com.littlecorgi.photoxiu.capturevideo
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -23,7 +23,7 @@ import com.littlecorgi.commonlib.utils.Utils
 import com.littlecorgi.photoxiu.R
 import com.littlecorgi.photoxiu.ViewModelFactory
 import com.littlecorgi.photoxiu.databinding.AppActivityCaptureVideoBinding
-import com.littlecorgi.photoxiu.view.publishvideo.PublishVideoActivity
+import com.littlecorgi.photoxiu.publishvideo.PublishVideoActivity
 import com.littlecorgi.photoxiu.view.view.ShootButton
 import com.littlecorgi.photoxiu.viewModel.CaptureVideoViewModel
 import java.io.File

@@ -1,4 +1,4 @@
-package com.littlecorgi.photoxiu.view.chooseframe
+package com.littlecorgi.photoxiu.chooseframe
 
 import android.graphics.Bitmap
 import android.media.MediaMetadataRetriever

@@ -39,9 +39,9 @@
         <activity android:name=".MainOldActivity" />
         <activity android:name=".AdsActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".view.capturevideo.CaptureVideoActivity" />
-        <activity android:name=".view.chooseframe.ChooseFrameActivity" />
-        <activity android:name=".view.publishvideo.PublishVideoActivity" />
+        <activity android:name=".capturevideo.CaptureVideoActivity" />
+        <activity android:name=".chooseframe.ChooseFrameActivity" />
+        <activity android:name=".publishvideo.PublishVideoActivity" />
 
         <meta-data
             android:name="design_width_in_dp"

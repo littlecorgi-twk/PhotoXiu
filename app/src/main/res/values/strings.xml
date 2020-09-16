@@ -11,4 +11,5 @@
     <string name="app_select_a_video">SelectAVideo</string>
     <string name="app_post_it">PostIt</string>
     <string name="app_success_try_refresh">SuccessTryRefresh</string>
+    <string name="wan_android">WanAndroid</string>
 </resources>

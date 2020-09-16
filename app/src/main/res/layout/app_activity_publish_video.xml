@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.publishvideo.PublishVideoActivity">
+        tools:context=".publishvideo.PublishVideoActivity">
 
         <cn.jzvd.JzvdStd
             android:id="@+id/ijkPlayer_preview"

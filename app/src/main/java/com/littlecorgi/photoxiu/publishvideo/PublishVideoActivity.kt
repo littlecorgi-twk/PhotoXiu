@@ -1,4 +1,4 @@
-package com.littlecorgi.photoxiu.view.publishvideo
+package com.littlecorgi.photoxiu.publishvideo
 
 import android.Manifest
 import android.app.Activity
@@ -18,7 +18,7 @@ import com.littlecorgi.commonlib.BaseActivity
 import com.littlecorgi.photoxiu.R
 import com.littlecorgi.photoxiu.ViewModelFactory
 import com.littlecorgi.photoxiu.databinding.AppActivityPublishVideoBinding
-import com.littlecorgi.photoxiu.view.chooseframe.ChooseFrameActivity
+import com.littlecorgi.photoxiu.chooseframe.ChooseFrameActivity
 import com.littlecorgi.photoxiu.viewModel.PublishVideoViewModel
 import java.io.File
 
