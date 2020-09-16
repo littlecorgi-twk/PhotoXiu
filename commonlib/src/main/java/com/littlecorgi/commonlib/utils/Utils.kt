@@ -84,6 +84,7 @@ object Utils {
 
     const val MEDIA_TYPE_IMAGE = 1
     const val MEDIA_TYPE_VIDEO = 2
+
     /**
      * Create a File for saving an image or video
      */
@@ -123,7 +124,7 @@ object Utils {
         }
         val matrix = Matrix()
         var angle = 0
-        val orientation = srcExif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
+        val orientation = srcExif?.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
         when (orientation) {
             ExifInterface.ORIENTATION_ROTATE_90 -> angle = NUM_90
             ExifInterface.ORIENTATION_ROTATE_180 -> angle = NUM_180
