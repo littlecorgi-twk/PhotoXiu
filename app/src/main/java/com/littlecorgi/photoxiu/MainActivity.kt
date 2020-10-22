@@ -36,7 +36,7 @@ class MainActivity : BaseActivity() {
         // 设置状态栏为黑色
         StatusBarCompat.setStatusBarColor(this, Color.BLACK)
         requestPermission(this, arrayOf(Permission.ACCESS_FINE_LOCATION)) {
-            makeShortToast("定位权限请求成功")
+            showSuccessToast(this, "定位权限请求成功")
         }
         initClick()
         initFragment()
@@ -57,7 +57,7 @@ class MainActivity : BaseActivity() {
                     Permission.RECORD_AUDIO,
                     Permission.WRITE_EXTERNAL_STORAGE,
                     Permission.READ_EXTERNAL_STORAGE)) {
-                makeShortToast("权限全部获取成功")
+                showSuccessToast(this, "权限全部获取成功")
                 startActivity<CaptureVideoActivity> {
                     null
                 }

@@ -17,8 +17,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.littlecorgi.commonlib.BaseActivity
 import com.littlecorgi.photoxiu.R
 import com.littlecorgi.photoxiu.ViewModelFactory
-import com.littlecorgi.photoxiu.databinding.AppActivityPublishVideoBinding
 import com.littlecorgi.photoxiu.chooseframe.ChooseFrameActivity
+import com.littlecorgi.photoxiu.databinding.AppActivityPublishVideoBinding
 import com.littlecorgi.photoxiu.viewModel.PublishVideoViewModel
 import java.io.File
 
@@ -52,7 +52,7 @@ class PublishVideoActivity : BaseActivity(), View.OnClickListener {
 
     private fun subscribeUI() {
         viewModel.errorToastText.observe(this, Observer { text ->
-            makeShortToast(text)
+            showErrorToast(this, text)
         })
         viewModel.postResponse.observe(this, Observer {
             TODO("API无法访问，如果可以访问再去具体实现")
@@ -63,7 +63,7 @@ class PublishVideoActivity : BaseActivity(), View.OnClickListener {
         return if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                             Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                makeShortToast("You should grant external storage permission to continue $explanation")
+                showInfoToast(this, "You should grant external storage permission to continue $explanation")
             } else {
                 ActivityCompat.requestPermissions(this, arrayOf(
                         Manifest.permission.READ_EXTERNAL_STORAGE

@@ -51,5 +51,6 @@ ext {
             "EventBus"               : 'org.greenrobot:eventbus:3.2.0',//EventBus
             "AndPermission"          : 'com.yanzhenjie:permission:2.0.3',//AndPermission
             "StatusBarCompat"        : 'com.githang:status-bar-compat:0.7',//StatusBarCompat
+            "Toasty"                 : 'com.github.GrenderG:Toasty:1.5.0',// Toasty
     ]
 }

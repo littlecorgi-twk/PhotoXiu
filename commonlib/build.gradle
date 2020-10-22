@@ -87,6 +87,9 @@ dependencies {
 
     // StatusBarCompat
     api rootProject.ext.dependencies["StatusBarCompat"]
+
+    // Toasty
+    api rootProject.ext.dependencies["Toasty"]
 }
 repositories {
     mavenCentral()

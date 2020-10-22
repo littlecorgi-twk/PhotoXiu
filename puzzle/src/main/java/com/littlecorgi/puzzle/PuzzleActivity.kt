@@ -27,7 +27,6 @@ import com.littlecorgi.puzzle.filter.FilterActivity
 import com.littlecorgi.puzzle.util.ProcedureUtil
 import com.qiniu.android.common.FixedZone
 import com.qiniu.android.storage.Configuration
-import com.qiniu.android.storage.UpProgressHandler
 import com.qiniu.android.storage.UploadManager
 import com.qiniu.android.storage.UploadOptions
 import com.yalantis.ucrop.UCrop
@@ -99,9 +98,9 @@ class PuzzleActivity : BaseActivity() {
                 }
                 .onDenied {
                     canReadTag = false
-                    makeLongToast(
-                            "请手动开启这些权限，否则应用无法正常使用：" +
-                                    "${Permission.transformText(this, Permission.READ_EXTERNAL_STORAGE)}"
+                    showErrorToast(
+                            this, "请手动开启这些权限，否则应用无法正常使用：" +
+                            "${Permission.transformText(this, Permission.READ_EXTERNAL_STORAGE)}"
                     )
                     finish()
                 }
@@ -141,7 +140,7 @@ class PuzzleActivity : BaseActivity() {
                     mBinding.imageViewActivityPuzzle.setImageURI(uri)
                 } else {
                     Log.d(TAG, "onActivityResult: resultCode != Activity.RESULT_OK")
-                    makeShortToast("返回有问题，获取不到图片")
+                    showErrorToast(this, "返回有问题，获取不到图片")
                     finish()
                 }
             }
@@ -226,7 +225,7 @@ class PuzzleActivity : BaseActivity() {
                         startActivityForResult(intent, Filter_ACTIVITY_REQUEST_CODE)
                     }
                     else ->
-                        makeShortToast("1234")
+                        showWarningToast(this@PuzzleActivity, "1234")
                 }
             }
         })
@@ -260,16 +259,15 @@ class PuzzleActivity : BaseActivity() {
         uploadManager.put(baos.toByteArray(), "PhotoXiu/${dateFormat.format(date)}.jpeg", TOKEN,
                 { key, info, response ->
                     if (info!!.isOK) {
-                        makeShortToast("Upload Success")
+                        showSuccessToast(this, "Upload Success")
                     } else {
-                        makeShortToast("Upload Fail")
+                        showErrorToast(this, "Upload Fail")
                     }
                     Log.d("qiniu", "$key,\r\n $info,\r\n $response")
                 },
-                UploadOptions(null, null, false,
-                        UpProgressHandler { key, percent ->
-                            Log.i("qiniu", "$key: $percent")
-                        }, null)
+                UploadOptions(null, null, false, { key, percent ->
+                    Log.i("qiniu", "$key: $percent")
+                }, null)
         )
     }
 
@@ -293,7 +291,7 @@ class PuzzleActivity : BaseActivity() {
             procedureList.add(procedure.toString())
         }
         if (procedureList.size != 0) {
-            mProcedureListView.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, procedureList)
+            mProcedureListView.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, procedureList)
             mPopupWindow.showAtLocation(window.decorView, Gravity.BOTTOM, 0, 0)
         }
     }

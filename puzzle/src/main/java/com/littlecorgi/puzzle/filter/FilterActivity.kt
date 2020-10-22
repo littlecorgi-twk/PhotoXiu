@@ -129,7 +129,7 @@ class FilterActivity : BaseActivity() {
                         ProcedureUtil.getInstance().add(Procedure("redGreenInverted", 0.0F))
                     }
                     else ->
-                        makeShortToast("1234")
+                        showInfoToast(this@FilterActivity, "1234")
                 }
             }
         })
@@ -173,7 +173,7 @@ class FilterActivity : BaseActivity() {
                     finished()
                 }
                 .onDenied {
-                    makeShortToast("Permission Denied")
+                    showErrorToast(this, "Permission Denied")
                 }
                 .start()
     }

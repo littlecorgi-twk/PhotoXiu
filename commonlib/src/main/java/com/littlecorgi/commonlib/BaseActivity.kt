@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.yanzhenjie.permission.AndPermission
+import es.dmoral.toasty.Toasty
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -18,12 +19,52 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
-    fun makeShortToast(text: String) {
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+    /**
+     * Toasty：显示错误Toast
+     */
+    fun showErrorToast(
+            context: Context,
+            msg: String,
+            withIcon: Boolean = true,
+            duration: Int = Toast.LENGTH_SHORT
+    ) {
+        Toasty.error(context, msg, duration, withIcon).show()
     }
 
-    fun makeLongToast(text: String) {
-        Toast.makeText(this, text, Toast.LENGTH_LONG).show()
+    /**
+     * Toasty：显示成功Toast
+     */
+    fun showSuccessToast(
+            context: Context,
+            msg: String,
+            withIcon: Boolean = true,
+            duration: Int = Toast.LENGTH_SHORT
+    ) {
+        Toasty.success(context, msg, duration, withIcon).show()
+    }
+
+    /**
+     * Toasty：显示信息Toast
+     */
+    fun showInfoToast(
+            context: Context,
+            msg: String,
+            withIcon: Boolean = true,
+            duration: Int = Toast.LENGTH_SHORT
+    ) {
+        Toasty.info(context, msg, duration, withIcon).show()
+    }
+
+    /**
+     * Toasty：显示警告Toast
+     */
+    fun showWarningToast(
+            context: Context,
+            msg: String,
+            withIcon: Boolean = true,
+            duration: Int = Toast.LENGTH_SHORT
+    ) {
+        Toasty.warning(context, msg, duration, withIcon).show()
     }
 
     /**
@@ -63,7 +104,7 @@ open class BaseActivity : AppCompatActivity() {
         val deniedTemp = denied?.let {
             denied
         } ?: {
-            makeShortToast("$it 权限获取失败，请检查")
+            showErrorToast(context, "$it 权限获取失败，请检查")
         }
 
         AndPermission.with(this)

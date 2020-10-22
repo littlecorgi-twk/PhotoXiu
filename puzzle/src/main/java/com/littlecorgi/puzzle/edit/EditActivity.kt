@@ -103,7 +103,7 @@ class EditActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener {
                         saturationSeekBar.visibility = View.VISIBLE
                     }
                     else ->
-                        makeShortToast("1234")
+                        showWarningToast(this@EditActivity, "1234")
                 }
             }
         })
@@ -207,10 +207,10 @@ class EditActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener {
                 .permission(Permission.WRITE_EXTERNAL_STORAGE)
                 .onGranted {
                     finished()
-                    makeShortToast("请求权限成功")
+                    showSuccessToast(this, "请求权限成功")
                 }
                 .onDenied {
-                    makeShortToast("Permission Denied")
+                    showErrorToast(this, "Permission Denied")
                 }
                 .start()
     }

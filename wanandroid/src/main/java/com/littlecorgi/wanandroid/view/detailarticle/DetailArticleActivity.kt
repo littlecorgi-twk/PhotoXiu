@@ -15,13 +15,13 @@ class DetailArticleActivity : BaseActivity() {
         val title = intent.getStringExtra("article_title")
         url?.let {
             findViewById<WebView>(R.id.webview).loadUrl(it)
-        } ?: makeShortToast("URL错误：为null")
+        } ?: showErrorToast(this, "URL错误：为null")
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         toolbar.setNavigationOnClickListener {
             finish()
         }
         title?.let {
             toolbar.title = it
-        } ?: makeShortToast("title错误：为null")
+        } ?: showErrorToast(this, "title错误：为null")
     }
 }
