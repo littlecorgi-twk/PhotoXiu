@@ -3,7 +3,6 @@ if (isRunAlone.toBoolean()) {
 } else {
     apply plugin: 'com.android.library'
 }
-
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -49,8 +48,8 @@ android {
         }
     }
 
-    buildFeatures {
-        dataBinding true
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -58,8 +57,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation rootProject.ext.dependencies["junit"]
     androidTestImplementation rootProject.ext.dependencies["test:runner"]
-
-//    implementation 'com.githang:clipimageview:0.1'
 
     // https://github.com/alibaba/ARouter/issues/277#issuecomment-384214181
     kapt rootProject.ext.dependencies["arouter-compiler"]

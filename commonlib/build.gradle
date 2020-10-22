@@ -27,8 +27,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    buildFeatures {
-        dataBinding true
+
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -48,11 +49,10 @@ dependencies {
     api rootProject.ext.dependencies["constraintLayout"]
     api rootProject.ext.dependencies["recyclerview"]
 
-    // viewModel liveData
-    api rootProject.ext.dependencies["lifecycle"]
+    // lifecycle viewModel liveData
     api rootProject.ext.dependencies["viewModel"]
     api rootProject.ext.dependencies["liveData"]
-    api rootProject.ext.dependencies["viewModelKtx"]
+    api rootProject.ext.dependencies["pageing"]
 
     // palette - 调色板
     api rootProject.ext.dependencies["palette"]
@@ -60,6 +60,7 @@ dependencies {
     // Retrofit
     api rootProject.ext.dependencies["Retrofit"]
     api rootProject.ext.dependencies["Retrofit-converter-gson"]
+    api 'com.squareup.okhttp3:logging-interceptor:3.4.1'
 
     // Glide
     api rootProject.ext.dependencies["Glide"]

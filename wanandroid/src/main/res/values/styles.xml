@@ -1,0 +1,17 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <!-- Base application theme. -->
+    <style name="wanandroid_AppTheme" parent="wanandroid_AppTheme.Base" />
+
+    <!--Toolbar主题的设置,Application使用的是这个主题-->
+    <style name="wanandroid_AppTheme.Base" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="colorPrimary">@color/wanandroid_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/wanandroid_colorPrimaryDark</item>
+        <item name="colorAccent">@color/wanandroid_colorAccent</item>
+        <item name="android:windowBackground">@color/wanandroid_colorWindowBackground</item>
+    </style>
+</resources>

@@ -7,12 +7,12 @@
     <supports-gl-texture android:name="GL_OES_compressed_paletted_texture" /> <!-- 支持的压缩类型 -->
     <uses-feature
         android:glEsVersion="0x00020000"
-        android:required="true" /> <!-- 联网权限 -->
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- 相机功能 -->
-    <uses-permission android:name="android.permission.CAMERA" /> <!-- 存储权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 读取权限 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 音频录制权限 -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+        android:required="true" />
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 联网权限 -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 相机功能 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 存储权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 读取权限 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" /><!-- 音频录制权限 -->
 
     <!--穿山甲-必要权限-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

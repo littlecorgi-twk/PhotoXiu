@@ -15,9 +15,11 @@
             <option value="$PROJECT_DIR$/commonlib" />
             <option value="$PROJECT_DIR$/puzzle" />
             <option value="$PROJECT_DIR$/retouch" />
+            <option value="$PROJECT_DIR$/wanandroid" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
+        <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
     </option>
   </component>

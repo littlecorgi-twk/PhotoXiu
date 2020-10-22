@@ -35,6 +35,9 @@ class MainActivity : BaseActivity() {
 
         // 设置状态栏为黑色
         StatusBarCompat.setStatusBarColor(this, Color.BLACK)
+        requestPermission(this, arrayOf(Permission.ACCESS_FINE_LOCATION)) {
+            makeShortToast("定位权限请求成功")
+        }
         initClick()
         initFragment()
     }
@@ -49,7 +52,7 @@ class MainActivity : BaseActivity() {
 
     private fun initClick() {
         mBinding.btnCaptureVideo.setOnClickListener {
-            requestCapturePermission(this, arrayOf(
+            requestPermission(this, arrayOf(
                     Permission.CAMERA,
                     Permission.RECORD_AUDIO,
                     Permission.WRITE_EXTERNAL_STORAGE,

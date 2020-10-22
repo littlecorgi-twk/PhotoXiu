@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
+import com.alibaba.android.arouter.launcher.ARouter
 import com.littlecorgi.photoxiu.R
 import com.littlecorgi.photoxiu.databinding.AppFragmentModulesBinding
 
@@ -36,7 +37,7 @@ class ModulesFragment : Fragment() {
 
     private fun initClick() {
         mBinding.btnToWanAndroid.setOnClickListener {
-            // ARouter.getInstance().build("/camera/CameraActivity").navigation()
+            ARouter.getInstance().build("/wanandroid/WanAndroidMainActivity").navigation()
         }
     }
 }

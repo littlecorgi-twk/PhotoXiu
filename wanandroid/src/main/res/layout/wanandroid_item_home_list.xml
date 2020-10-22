@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="20dp"
+    android:background="#FFFFFF">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_home_list_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="消失了半年，这个 Android 界的第一骚货又回来了"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_home_list_fresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/wanandroid_shape_stick_gb"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="置顶"
+        android:textColor="@color/wanandroid_red"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_home_list_title"
+        tools:ignore="HardcodedText" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_home_list_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_home_list_fresh"
+        app:layout_constraintStart_toEndOf="@+id/tv_home_list_fresh"
+        app:layout_constraintTop_toTopOf="@+id/tv_home_list_fresh"
+        tools:text="扔物线" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_home_list_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_home_list_fresh"
+        app:layout_constraintStart_toEndOf="@+id/tv_home_list_author"
+        app:layout_constraintTop_toTopOf="@+id/tv_home_list_fresh"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="2020 - 3 - 25" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_home_list_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:lines="1"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_home_list_fresh"
+        app:layout_constraintStart_toEndOf="@+id/tv_home_list_date"
+        app:layout_constraintTop_toTopOf="@+id/tv_home_list_fresh"
+        tools:text="干货资源" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

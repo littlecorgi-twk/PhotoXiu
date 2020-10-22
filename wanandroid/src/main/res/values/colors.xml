@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="wanandroid_colorPrimary">#673AB7</color>
+    <color name="wanandroid_colorPrimaryDark">#512DA8</color>
+    <color name="wanandroid_colorAccent">#7C4DFF</color>
+    <color name="wanandroid_white">#fff</color>
+    <color name="wanandroid_colorWindowBackground">#FAFAFA</color>
+    <!-- 灰色 -->
+    <color name="wanandroid_gray">#808080</color>
+    <!-- 红色 -->
+    <color name="wanandroid_red">#FF0000</color>
+    <!-- 金色 -->
+    <color name="wanandroid_gold">#FFD700</color>
+    <!-- 黄色 -->
+    <color name="wanandroid_yellow">#FFFF00</color>
+    <!-- 绿色 -->
+    <color name="wanandroid_green">#008000</color>
+    <!-- 蓝色 -->
+    <color name="wanandroid_blue">#0000FF</color>
+    <!-- 紫色 -->
+    <color name="wanandroid_purple">#800080</color>
+    <!-- 粉色 -->
+    <color name="wanandroid_pink">#FFC0CB</color>
+    <!-- 橙色 -->
+    <color name="wanandroid_orange">#FFA500</color>
+    <!-- 背景色-->
+    <color name="wanandroid_back">#FAFAFA</color>
+</resources>

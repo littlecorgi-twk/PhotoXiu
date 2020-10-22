@@ -59,7 +59,7 @@ open class BaseActivity : AppCompatActivity() {
      * @param granted 请求成功的执行方法
      */
     @JvmOverloads
-    protected fun requestCapturePermission(context: Context, deniedPermissions: Array<String>, denied: ((data: List<String>) -> Unit)? = null, granted: (data: List<String>) -> Unit) {
+    protected fun requestPermission(context: Context, deniedPermissions: Array<String>, denied: ((data: List<String>) -> Unit)? = null, granted: (data: List<String>) -> Unit) {
         val deniedTemp = denied?.let {
             denied
         } ?: {

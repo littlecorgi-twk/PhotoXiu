@@ -1,1 +1,1 @@
-include ':app', ':commonlib', ':camera', ':retouch', ':puzzle'
+include ':app', ':commonlib', ':camera', ':retouch', ':puzzle', ':wanandroid'
