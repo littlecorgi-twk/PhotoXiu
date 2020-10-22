@@ -15,6 +15,8 @@ import com.littlecorgi.wanandroid.logic.model.HomeListModel
  */
 class HomeArticlesRecyclerViewAdapter(val list: List<HomeListModel.DataBean.DatasBean>) : RecyclerView.Adapter<HomeArticlesRecyclerViewAdapter.MyViewHolder>() {
 
+    private lateinit var mItemClickListener: OnItemClickListener
+
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView = view.findViewById(R.id.tv_home_list_title)
         val fresh: TextView = view.findViewById(R.id.tv_home_list_fresh)
@@ -30,6 +32,9 @@ class HomeArticlesRecyclerViewAdapter(val list: List<HomeListModel.DataBean.Data
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         with(list[position]) {
+            holder.itemView.setOnClickListener {
+                mItemClickListener.onClick(link, title)
+            }
             holder.title.text = title
             if (!fresh) {
                 holder.fresh.text = "官方"
@@ -46,4 +51,12 @@ class HomeArticlesRecyclerViewAdapter(val list: List<HomeListModel.DataBean.Data
     }
 
     override fun getItemCount(): Int = list.size
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.mItemClickListener = listener
+    }
+
+    interface OnItemClickListener {
+        fun onClick(url: String, title: String)
+    }
 }

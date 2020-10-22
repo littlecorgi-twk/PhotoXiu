@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.littlecorgi.wanandroid">
 
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- 联网权限 -->
-    
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application android:theme="@style/wanandroid_AppTheme">
+        <activity android:name=".view.detailarticle.DetailArticleActivity"></activity>
         <activity android:name=".WanAndroidMainActivity" />
     </application>
 

@@ -1,6 +1,7 @@
 package com.littlecorgi.wanandroid.view.home
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import com.littlecorgi.wanandroid.R
 import com.littlecorgi.wanandroid.databinding.WanandroidFragmentHomeBinding
 import com.littlecorgi.wanandroid.view.MainViewModelFactory
 import com.littlecorgi.wanandroid.view.adapter.HomeArticlesRecyclerViewAdapter
+import com.littlecorgi.wanandroid.view.detailarticle.DetailArticleActivity
 
 class HomeFragment : Fragment() {
 
@@ -59,6 +61,14 @@ class HomeFragment : Fragment() {
     private fun initRecyclerView() {
         mBinding.rvHomeArticle.apply {
             layoutManager = mLayoutManager
+            mRvAdapter.setOnItemClickListener(object : HomeArticlesRecyclerViewAdapter.OnItemClickListener {
+                override fun onClick(url: String, title: String) {
+                    startActivity(Intent(mContext, DetailArticleActivity::class.java).apply {
+                        putExtra("article_url", url)
+                        putExtra("article_title", title)
+                    })
+                }
+            })
             adapter = mRvAdapter
         }
     }
