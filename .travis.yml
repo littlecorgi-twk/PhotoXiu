@@ -24,7 +24,7 @@ cache:  #指定缓存目录
 script: # 执行:下面的命令
 # 生成release apk包
 - "./gradlew assembleRelease"
-dd:
+before_install:
 - openssl aes-256-cbc -K $encrypted_69a4188f9733_key -iv $encrypted_69a4188f9733_iv
   -in littlecorgi.jks.enc -out littlecorgi.jks -d
 deploy: # 部署
