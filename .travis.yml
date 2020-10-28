@@ -26,7 +26,7 @@ script: # 执行:下面的命令
 - "./gradlew assembleRelease"
 before_install:
 - openssl aes-256-cbc -K $encrypted_69a4188f9733_key -iv $encrypted_69a4188f9733_iv
-  -in littlecorgi.jks.enc -out littlecorgi.jks -d
+  -in key/littlecorgi.jks.enc -out key/littlecorgi.jks -d
 deploy: # 部署
   provider: releases # 部署到 GitHub Release
   api_key: # 填写 GitHub 的 token
