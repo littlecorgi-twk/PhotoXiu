@@ -1,38 +1,35 @@
 language: android
 jdk: oraclejdk8
-notifications: # 每次构建的时候是否通知，如果不想收到通知邮箱（个人感觉邮件贼烦），那就设置 false 吧
+notifications:
   email: true
 android:
   components:
-  # 构建项目所用的BuildTools版本
   - build-tools-29.0.2
-  # 用来编译项目的SDK版本
   - android-29
   - extra-google-google_play_services
   - extra-google-m2repository
   - extra-android-m2repository
   - addon-google_apis-google-29
 before_script:
-- chmod +x gradlew #改变 gradlew 的访问权限
-- rm -f $HOME/.gradle/caches/modules-2/modules-2.lock #指定缓存
-- rm -fr $HOME/.gradle/caches/*/plugin-resolution/ #指定缓存
-cache:  #指定缓存目录
+- chmod +x gradlew
+- rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
   directories:
   - "$HOME/.gradle/caches/"
   - "$HOME/.gradle/wrapper/"
   - "$HOME/.android/build-cache"
-script: # 执行:下面的命令
-# 生成release apk包
+script:
 - "./gradlew assembleRelease"
-before_install:
-- openssl aes-256-cbc -K $encrypted_69a4188f9733_key -iv $encrypted_69a4188f9733_iv
-  -in key/littlecorgi.jks.enc -out key/littlecorgi.jks -d
-deploy: # 部署
-  provider: releases # 部署到 GitHub Release
-  api_key: # 填写 GitHub 的 token
+deploy:
+  provider: releases
+  api_key:
     secure: SCt+p90wK7z0InEja8JoF24Uc+9MpVFqb+b6sE5gqOynDR0SDRHvmSAfdQ0r65We/UFI4GULHhSf1dg7laNG8OIs0d4LphE5yTbbBCRhEj9rWbpGuBeKXMQL5YVdC9wTu3zVTKmiscrFmTg0gtOG64wNH5VU8nZW0kPHC8+v7fglsmZMfFgA5ep8+XHBlCfWXmVcte49dnySm55Bznf7H9uoD0Db1ho7HHiQRno+uCbcmrZQ+m/x4mZF7vWrs2IlNs3ACIO3seBTL1Cg/GBdgynvQi9NldORQ1fkwI34i4QN3ZkUI30LXcxMs4LL7gIQVT3K3GKdoXREBSqGM7z/ZJYLQlHzm6bhOxE3ZKgjVfBpGggu/kBjg8h8wfnq/SYYUwai8943uy5dxjUTunW5j/c8uyTF1DPt7AxgM2Yy0Urr9ykHPOfNYjC+4F9W7h12S5/+otvRfVdtkmhy2oG+3BGFrw7+IefqLq5y2fB3jLRT31HNh+lX967mkAlHnI7noeuHftKUZ3p82GP0M1m2dVpEniWLNH26oSuNfh5mviI3+I+2Vzpt3O5o6bQPZQbw2Sn3+LmdWM8hq0SR+WhfnmjwXBbwEW32yVQJF6Z6T1LSwlS4RyVJdStqX0Isml3fVXu46taU9bCnFb6xr6Pm/Gg+oQYw0hIrePBIAShXZQM=
-  file: app/build/outputs/apk/release/app-release.apk # 部署文件路径
+  file: app/build/outputs/apk/release/app-release.apk
   on:
     repo: a1203991686/PhotoXiu
-    tags: true #手动添加tag时才会自动配置
+    tags: true
   skip_cleanup: 'true'
+dd:
+- openssl aes-256-cbc -K $encrypted_1d5650018551_key -iv $encrypted_1d5650018551_iv
+  -in littlecorgi.jks.enc -out key/littlecorgi.jks -d
