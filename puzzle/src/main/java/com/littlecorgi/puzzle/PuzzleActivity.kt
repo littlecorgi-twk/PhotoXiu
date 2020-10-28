@@ -233,13 +233,13 @@ class PuzzleActivity : BaseActivity() {
     }
 
     private fun initRecyclerItem() {
-        val edit = RecyclerItem("增强", R.drawable.ic_tune_black_24dp)
+        val edit = RecyclerItem("增强", R.drawable.puzzle_ic_tune_black_24dp)
         mItemList.add(edit)
-        val clip = RecyclerItem("裁剪", R.drawable.ic_crop_black_24dp)
+        val clip = RecyclerItem("裁剪", R.drawable.puzzle_ic_crop_black_24dp)
         mItemList.add(clip)
-        val filter = RecyclerItem("滤镜", R.drawable.ic_photo_filter_black_24dp)
+        val filter = RecyclerItem("滤镜", R.drawable.puzzle_ic_photo_filter_black_24dp)
         mItemList.add(filter)
-        val frames = RecyclerItem("相框", R.drawable.ic_filter_frames_black_24dp)
+        val frames = RecyclerItem("相框", R.drawable.puzzle_ic_filter_frames_black_24dp)
         mItemList.add(frames)
     }
 

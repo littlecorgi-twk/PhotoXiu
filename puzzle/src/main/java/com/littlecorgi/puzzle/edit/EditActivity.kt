@@ -61,7 +61,7 @@ class EditActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener {
         midValue = hueSeekBar!!.max * 1.0f / 2
 
         setSupportActionBar(toolbarActivityEdit)
-        toolbarActivityEdit.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+        toolbarActivityEdit.setNavigationIcon(R.drawable.puzzle_ic_arrow_back_black_24dp)
         toolbarActivityEdit.setNavigationOnClickListener {
             tag = 1
             finished()
@@ -111,11 +111,11 @@ class EditActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener {
     }
 
     private fun initRecyclerItem() {
-        val light = RecyclerItem("亮度", R.drawable.ic_light_black_24dp)
+        val light = RecyclerItem("亮度", R.drawable.puzzle_ic_light_black_24dp)
         mItemList.add(light)
-        val tonality = RecyclerItem("色调", R.drawable.ic_tonality_black_24dp)
+        val tonality = RecyclerItem("色调", R.drawable.puzzle_ic_tonality_black_24dp)
         mItemList.add(tonality)
-        val filter = RecyclerItem("饱和度", R.drawable.ic_iso_black_24dp)
+        val filter = RecyclerItem("饱和度", R.drawable.puzzle_ic_iso_black_24dp)
         mItemList.add(filter)
     }
 

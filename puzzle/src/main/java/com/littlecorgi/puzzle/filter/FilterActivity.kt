@@ -137,17 +137,17 @@ class FilterActivity : BaseActivity() {
     }
 
     private fun initRecyclerItem() {
-        val edit = RecyclerItem("灰度", R.drawable.ic_tune_black_24dp)
+        val edit = RecyclerItem("灰度", R.drawable.puzzle_ic_tune_black_24dp)
         mItemList.add(edit)
-        val clip = RecyclerItem("负片", R.drawable.ic_crop_black_24dp)
+        val clip = RecyclerItem("负片", R.drawable.puzzle_ic_crop_black_24dp)
         mItemList.add(clip)
-        val filter = RecyclerItem("怀旧", R.drawable.ic_photo_filter_black_24dp)
+        val filter = RecyclerItem("怀旧", R.drawable.puzzle_ic_photo_filter_black_24dp)
         mItemList.add(filter)
-        val frames = RecyclerItem("去色", R.drawable.ic_filter_frames_black_24dp)
+        val frames = RecyclerItem("去色", R.drawable.puzzle_ic_filter_frames_black_24dp)
         mItemList.add(frames)
-        val filter1 = RecyclerItem("高饱和度", R.drawable.ic_tune_black_24dp)
+        val filter1 = RecyclerItem("高饱和度", R.drawable.puzzle_ic_tune_black_24dp)
         mItemList.add(filter1)
-        val filter2 = RecyclerItem("红绿反色", R.drawable.ic_crop_black_24dp)
+        val filter2 = RecyclerItem("红绿反色", R.drawable.puzzle_ic_crop_black_24dp)
         mItemList.add(filter2)
     }
 

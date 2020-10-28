@@ -10,7 +10,7 @@
 
     <item
         android:id="@+id/puzzle_menu_not_upload_finish"
-        android:icon="@drawable/ic_check_black_24dp"
+        android:icon="@drawable/puzzle_ic_check_black_24dp"
         android:title="@string/puzzle_finish"
         app:showAsAction="always" />
 
