@@ -222,7 +222,7 @@ class FirstOpenGLProjectRenderer(private val context: Context) : GLSurfaceView.R
         textureProgram = TextureShaderProgram(context)
         colorProgram = ColorShaderProgram(context)
 
-        texture = TextureHelper.loadTexture(context, R.drawable.air_hockey_surface)
+        texture = TextureHelper.loadTexture(context, R.drawable.retouch_air_hockey_surface)
     }
 
     override fun onSurfaceChanged(gl: GL10?, width: Int, height: Int) {
