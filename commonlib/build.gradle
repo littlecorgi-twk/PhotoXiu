@@ -38,6 +38,9 @@ dependencies {
     androidTestApi(rootProject.ext.dependencies["espressoCore"], {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    testImplementation rootProject.ext.dependencies["junit"]
+    androidTestImplementation rootProject.ext.dependencies["test:runner"]
+
     api rootProject.ext.dependencies["appcompat"]
 
     // kotlin
