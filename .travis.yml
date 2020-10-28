@@ -1,5 +1,7 @@
 language: android
 jdk: oraclejdk8
+os: linux
+disk: xenial
 notifications:
   email: true
 android:
