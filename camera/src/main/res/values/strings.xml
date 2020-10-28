@@ -2,6 +2,6 @@
     <string name="camera_app_name">camera</string>
     <string name="camera_capture">拍照</string>
     <string name="camera_info">Info</string>
-    <string name="picture">拍照</string>
-    <string name="change_camera">change camera</string>
+    <string name="camera_picture">拍照</string>
+    <string name="camera_change_camera">change camera</string>
 </resources>
