@@ -4,7 +4,7 @@ import android.content.Context
 import android.opengl.GLES20.*
 import com.littlecorgi.retouch.R
 
-class TextureShaderProgram (context: Context) : ShaderProgram(context, R.raw.texture_vertex_shader, R.raw.texture_fragment_shader){
+class TextureShaderProgram (context: Context) : ShaderProgram(context, R.raw.retouch_texture_vertex_shader, R.raw.retouch_texture_fragment_shader){
     private val uMatrixLocation: Int = glGetUniformLocation(program, U_MATRIX)
     private val uTextureUnitLocation: Int = glGetUniformLocation(program, U_TEXTURE_UNIT)
     private val aPositionLocation: Int = glGetAttribLocation(program, A_POSITION)
